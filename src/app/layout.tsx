@@ -8,6 +8,12 @@ const gtSuper = localFont({
   weight: "100 900",
 });
 
+const sohne = localFont({
+  src: "./public/fonts/sohne/sohneone.otf",
+  variable: "--font-sohneone",
+  weight: "100 900",
+});
+
 export const metadata: Metadata = {
   title: "Be an aspirant",
   description: "Created with ❤️ by Aayush Pagare.",
@@ -20,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${gtSuper.variable}`}>{children}</body>
+      <body className={`${gtSuper.variable} ${sohne.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }

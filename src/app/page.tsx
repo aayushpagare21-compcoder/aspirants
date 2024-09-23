@@ -1,32 +1,34 @@
 import { Button } from "@/app/components/ui/button";
-
 export default function LandingPage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] min-h-screen p-8 pb-20 gap-16 sm:p-20 bg-[#F7F4ED]">
-      <main className="flex flex-col gap-8 row-start-2 sm">
-        <div className="h-[20%]"> </div>
-        <div className="flex mx-[70px] h-[90%]">
-          <div className="w-[90%] flex flex-col gap-12">
-            <div className="font-[family-name:var(--font-gtsuper-medium)]">
-              <h1 className="text-[7rem] text-black leading-none">
-                {`Aspirant's`}
-              </h1>
-              <h1 className="text-[7rem] text-black leading-none">
-                {`stories & ideas`}
-              </h1>
+    <main>
+      <div className="flex flex-col h-screen">
+        <div className="flex justify-center bg-[#F7F4ED] border border-b-black">
+          <nav className="flex justify-between w-[90%] xl:w-[80%] 2xl:w-[45%]">
+            <div className="text-black font-bold text-[2rem] font-[family-name:var(--font-gtsuper-medium)] my-3 tracking-normal">
+              Aspirants
             </div>
-            <h3 className="text-[1.5rem]">
-              A place to connect with your fellow aspirants
-            </h3>
-            <Button className="md:w-[18%] px-12 pt-4 pb-3 w-[100%]">
-              {" "}
-              GET STARTED{" "}
-            </Button>
-          </div>
-          <div className="w-[10%]"></div>
+            <div>
+              <ul className="flex gap-6 text-[13px] font-[family-name:var(--font-sohneone)]">
+                <li className="my-7 hidden sm:block"> Our Story</li>
+                <li className="my-7 hidden sm:block"> Membership</li>
+                <li className="my-7 hidden sm:block"> Write</li>
+                <li className="my-7 hidden sm:block"> Sign In</li>
+                <li className="my-5">
+                  <Button className="px-4 py-2"> Get Started </Button>
+                </li>
+              </ul>
+            </div>
+          </nav>
         </div>
-        <div></div>
-      </main>
-    </div>
+        <div className="flex justify-center bg-[#F7F4ED] border border-b-black items-center h-[60%]">
+          <div className="2xl:w-[45%] xl:w-[80%] w-[90%]">
+            <div className="sm:leading-[6rem] sm:text-[7rem] sm:w-[720px] sm:h-[200px] font-[family-name:var(--font-gtsuper-medium)] m-0 p-0">
+              {`Aspirant's stories & ideas`}{" "}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }
