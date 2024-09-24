@@ -1,5 +1,6 @@
 import { Button } from "@/app/components/ui/button";
 import React from "react";
+import Image from "next/image";
 
 const Page = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -26,7 +27,7 @@ const Navbar = () => {
           <ul className="flex gap-6 text-[13px] font-[family-name:var(--font-sohneone)]">
             {navitems.map((item, index) => {
               return (
-                <li key={index} className="">
+                <li key={index} className="my-7 hidden sm:block">
                   <a href=""> {item.content} </a>
                 </li>
               );
@@ -43,20 +44,29 @@ const Navbar = () => {
 
 const HeroSection = () => {
   return (
-    <div className="flex justify-center border border-b-black items-center h-[85%]">
-      <div className="flex flex-col gap-12 2xl:w-[60%] xl:w-[80%] w-[90%]">
-        <div className="text-[4rem] leading-[4rem] max-w-[200px] sm:leading-[6rem] sm:text-[7rem] sm:max-w-[700px] font-[family-name:var(--font-gtsuper-medium)] m-0 p-0">
-          {`Aspirant stories & ideas`}
+    <div>
+      <div className="flex justify-center border border-b-black items-center">
+        <div className="flex flex-col gap-12 2xl:w-[60%] xl:w-[80%] w-[90%] my-[5rem]">
+          <div className="text-[4rem] leading-[4rem] max-w-[200px] sm:leading-[6rem] sm:text-[7rem] sm:max-w-[700px] font-[family-name:var(--font-gtsuper-medium)] m-0 p-0">
+            {`Aspirant stories & ideas`}
+          </div>
+          <div className="text-[22px]">
+            {" "}
+            A place to read, write and deepen your understanding{" "}
+          </div>
+          <Button className="w-[196px] h-[46px] text-[1.2rem] bg-[#1A8917] lg:bg-black">
+            {" "}
+            Start reading{" "}
+          </Button>
         </div>
-        <div className="text-[22px]">
-          {" "}
-          A place to read, write and deepen your understanding{" "}
-        </div>
-        <Button className="w-[196px] h-[46px] text-[1.2rem] bg-[#1A8917] lg:bg-black">
-          {" "}
-          Start reading{" "}
-        </Button>
       </div>
+      <Image
+        src="/images/lbsnaa.jpeg"
+        alt="image goes here"
+        height="300"
+        width="300"
+        className="hidden lg:block absolute top-[76px] rounded-full right-[-50px] h-[500px] w-[300px] xl:right-[130px] xl:rounded-none xl:w-[450px] xl:h-[530px]"
+      />
     </div>
   );
 };
