@@ -6,7 +6,6 @@ export default function LandingPage() {
       <header>
         <nav className="flex justify-between w-[90vw] 2xl:w-[50vw] p-4 items-center">
           <div className="font-[family-name:var(--font-gtsuper-medium)] text-[2rem] font-bold">
-            {" "}
             Aspirant
           </div>
           <div className="flex justify-around gap-8">
@@ -32,8 +31,7 @@ export default function LandingPage() {
             A place to read, write and deepen your understanding
           </div>
           <Button className="py-2 px-8 text-[1.2rem] w-[13rem] bg-[#1A8917] lg:bg-black">
-            {" "}
-            Get started{" "}
+            Get started
           </Button>
         </div>
       </section>
