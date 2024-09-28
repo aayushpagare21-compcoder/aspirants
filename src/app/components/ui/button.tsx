@@ -28,7 +28,7 @@ const buttonVariants = cva(
     },
     defaultVariants: {
       variant: "default",
-      size: "default",
+      size: "sm", // Change this to match the actual default variant value you intend.
     },
   },
 );

@@ -16,7 +16,10 @@ export default function LandingPage() {
               <li> Sign in</li>
             </ul>
             <div className="flex items-center">
-              <Button className="py-2 px-4"> Get started </Button>
+              <Button className="py-5 rounded-full w-[6.5rem] font-bold">
+                {" "}
+                Get started{" "}
+              </Button>
             </div>
           </div>
         </nav>
@@ -30,7 +33,7 @@ export default function LandingPage() {
           <div className="font-[family-name:var(--font-sohneone)] text-[1.5rem] leading-none">
             A place to read, write and deepen your understanding
           </div>
-          <Button className="py-2 px-8 text-[1.2rem] w-[13rem] bg-[#1A8917] lg:bg-black">
+          <Button className="py-6 text-[1.2rem] w-[12rem] bg-[#1A8917] lg:bg-black rounded-full">
             Get started
           </Button>
         </div>
