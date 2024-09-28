@@ -5,6 +5,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-gtsuper-medium: 'GT Super', Georgia, 'Times New Roman', Times, serif;
+  --font-sohneone: 'Sohne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
