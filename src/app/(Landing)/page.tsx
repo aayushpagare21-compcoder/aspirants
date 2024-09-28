@@ -4,9 +4,9 @@ export default function LandingPage() {
   return (
     <div className="bg-[#F7F4ED] h-[100vh] flex flex-col items-center">
       <header>
-        <nav className="flex justify-between w-[90vw] 2xl:w-[50vw] p-4 items-center">
+        <nav className="flex justify-between w-[90vw] xl:w-[80vw] 2xl:w-[50vw] p-4 items-center">
           <div className="font-[family-name:var(--font-gtsuper-medium)] text-[2rem] font-bold">
-            Aspirant
+            Medium
           </div>
           <div className="flex justify-around gap-8">
             <ul className="font-[family-name:var(--font-sohneone)] text-[14px] items-center md:flex gap-6 hidden">
@@ -25,16 +25,16 @@ export default function LandingPage() {
         </nav>
       </header>
       <div className="border border-b-black w-full"></div>
-      <section className="w-[90vw] 2xl:w-[50vw] h-[80vh] flex justify-between">
-        <div className="flex flex-col justify-center my-[5rem] gap-12">
+      <section className="w-[90vw] xl:w-[80vw] 2xl:w-[50vw] h-[90vh] flex justify-between">
+        <div className="flex flex-col justify-center mt-[6rem] gap-8 md:gap-12">
           <div className="font-[family-name:var(--font-gtsuper-medium)] tracking-normal text-[5rem] leading-[4rem] lg:text-[7rem] lg:leading-[6rem]">
-            Aspirant <br /> {"stories & ideas"}
+            Human <br /> {"stories & ideas"}
           </div>
           <div className="font-[family-name:var(--font-sohneone)] text-[1.5rem] leading-none">
             A place to read, write and deepen your understanding
           </div>
-          <Button className="py-6 text-[1.2rem] w-[12rem] bg-[#1A8917] lg:bg-black rounded-full">
-            Get started
+          <Button className="py-6 text-[1.2rem] w-[12rem] bg-[#1A8917] lg:bg-black rounded-full mb-[1rem]">
+            Start reading
           </Button>
         </div>
       </section>
