@@ -14,21 +14,25 @@ const sohne = localFont({
   weight: "100 900",
 });
 
+// Add the viewport meta tag to the metadata object
 export const metadata: Metadata = {
   title: "Be an aspirant",
   description: "Created with ❤️ by Aayush Pagare.",
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+      <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body className={`${gtSuper.variable} ${sohne.variable}`}>
-        {children}
+      {children}
       </body>
-    </html>
+      </html>
   );
 }
