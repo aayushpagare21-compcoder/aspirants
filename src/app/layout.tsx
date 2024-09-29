@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "../styles/globals.css";
+import "./styles/globals.css";
 
 const gtSuper = localFont({
-  src: "../../../public/fonts/GT-Super/GT-Super-Display-Regular-Trial.woff2",
+  src: "../../public/fonts/GT-Super/GT-Super-Display-Regular-Trial.woff2",
   variable: "--font-gtsuper-medium",
   weight: "100 900",
   display: "swap",
 });
 
 const sohne = localFont({
-  src: "../../../public/fonts/sohne/sohneone.woff2",
+  src: "../../public/fonts/sohne/sohneone.woff2",
   variable: "--font-sohneone",
   weight: "100 900",
   display: "swap",
