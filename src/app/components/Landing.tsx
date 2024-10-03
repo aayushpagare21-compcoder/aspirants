@@ -3,6 +3,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SignInButton } from "@clerk/nextjs";
+import { AspirantsLogo } from "@/app/components/shared/AspirantsLogo";
+import { Divider } from "@/app/components/shared/Divider";
 
 const Page = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -16,10 +18,7 @@ const Header = () => {
   return (
     <header>
       <nav className="flex justify-between w-[90vw] xl:w-[80vw] 2xl:w-[50vw] p-4 items-center">
-        {/* forcing text black here because need consistent font color even in dark mode*/}
-        <div className="font-[family-name:var(--font-gtsuper-medium)] text-[2rem] font-bold text-black">
-          Medium
-        </div>
+        <AspirantsLogo overrideClasses="text-black" />
         <div className="flex justify-around gap-8">
           <ul className="font-[family-name:var(--font-sohneone)] text-[14px] text-black items-center md:flex gap-6 hidden">
             <Link href="#">
@@ -47,11 +46,6 @@ const Header = () => {
     </header>
   );
 };
-
-const Divider = () => {
-  return <div className="border border-b-black w-full"></div>;
-};
-
 const Hero = () => {
   return (
     <section className="w-[90vw] xl:w-[80vw] 2xl:w-[50vw] h-[90vh] flex justify-between">
@@ -120,9 +114,9 @@ export const LandingPage = () => {
   return (
     <Page>
       <Header />
-      <Divider />
+      <Divider overrideClassNames="border-b-black" />
       <Hero />
-      <Divider />
+      <Divider overrideClassNames="border-b-black" />
       <Footer />
     </Page>
   );
