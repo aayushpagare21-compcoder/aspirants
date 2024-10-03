@@ -28,8 +28,8 @@ const SearchResultsSection = ({
 function SearchResults({ data }: { data: SearchApiResponse[] }) {
   return (
     <div className="relative">
-      <div className="w-4 h-4 absolute left-8 -top-2 z-50 rotate-[45deg] border-t border-l z-10 bg-white"></div>
-      <div className="p-4 hidden md:block top-0 absolute w-[300px] overflow-y-hidden z-20 shadow-custom">
+      <div className="w-4 h-4 absolute left-8 -top-2  rotate-[45deg] border-t border-l z-10 bg-white"></div>
+      <div className="p-4 hidden md:block top-0 absolute w-[320px] overflow-y-hidden z-20 shadow-custom">
         {data.map((item) => {
           if (item.searchKey == "USER") {
             return (
@@ -55,7 +55,7 @@ function SearchResults({ data }: { data: SearchApiResponse[] }) {
             return (
               <div key={item.searchKey}>
                 <div className="text-tertiary text-[0.8rem] font-normal tracking-wide p-1">
-                  PUBLICATION
+                  PUBLICATIONS
                 </div>
                 <Divider />
                 <ul>
@@ -75,7 +75,7 @@ function SearchResults({ data }: { data: SearchApiResponse[] }) {
             return (
               <div key={item.searchKey}>
                 <div className="text-tertiary text-[0.8rem] font-normal tracking-wide p-1">
-                  PUBLICATION
+                  TOPICS
                 </div>
                 <Divider />
                 <ul>
