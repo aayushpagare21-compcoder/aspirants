@@ -30,24 +30,6 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link
-            rel="preload"
-            href="/fonts/GT-Super/GT-Super-Display-Regular-Trial.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/sohne/sohneone.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-          />
-        </head>
-
         <body className={`${gtSuper.variable} ${sohne.variable}`}>
           {children}
         </body>
