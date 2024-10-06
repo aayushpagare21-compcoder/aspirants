@@ -5,7 +5,7 @@ import { SignInButton } from "@clerk/nextjs";
 
 export const LandingPage = () => {
   return (
-    <section className="w-[90vw] xl:w-[80vw] 2xl:w-[50vw] h-[90vh] flex justify-between">
+    <section className="w-[90vw] xl:w-[80vw] 2xl:w-[60vw] h-[90vh] flex justify-between">
       <div className="flex flex-col justify-center mt-[6rem] gap-8 md:gap-12">
         <div className="font-[family-name:var(--font-gtsuper-medium)] text-black tracking-normal text-[5rem] leading-[4rem] lg:text-[7rem] lg:leading-[6rem]">
           Human <br /> {"stories & ideas"}
