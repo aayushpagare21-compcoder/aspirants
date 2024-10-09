@@ -111,7 +111,7 @@ function SearchResults({ data }: { data: SearchApiResponse[] }) {
 
 export const SearchBar = () => {
   const [searchValue, setSearchValue] = useState<string | null>(null);
-  const ref = useRef();
+  const ref = useRef<HTMLElement>();
   useOutsideClick(ref, () => {
     setSearchValue("");
   });

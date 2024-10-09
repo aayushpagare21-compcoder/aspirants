@@ -96,23 +96,25 @@ export default function InterceptedLogin() {
   const [modalState, setModalState] = useState<ModalState>(ModalState.REGISTER);
   const onRegisterPage = modalState == ModalState.REGISTER;
   return (
-    <Dialog>
-      <div className="fixed inset-0 z-40 bg-[#ffffff] bg-opacity-50 backdrop-blur-sm" />
-      <div className="fixed inset-0 z-50 flex items-center justify-center">
-        <div className="flex h-full w-full flex-col justify-center gap-10 bg-white md:h-[42rem] md:w-[38rem] md:rounded-lg md:px-14 md:py-16 md:shadow-lg">
-          <Header onRegisterPage={onRegisterPage} />
-          <Buttons onRegisterPage={onRegisterPage} />
-          <Prompt
-            onRegisterPage={onRegisterPage}
-            onClick={() => {
-              setModalState(
-                onRegisterPage ? ModalState.LOGIN : ModalState.REGISTER,
-              );
-            }}
-          />
-          <Footer onRegisterPage={onRegisterPage} />
+    <>
+      <Dialog>
+        <div className="fixed inset-0 z-40 bg-[#ffffff] bg-opacity-50 backdrop-blur-sm" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="flex h-full w-full flex-col justify-center gap-10 bg-white md:h-[42rem] md:w-[38rem] md:rounded-lg md:px-14 md:py-16 md:shadow-lg">
+            <Header onRegisterPage={onRegisterPage} />
+            <Buttons onRegisterPage={onRegisterPage} />
+            <Prompt
+              onRegisterPage={onRegisterPage}
+              onClick={() => {
+                setModalState(
+                  onRegisterPage ? ModalState.LOGIN : ModalState.REGISTER,
+                );
+              }}
+            />
+            <Footer onRegisterPage={onRegisterPage} />
+          </div>
         </div>
-      </div>
-    </Dialog>
+      </Dialog>
+    </>
   );
 }
