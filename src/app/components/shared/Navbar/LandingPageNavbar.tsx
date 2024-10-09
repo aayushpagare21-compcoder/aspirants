@@ -25,7 +25,7 @@ export const LandingPageNavBar = () => {
           </ul>
           <div className="flex items-center">
             <Button className="w-[6.5rem] rounded-full py-5 font-bold text-white">
-              Get started
+              <Link href="/login"> Get started </Link>
             </Button>
           </div>
         </div>
