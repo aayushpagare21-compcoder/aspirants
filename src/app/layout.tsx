@@ -1,7 +1,8 @@
+import React from "react";
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./styles/globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 
 const gtSuper = localFont({
   src: "../../public/fonts/GT-Super/GT-Super-Display-Regular-Trial.woff2",
@@ -26,14 +27,13 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={`${gtSuper.variable} ${sohne.variable}`}>
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={`${gtSuper.variable} ${sohne.variable}`}>
+        <div>{children}</div>
+      </body>
+    </html>
   );
 }

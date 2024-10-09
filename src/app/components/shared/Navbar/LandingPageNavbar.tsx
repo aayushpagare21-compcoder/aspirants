@@ -1,16 +1,15 @@
 import { AspirantsLogo } from "@/app/components/shared/Logo/AspirantsLogo";
 import Link from "next/link";
-import { SignInButton } from "@clerk/nextjs";
 import { Button } from "@/app/components/ui/button";
 import React from "react";
 
 export const LandingPageNavBar = () => {
   return (
     <header>
-      <nav className="flex justify-between w-[90vw] xl:w-[80vw] 2xl:w-[50vw] p-4 items-center">
+      <nav className="flex w-[90vw] items-center justify-between p-4 xl:w-[80vw] 2xl:w-[50vw]">
         <AspirantsLogo overrideClasses="text-black" />
         <div className="flex justify-around gap-8">
-          <ul className="font-[family-name:var(--font-sohneone)] text-[14px] text-black items-center md:flex gap-6 hidden">
+          <ul className="hidden items-center gap-6 font-[family-name:var(--font-sohneone)] text-[14px] text-black md:flex">
             <Link href="#">
               <li> Our Story</li>
             </Link>
@@ -25,11 +24,9 @@ export const LandingPageNavBar = () => {
             </Link>
           </ul>
           <div className="flex items-center">
-            <SignInButton>
-              <Button className="py-5 rounded-full w-[6.5rem] font-bold text-white">
-                Get started
-              </Button>
-            </SignInButton>
+            <Button className="w-[6.5rem] rounded-full py-5 font-bold text-white">
+              Get started
+            </Button>
           </div>
         </div>
       </nav>

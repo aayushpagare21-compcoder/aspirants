@@ -20,13 +20,13 @@ const SearchResultsSection = ({
   image: string;
 }) => {
   return (
-    <li key={name} className="flex items-center p-1 cursor-pointer text-sm">
+    <li key={name} className="flex cursor-pointer items-center p-1 text-sm">
       <Image
         height={32}
         width={32}
         src={image}
         alt={name}
-        className="w-8 h-8 rounded-full mr-2"
+        className="mr-2 h-8 w-8 rounded-full"
       />
       <span>{name}</span>
     </li>
@@ -35,12 +35,12 @@ const SearchResultsSection = ({
 
 function SearchResults({ data }: { data: SearchApiResponse[] }) {
   return (
-    <div className="p-4 hidden md:block top-0 absolute w-[320px] overflow-y-hidden z-20 shadow-custom">
+    <div className="absolute top-0 z-20 hidden w-[320px] overflow-y-hidden p-4 shadow-custom md:block">
       {data.map((item) => {
         if (item.searchKey == "USER") {
           return item.data.length > 0 ? (
             <div key={item.searchKey}>
-              <div className="text-tertiary text-[0.8rem] font-normal tracking-wide p-1">
+              <div className="p-1 text-[0.8rem] font-normal tracking-wide text-tertiary">
                 PEOPLE
               </div>
               <Divider />
@@ -62,7 +62,7 @@ function SearchResults({ data }: { data: SearchApiResponse[] }) {
         } else if (item.searchKey === "PUBLICATION") {
           return item.data.length > 0 ? (
             <div key={item.searchKey}>
-              <div className="text-tertiary text-[0.8rem] font-normal tracking-wide p-1">
+              <div className="p-1 text-[0.8rem] font-normal tracking-wide text-tertiary">
                 PUBLICATIONS
               </div>
               <Divider />
@@ -84,7 +84,7 @@ function SearchResults({ data }: { data: SearchApiResponse[] }) {
         } else {
           return item.data.length > 0 ? (
             <div key={item.searchKey}>
-              <div className="text-tertiary text-[0.8rem] font-normal tracking-wide p-1">
+              <div className="p-1 text-[0.8rem] font-normal tracking-wide text-tertiary">
                 TOPICS
               </div>
               <Divider />
@@ -143,10 +143,10 @@ export const SearchBar = () => {
 
   return (
     <div className="relative">
-      <div className="flex items-center gap-1 rounded-full h-8 py-5 px-2 bg-primary-foreground">
+      <div className="flex h-8 items-center gap-1 rounded-full bg-primary-foreground px-2 py-5">
         <SearchIcon className="h-[1.5rem] w-[2rem]" strokeWidth={1} />
         <Input
-          className="border-none p-2 h-6 hidden md:block focus-visible:none bg-primary-foreground shadow-none"
+          className="focus-visible:none hidden h-6 border-none bg-primary-foreground p-2 shadow-none md:block"
           placeholder="Search"
           onChange={(e) => {
             setSearchValue(e.target.value);
@@ -154,8 +154,9 @@ export const SearchBar = () => {
         />
       </div>
       {combinedFilteredResults.every((result) => result.data.length !== 0) && (
+        // @ts-ignore
         <div className="relative" ref={ref}>
-          <div className="w-4 h-4 absolute left-8 -top-2 rotate-[45deg] border-t border-l z-10 bg-white"></div>
+          <div className="absolute -top-2 left-8 z-10 h-4 w-4 rotate-[45deg] border-l border-t bg-white"></div>
           <SearchResults data={combinedFilteredResults} />
         </div>
       )}

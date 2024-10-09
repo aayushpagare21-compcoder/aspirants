@@ -1,10 +1,10 @@
 import { SuggestionsBar } from "@/app/components/shared/SuggestionsBar";
-export const Welcome = () => {
+export default function WelcomePage() {
   return (
     <div>
-      <div className="max-w-[100vw] flex justify-center">
+      <div className="flex max-w-[100vw] justify-center">
         <SuggestionsBar />
       </div>
     </div>
   );
-};
+}
