@@ -5,17 +5,19 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --tertiary: #6b6b6b; /* Added tertiary color */
   --font-gtsuper-medium: "GT Super", Georgia, "Times New Roman", Times, serif;
   --font-sohneone: "Sohne", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/*@media (prefers-color-scheme: dark) {*/
+/*  :root {*/
+/*    --background: #ffffff;*/
+/*    --foreground: #171717;*/
+/*    --input: #f0f8ff;*/
+/*  }*/
+/*}*/
 
 body {
   color: var(--foreground);
@@ -56,6 +58,7 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --tertiary: #6b6b6b; /* Add tertiary color here if needed */
   }
   .dark {
     --background: 222.2 84% 4.9%;
