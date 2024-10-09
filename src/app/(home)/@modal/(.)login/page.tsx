@@ -5,9 +5,9 @@ import { Button } from "@/app/components/ui/button";
 import { MailIcon } from "lucide-react";
 import { GoogleIcon } from "@/app/components/shared/Logo/GoogleIcon";
 import { useState } from "react";
-import { DialogClose, DialogContent } from "@radix-ui/react-dialog";
-import { CloseIcon } from "next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon";
-
+import { DialogContent } from "@radix-ui/react-dialog";
+import { Cross2Icon } from "@radix-ui/react-icons";
+import { useRouter } from "next/navigation";
 enum ModalState {
   LOGIN = "LOGIN",
   REGISTER = "REGISTER",
@@ -97,6 +97,7 @@ const Header = ({ onRegisterPage }: { onRegisterPage: boolean }) => {
 export default function InterceptedLogin() {
   const [modalState, setModalState] = useState<ModalState>(ModalState.REGISTER);
   const onRegisterPage = modalState == ModalState.REGISTER;
+  const router = useRouter();
   return (
     <>
       <div className="fixed inset-0 z-40 bg-[#ffffff] bg-opacity-50 backdrop-blur-sm" />
@@ -104,11 +105,10 @@ export default function InterceptedLogin() {
         <DialogContent>
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <div className="relative flex h-full w-full flex-col justify-center gap-10 bg-white md:h-[42rem] md:w-[38rem] md:rounded-lg md:px-14 md:py-16 md:shadow-lg">
-              {/* Move the close icon to the top-left */}
               <div className="absolute top-4 right-4">
-                <DialogClose>
-                  <CloseIcon />
-                </DialogClose>
+                <button onClick={() => router.push("/")}>
+                  <Cross2Icon className="w-6 h-6" />
+                </button>
               </div>
               <Header onRegisterPage={onRegisterPage} />
               <Buttons onRegisterPage={onRegisterPage} />
