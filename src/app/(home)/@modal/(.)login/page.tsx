@@ -8,7 +8,7 @@ import { useState } from "react";
 import { DialogContent } from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
-import {signIn} from "next-auth/react";
+import { signIn } from "next-auth/react";
 enum ModalState {
   LOGIN = "LOGIN",
   REGISTER = "REGISTER",
@@ -69,7 +69,7 @@ const Buttons = ({ onRegisterPage }: { onRegisterPage: boolean }) => {
         className="flex w-[60%] rounded-full border border-black px-4 py-5 text-[1rem]"
         onClick={async function () {
           await signIn("google", {
-              callbackUrl: "/feed"
+            callbackUrl: "/feed",
           });
         }}
       >

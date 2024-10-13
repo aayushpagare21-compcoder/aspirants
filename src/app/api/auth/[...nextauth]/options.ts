@@ -1,4 +1,4 @@
-import {NextAuthOptions} from "next-auth";
+import { NextAuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { createUser, getUserByEmail } from "@/app/lib/actions/users";
 export const authOptions: NextAuthOptions = {
@@ -28,6 +28,9 @@ export const authOptions: NextAuthOptions = {
         });
       }
       return true;
+    },
+    session({ session }) {
+      return session;
     },
   },
 };
