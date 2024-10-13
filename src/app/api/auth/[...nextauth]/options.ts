@@ -1,10 +1,13 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { createUser, getUserByEmail } from "@/app/lib/actions/users";
+import {PrismaAdapter} from "@next-auth/prisma-adapter";
+import {prisma} from "@/app/lib/prisma";
 export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
+  adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID! as string,
