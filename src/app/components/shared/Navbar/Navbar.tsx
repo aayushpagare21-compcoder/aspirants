@@ -1,7 +1,6 @@
 import { AspirantsLogo } from "@/app/components/shared/Logo/AspirantsLogo";
 import { BellIcon, EditIcon } from "lucide-react";
 import { SearchBar } from "@/app/components/shared/Navbar/SearchBar";
-
 export const Navbar = () => {
   return (
     <nav className="flex justify-between px-8 py-2">
