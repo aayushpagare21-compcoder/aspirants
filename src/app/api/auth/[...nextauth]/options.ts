@@ -1,7 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { createUser, getUserByEmail } from "@/app/lib/actions/users";
-import {PrismaAdapter} from "@next-auth/prisma-adapter";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import {prisma} from "@/app/lib/prisma";
 export const authOptions: NextAuthOptions = {
   session: {
@@ -17,24 +16,5 @@ export const authOptions: NextAuthOptions = {
   ],
   pages: {
     signIn: "/login",
-  },
-  callbacks: {
-    signIn: async (params) => {
-      if (!params.user.email) {
-        return false;
-      }
-      const existingUser = await getUserByEmail(params.user.email ?? "");
-      if (!existingUser) {
-        await createUser({
-          email: params.user.email,
-          image: params.user.image,
-          name: params.user.name,
-        });
-      }
-      return true;
-    },
-    session({ session }) {
-      return session;
-    },
   },
 };

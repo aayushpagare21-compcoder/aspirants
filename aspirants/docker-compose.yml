@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: aspirants-local-db
+    environment:
+      POSTGRES_DB: aspirants-local
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
