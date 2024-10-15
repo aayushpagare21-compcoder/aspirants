@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/app/components/shared/Navbar/Navbar";
-import { getServerSession, Session } from "next-auth";
+import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { SessionUser } from "@/app/lib/types/auth.types";
+import {SessionUser} from "@/app/lib/types/auth.types";
 export const metadata: Metadata = {
   title: "Be an aspirant",
   description: "Created with ❤️ by Aayush Pagare.",

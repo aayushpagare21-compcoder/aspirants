@@ -4,7 +4,7 @@ import { Button } from "@/app/components/ui/button";
 import { MailIcon } from "lucide-react";
 import { GoogleIcon } from "@/app/components/shared/Logo/GoogleIcon";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import {signInWithGoogleAndRedirect} from "@/app/actions/auth.actions";
 enum ModalState {
   LOGIN = "LOGIN",
   REGISTER = "REGISTER",
@@ -63,11 +63,7 @@ const Buttons = ({ onRegisterPage }: { onRegisterPage: boolean }) => {
       <Button
         variant="outline"
         className="flex w-[60%] rounded-full border border-black px-4 py-5 text-[1rem]"
-        onClick={async function () {
-          await signIn("google", {
-            callbackUrl: "/feed",
-          });
-        }}
+        onClick={signInWithGoogleAndRedirect}
       >
         <GoogleIcon />
         <div className="flex-1">
@@ -96,7 +92,7 @@ const Header = ({ onRegisterPage }: { onRegisterPage: boolean }) => {
   );
 };
 
-export default function InterceptedLogin() {
+export default function LoginPage() {
   const [modalState, setModalState] = useState<ModalState>(ModalState.REGISTER);
   const onRegisterPage = modalState == ModalState.REGISTER;
   return (
