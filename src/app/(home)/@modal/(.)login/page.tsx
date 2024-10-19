@@ -7,7 +7,14 @@ import { DialogContent } from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-const Buttons = () => {
+import { useState } from "react";
+const Buttons = ({
+  showEmailButton,
+  onClickEmailButton,
+}: {
+  showEmailButton: boolean;
+  onClickEmailButton: () => void;
+}) => {
   return (
     <div className="flex flex-col items-center gap-3">
       <Button
@@ -23,13 +30,16 @@ const Buttons = () => {
         <div className="flex-1">Continue with Google</div>
       </Button>
 
-      <Button
-        variant="outline"
-        className="flex w-[60%] rounded-full border border-black px-4 py-5 text-[1rem]"
-      >
-        <MailIcon />
-        <div className="flex-1">Continue with email</div>
-      </Button>
+      {showEmailButton && (
+        <Button
+          variant="outline"
+          className="flex w-[60%] rounded-full border border-black px-4 py-5 text-[1rem]"
+          onClick={onClickEmailButton}
+        >
+          <MailIcon />
+          <div className="flex-1">Continue with email</div>
+        </Button>
+      )}
     </div>
   );
 };
@@ -51,7 +61,31 @@ const Footer = () => {
   );
 };
 
+const EmailInput = ({ onBack }: { onBack: () => void }) => {
+  return (
+    <div className="-mt-6 flex flex-col items-center justify-center">
+      <input
+        placeholder="mandirshrusti2811@gmail.com"
+        className="w-[60%] border-2 border-primary p-2"
+        type="email"
+      />
+      <div className="flex justify-between">
+        <Button className="w-[20%]" variant="link">
+          {" "}
+          Continue{" "}
+        </Button>
+
+        <Button className="w-[20%]" variant="link" onClick={onBack}>
+          {" "}
+          Back{" "}
+        </Button>
+      </div>
+    </div>
+  );
+};
+
 export default function InterceptedLogin() {
+  const [showEmailInput, setShowEmailInput] = useState<boolean>(false);
   const router = useRouter();
   return (
     <>
@@ -66,7 +100,19 @@ export default function InterceptedLogin() {
                 </button>
               </div>
               <Header />
-              <Buttons />
+              <Buttons
+                onClickEmailButton={() => {
+                  setShowEmailInput(true);
+                }}
+                showEmailButton={!showEmailInput}
+              />
+              {showEmailInput && (
+                <EmailInput
+                  onBack={() => {
+                    setShowEmailInput(false);
+                  }}
+                />
+              )}
               <Footer />
             </div>
           </div>
