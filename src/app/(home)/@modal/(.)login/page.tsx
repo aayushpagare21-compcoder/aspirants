@@ -111,9 +111,9 @@ export default function InterceptedLogin() {
         <DialogContent>
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <div className="relative flex h-full w-full flex-col justify-center gap-10 bg-white md:h-[42rem] md:w-[38rem] md:rounded-lg md:px-14 md:py-16 md:shadow-lg">
-              <div className="absolute top-4 right-4">
+              <div className="absolute right-4 top-4">
                 <button onClick={() => router.push("/")}>
-                  <Cross2Icon className="w-6 h-6" />
+                  <Cross2Icon className="h-6 w-6" />
                 </button>
               </div>
               <Header onRegisterPage={onRegisterPage} />

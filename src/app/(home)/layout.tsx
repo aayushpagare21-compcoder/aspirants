@@ -13,11 +13,11 @@ export default function LandingLayout({
     <div>
       {modal}
       <div>
-        <div className="flex h-[100vh] flex-col items-center bg-[#F7F4ED]">
+        <div className="flex h-[100vh] flex-col items-center">
           <LandingPageNavBar />
-          <Divider overrideClassNames="border-b-black" />
+          <Divider />
           {children}
-          <Divider overrideClassNames="border-b-black" />
+          <Divider />
           <LandingPageFooter />
         </div>
       </div>

@@ -101,7 +101,7 @@ export default function InterceptedLogin() {
   const onRegisterPage = modalState == ModalState.REGISTER;
   return (
     <div className="fixed inset-0 flex items-center justify-center">
-      <div className="flex flex-col justify-center gap-10 bg-white md:h-[42rem] md:w-[38rem]  md:rounded-lg md:px-14 md:py-16 md:shadow-lg">
+      <div className="flex flex-col justify-center gap-10 bg-white md:h-[42rem] md:w-[38rem] md:rounded-lg md:px-14 md:py-16 md:shadow-lg">
         <Header onRegisterPage={onRegisterPage} />
         <Buttons onRegisterPage={onRegisterPage} />
         <Prompt

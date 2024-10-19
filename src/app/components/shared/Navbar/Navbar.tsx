@@ -19,7 +19,7 @@ export const Navbar = ({ user }: { user: SessionUser }) => {
         <BellIcon className="h-[1.5rem] w-[2rem]" strokeWidth={1} />
 
         {/* Profile Picture Tab */}
-        <div className="relative h-10 w-10 rounded-full overflow-hidden">
+        <div className="relative h-10 w-10 overflow-hidden rounded-full">
           <Image
             src={user.image} // Replace with the correct image path or dynamic user profile picture
             alt="Profile Picture"
