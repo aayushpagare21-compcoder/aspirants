@@ -1,6 +1,6 @@
 import { AspirantsLogo } from "@/app/components/shared/Logo/AspirantsLogo";
 import { BellIcon, EditIcon } from "lucide-react";
-import { SearchBar } from "@/app/components/shared/Navbar/SearchBar";
+import { SearchBar } from "@/app/components/dashboard/header/SearchBar";
 import Image from "next/image";
 import { SessionUser } from "@/app/lib/types/auth.types";
 

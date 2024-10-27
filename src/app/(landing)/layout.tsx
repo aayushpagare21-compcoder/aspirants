@@ -1,6 +1,6 @@
-import { LandingPageNavBar } from "@/app/components/shared/Navbar/LandingPageNavbar";
+import { LandingPageNavBar } from "@/app/components/landing/LandingPageNavbar";
 import { Divider } from "@/app/components/shared/Divider/Divider";
-import { LandingPageFooter } from "@/app/components/shared/Footer/LandingPageFooter";
+import { LandingPageFooter } from "@/app/components/landing/LandingPageFooter";
 import React from "react";
 export default function LandingLayout({
   children,

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { LoginComponent } from "@/app/components/shared/auth/LoginComponent";
+import { LoginComponent } from "@/app/components/auth/LoginComponent";
+import { aspirantsSignIn } from "@/app/server/actions/auth.actions";
 export default function LoginPage() {
   const [showEmailInput, setShowEmailInput] = useState<boolean>(false);
   return (
@@ -9,6 +10,7 @@ export default function LoginPage() {
         <LoginComponent
           setShowEmailInput={setShowEmailInput}
           showEmailInput={showEmailInput}
+          onSignIn={(provider) => aspirantsSignIn(provider)}
         />
       </div>
     </div>

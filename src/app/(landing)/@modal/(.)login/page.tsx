@@ -4,7 +4,8 @@ import { DialogContent } from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { LoginComponent } from "@/app/components/shared/auth/LoginComponent";
+import { LoginComponent } from "@/app/components/auth/LoginComponent";
+import { aspirantsSignIn } from "@/app/server/actions/auth.actions";
 export default function InterceptedLogin() {
   const [showEmailInput, setShowEmailInput] = useState<boolean>(false);
   const router = useRouter();
