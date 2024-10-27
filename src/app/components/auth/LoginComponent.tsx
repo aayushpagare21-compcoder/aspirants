@@ -1,45 +1,5 @@
-import { Button } from "@/app/components/ui/button";
-import { GoogleIcon } from "@/app/components/shared/Logo/GoogleIcon";
-import { MailIcon } from "lucide-react";
-import { aspirantsSignIn } from "@/app/server/actions/auth.actions";
-import { useState } from "react";
-
-const Buttons = ({
-  showEmailButton,
-  onClickEmailButton,
-}: {
-  showEmailButton: boolean;
-  onClickEmailButton: () => void;
-}) => {
-  return (
-    <div className="flex flex-col items-center gap-3">
-      <Button
-        variant="outline"
-        className="flex w-[60%] rounded-full px-4 py-5 text-[1rem]"
-        onClick={() =>
-          aspirantsSignIn({
-            provider: "google",
-            redirectTo: "/feed",
-          })
-        }
-      >
-        <GoogleIcon />
-        <div className="flex-1">Continue with Google</div>
-      </Button>
-
-      {showEmailButton && (
-        <Button
-          variant="outline"
-          className="flex w-[60%] rounded-full border border-black px-4 py-5 text-[1rem]"
-          onClick={onClickEmailButton}
-        >
-          <MailIcon />
-          <div className="flex-1">Continue with email</div>
-        </Button>
-      )}
-    </div>
-  );
-};
+import { EmailInput } from "@/app/components/auth/EmailInput";
+import { AuthButtons } from "@/app/components/auth/AuthButtons";
 const Header = () => {
   return (
     <h1 className="mb-4 text-center font-[family-name:var(--font-gtsuper-medium)] text-2xl text-[1.8rem] font-bold md:mb-10">
@@ -56,39 +16,6 @@ const Footer = () => {
   );
 };
 
-const EmailInput = ({ onBack }: { onBack: () => void }) => {
-  const [email, setEmail] = useState<string>("");
-  return (
-    <div className="-mt-6 flex flex-col items-center justify-center">
-      <input
-        placeholder="sm@gmail.com"
-        className="w-[60%] border-2 border-primary p-2"
-        type="email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <div className="flex justify-between">
-        <Button
-          className="w-[20%]"
-          variant="link"
-          onClick={() =>
-            aspirantsSignIn({
-              provider: "resend",
-              email,
-            })
-          }
-        >
-          {" "}
-          Continue{" "}
-        </Button>
-
-        <Button className="w-[20%]" variant="link" onClick={onBack}>
-          {" "}
-          Back{" "}
-        </Button>
-      </div>
-    </div>
-  );
-};
 export const LoginComponent = ({
   showEmailInput,
   setShowEmailInput,
@@ -101,7 +28,7 @@ export const LoginComponent = ({
   return (
     <>
       <Header />
-      <Buttons
+      <AuthButtons
         onClickEmailButton={() => {
           setShowEmailInput(true);
         }}
