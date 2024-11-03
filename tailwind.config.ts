@@ -12,9 +12,9 @@ const config: Config = {
         custom: "0 2px 10px rgba(0, 0, 0, 0.15)",
       },
       colors: {
-        background: "hsl(var(--background))",
-        tertiary: "var(--tertiary)",
-        foreground: "hsl(var(--foreground))",
+        landing: "#C9E9D2",
+        background: "#FFFFFF",
+        foreground: "#1C1C1C",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
@@ -24,20 +24,22 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#1C1C1C",
+          foreground: "#1C1C1C",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#45474B",
+          foreground: "#FFFFFF",
+        },
+        tertiary: {
+          DEFAULT: "#F4CE14",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "#FFFFFF",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",

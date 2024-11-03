@@ -1,4 +1,4 @@
-import { SuggestionsBar } from "@/app/components/shared/SuggestionsBar";
+import { SuggestionsBar } from "@/app/components/dashboard/SuggestionsBar";
 export default async function WelcomePage() {
   return (
     <div>

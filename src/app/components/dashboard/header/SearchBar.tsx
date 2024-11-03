@@ -143,10 +143,10 @@ export const SearchBar = () => {
 
   return (
     <div className="relative">
-      <div className="flex h-8 items-center gap-1 rounded-full bg-primary-foreground px-2 py-5">
+      <div className="flex h-8 items-center gap-1 rounded-full px-2 py-5">
         <SearchIcon className="h-[1.5rem] w-[2rem]" strokeWidth={1} />
         <Input
-          className="focus-visible:none hidden h-6 border-none bg-primary-foreground p-2 shadow-none md:block"
+          className="focus-visible:none hidden h-6 border-none p-2 shadow-none md:block"
           placeholder="Search"
           onChange={(e) => {
             setSearchValue(e.target.value);
@@ -154,7 +154,7 @@ export const SearchBar = () => {
         />
       </div>
       {combinedFilteredResults.every((result) => result.data.length !== 0) && (
-        // @ts-expect-error TODO: Idk how to fix this now. Running outta time.
+        // @ts-expect-error TODO: Idk how to fix this now.
         <div className="relative" ref={ref}>
           <div className="absolute -top-2 left-8 z-10 h-4 w-4 rotate-[45deg] border-l border-t bg-white"></div>
           <SearchResults data={combinedFilteredResults} />

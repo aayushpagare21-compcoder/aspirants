@@ -30,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${gtSuper.variable} ${sohne.variable}`}>
+      <body
+        className={`${gtSuper.variable} ${sohne.variable} bg-background text-foreground`}
+      >
         <div>{children}</div>
       </body>
     </html>

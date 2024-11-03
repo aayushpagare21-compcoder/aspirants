@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Navbar } from "@/app/components/shared/Navbar/Navbar";
-import { getServerSession, Session } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { SessionUser } from "@/app/lib/types/auth.types";
+import { Navbar } from "@/app/components/dashboard/header/Navbar";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+
 export const metadata: Metadata = {
   title: "Be an aspirant",
   description: "Created with ❤️ by Aayush Pagare.",
@@ -13,13 +13,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session: Session | null = await getServerSession(authOptions as never);
+  const session = await auth();
   if (!session?.user) {
-    throw new Error("Not authenticated");
+    redirect("/");
   }
   return (
     <div>
-      <Navbar user={session.user as SessionUser} />
+      <Navbar user={session.user} />
       {children}
     </div>
   );
