@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/app/components/dashboard/header/Navbar";
-import { SessionUser } from "@/app/lib/types/auth.types";
 import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Be an aspirant",
@@ -15,11 +15,11 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
   if (!session?.user) {
-    throw new Error("Not authenticated");
+    redirect("/");
   }
   return (
     <div>
-      <Navbar user={session.user as SessionUser} />
+      <Navbar user={session.user} />
       {children}
     </div>
   );

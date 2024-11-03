@@ -1,4 +1,3 @@
-import { EmailInput } from "@/app/components/auth/EmailInput";
 import { AuthButtons } from "@/app/components/auth/AuthButtons";
 const Header = () => {
   return (
@@ -16,31 +15,11 @@ const Footer = () => {
   );
 };
 
-export const LoginComponent = ({
-  showEmailInput,
-  setShowEmailInput,
-}: {
-  showEmailInput: boolean;
-  setShowEmailInput: (
-    value: ((prevState: boolean) => boolean) | boolean,
-  ) => void;
-}) => {
+export const LoginComponent = () => {
   return (
     <>
       <Header />
-      <AuthButtons
-        onClickEmailButton={() => {
-          setShowEmailInput(true);
-        }}
-        showEmailButton={!showEmailInput}
-      />
-      {showEmailInput && (
-        <EmailInput
-          onBack={() => {
-            setShowEmailInput(false);
-          }}
-        />
-      )}
+      <AuthButtons />
       <Footer />
     </>
   );

@@ -12,7 +12,8 @@ const config: Config = {
         custom: "0 2px 10px rgba(0, 0, 0, 0.15)",
       },
       colors: {
-        background: "#C9E9D2",
+        landing: "#C9E9D2",
+        background: "#FFFFFF",
         foreground: "#1C1C1C",
         card: {
           DEFAULT: "hsl(var(--card))",

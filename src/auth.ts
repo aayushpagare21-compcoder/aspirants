@@ -1,5 +1,5 @@
 import Google from "next-auth/providers/google";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/app/server/db/prisma";
 import NextAuth from "next-auth";
 

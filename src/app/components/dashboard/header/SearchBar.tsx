@@ -143,10 +143,10 @@ export const SearchBar = () => {
 
   return (
     <div className="relative">
-      <div className="flex h-8 items-center gap-1 rounded-full bg-primary-foreground px-2 py-5">
+      <div className="flex h-8 items-center gap-1 rounded-full px-2 py-5">
         <SearchIcon className="h-[1.5rem] w-[2rem]" strokeWidth={1} />
         <Input
-          className="focus-visible:none hidden h-6 border-none bg-primary-foreground p-2 shadow-none md:block"
+          className="focus-visible:none hidden h-6 border-none p-2 shadow-none md:block"
           placeholder="Search"
           onChange={(e) => {
             setSearchValue(e.target.value);

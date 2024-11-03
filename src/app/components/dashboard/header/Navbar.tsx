@@ -1,10 +1,23 @@
+"use client";
 import { AspirantsLogo } from "@/app/components/shared/Logo/AspirantsLogo";
 import { BellIcon, EditIcon } from "lucide-react";
 import { SearchBar } from "@/app/components/dashboard/header/SearchBar";
 import Image from "next/image";
-import { SessionUser } from "@/app/lib/types/auth.types";
+import { User } from "@auth/core/src/types";
+import { Button } from "@/app/components/ui/button";
 
-export const Navbar = ({ user }: { user: SessionUser }) => {
+import { useRef, useState } from "react";
+import useOutsideClick from "@/app/hooks/useOutsideClick";
+import { aspirantsSignOut } from "@/app/server/actions/auth.actions";
+
+export const Navbar = ({ user }: { user: User }) => {
+  const [showProfileTab, setShowProfileTab] = useState<boolean>(false);
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useOutsideClick(ref, () => {
+    setShowProfileTab(false);
+  });
+
   return (
     <nav className="flex justify-between px-8 py-2">
       <div className="flex items-center gap-4">
@@ -16,16 +29,44 @@ export const Navbar = ({ user }: { user: SessionUser }) => {
           <EditIcon strokeWidth={1} />
           <span className="flex items-center text-sm text-tertiary">Write</span>
         </div>
-        <BellIcon className="h-[1.5rem] w-[2rem]" strokeWidth={1} />
-
-        {/* Profile Picture Tab */}
-        <div className="relative h-10 w-10 overflow-hidden rounded-full">
-          <Image
-            src={user.image} // Replace with the correct image path or dynamic user profile picture
-            alt="Profile Picture"
-            layout="fill" // This makes the image fill the div
-            objectFit="cover" // Ensures the image covers the div without stretching
-          />
+        <BellIcon
+          className="h-[1.5rem] w-[2rem]"
+          strokeWidth={1}
+          aria-label="Notifications"
+        />
+        <div className="flex flex-col">
+          <div
+            className="relative h-10 w-10 overflow-hidden rounded-full"
+            onClick={() => setShowProfileTab(!showProfileTab)}
+            aria-label="Profile menu"
+          >
+            <Image
+              src={user.image ?? "/default-profile.jpg"} // Provide a default image URL here
+              alt="Profile Picture"
+              layout="fill"
+              objectFit="cover"
+              className="hover:cursor-pointer"
+            />
+          </div>
+          {showProfileTab && (
+            <div className="relative" ref={ref}>
+              <div className="absolute -left-3 top-1 rounded-lg bg-accent shadow-lg">
+                <div className="absolute -top-2 left-8 z-10 h-4 w-4 rotate-[45deg] border-l border-t bg-white"></div>
+                <ul>
+                  <li>
+                    <Button
+                      variant="primary"
+                      onClick={async () => {
+                        await aspirantsSignOut();
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </nav>
