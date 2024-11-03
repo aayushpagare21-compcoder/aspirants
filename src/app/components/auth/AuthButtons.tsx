@@ -6,7 +6,7 @@ export const AuthButtons = () => {
     <div className="flex flex-col items-center gap-3">
       <Button
         variant="outline"
-        className="flex w-[60%] rounded-full px-4 py-5 text-[1rem]"
+        className="flex w-[80%] rounded-full px-4 py-5 text-[1rem] sm:w-[60%]"
         onClick={() =>
           aspirantsSignIn({
             provider: "google",
