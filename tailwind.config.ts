@@ -13,6 +13,7 @@ const config: Config = {
       },
       colors: {
         landing: "#C9E9D2",
+        landingSecondary: "#45474B",
         background: "#FFFFFF",
         foreground: "#1C1C1C",
         card: {

@@ -52,7 +52,7 @@ export const Navbar = ({ user }: { user: User }) => {
             // @ts-expect-error TODO: Idk how to fix this now.
             <div className="relative" ref={ref}>
               <div className="absolute -left-3 top-1 rounded-lg bg-accent shadow-lg">
-                <div className="absolute -top-2 left-8 z-10 h-4 w-4 rotate-[45deg] border-l border-t bg-white"></div>
+                <div className="absolute -top-2 left-8 z-10 h-4 w-4 rotate-[45deg] border-l border-t"></div>
                 <ul>
                   <li>
                     <Button

@@ -8,7 +8,7 @@ const Header = () => {
 };
 const Footer = () => {
   return (
-    <div className="flex flex-col gap-8 px-4 text-center md:mt-8">
+    <div className="mt-4 flex flex-col gap-8 px-4 text-center">
       {" "}
       We are glad that you are back 🎉
     </div>
