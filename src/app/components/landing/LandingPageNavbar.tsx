@@ -24,7 +24,7 @@ export const LandingPageNavBar = () => {
             </Link>
           </ul>
           <div className="flex items-center">
-            <Button className="w-[6.5rem] rounded-full bg-landingSecondary py-5 font-bold text-secondary-foreground">
+            <Button className="w-[6.5rem] rounded-full bg-[#45474B] py-5 font-bold text-white hover:bg-[#45474B]/80">
               <Link href="/login"> Get started </Link>
             </Button>
           </div>

@@ -26,7 +26,7 @@ export const Navbar = ({ user }: { user: User }) => {
       <div className="flex items-center gap-8">
         <div className="hidden gap-3 md:flex">
           <EditIcon strokeWidth={1} />
-          <span className="flex items-center text-sm text-tertiary">Write</span>
+          <span className="text-tertiary flex items-center text-sm">Write</span>
         </div>
         <BellIcon
           className="h-[1.5rem] w-[2rem]"
@@ -51,7 +51,7 @@ export const Navbar = ({ user }: { user: User }) => {
           {showProfileTab && (
             // @ts-expect-error TODO: Idk how to fix this now.
             <div className="relative" ref={ref}>
-              <div className="absolute -left-3 top-1 rounded-lg bg-accent shadow-lg">
+              <div className="absolute -left-3 top-1 rounded-lg shadow-lg">
                 <div className="absolute -top-2 left-8 z-10 h-4 w-4 rotate-[45deg] border-l border-t"></div>
                 <ul>
                   <li>

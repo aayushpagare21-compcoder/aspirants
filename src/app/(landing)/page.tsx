@@ -1,8 +1,13 @@
 import { Button } from "@/app/components/ui/button";
 import React from "react";
 import Link from "next/link";
-
-export default function LandingPage() {
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+export default async function LandingPage() {
+  const session = await auth();
+  if (session) {
+    redirect("/feed");
+  }
   return (
     <section className="flex h-[90vh] w-[90vw] justify-between xl:w-[80vw] 2xl:w-[60vw]">
       <div className="mt-[6rem] flex flex-col justify-center gap-8 md:gap-12">
@@ -13,10 +18,7 @@ export default function LandingPage() {
           A place to connect and collaborate with other aspirants
         </div>
 
-        <Button
-          className="mb-[1rem] w-[12rem] rounded-full py-6 text-[1.2rem]"
-          variant="secondary"
-        >
+        <Button className="mb-[1rem] w-[12rem] rounded-full bg-[#F4CE14] py-6 text-[1.2rem] text-black md:bg-[#45474B] md:text-secondary-foreground md:text-white md:hover:bg-[#45474B]/80">
           <Link href="/login"> Start Writing </Link>
         </Button>
       </div>

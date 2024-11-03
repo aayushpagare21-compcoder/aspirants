@@ -40,7 +40,7 @@ function SearchResults({ data }: { data: SearchApiResponse[] }) {
         if (item.searchKey == "USER") {
           return item.data.length > 0 ? (
             <div key={item.searchKey}>
-              <div className="p-1 text-[0.8rem] font-normal tracking-wide text-tertiary">
+              <div className="text-tertiary p-1 text-[0.8rem] font-normal tracking-wide">
                 PEOPLE
               </div>
               <Divider />
@@ -62,7 +62,7 @@ function SearchResults({ data }: { data: SearchApiResponse[] }) {
         } else if (item.searchKey === "PUBLICATION") {
           return item.data.length > 0 ? (
             <div key={item.searchKey}>
-              <div className="p-1 text-[0.8rem] font-normal tracking-wide text-tertiary">
+              <div className="text-tertiary p-1 text-[0.8rem] font-normal tracking-wide">
                 PUBLICATIONS
               </div>
               <Divider />
@@ -84,7 +84,7 @@ function SearchResults({ data }: { data: SearchApiResponse[] }) {
         } else {
           return item.data.length > 0 ? (
             <div key={item.searchKey}>
-              <div className="p-1 text-[0.8rem] font-normal tracking-wide text-tertiary">
+              <div className="text-tertiary p-1 text-[0.8rem] font-normal tracking-wide">
                 TOPICS
               </div>
               <Divider />

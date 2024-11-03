@@ -12,8 +12,6 @@ const config: Config = {
         custom: "0 2px 10px rgba(0, 0, 0, 0.15)",
       },
       colors: {
-        landing: "#C9E9D2",
-        landingSecondary: "#45474B",
         background: "#FFFFFF",
         foreground: "#1C1C1C",
         card: {
@@ -25,15 +23,12 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: "#1C1C1C",
-          foreground: "#FFFFFF",
+          DEFAULT: "#FFFFFF",
+          foreground: "#1C1C1C",
         },
         secondary: {
-          DEFAULT: "#45474B",
-          foreground: "#FFFFFF",
-        },
-        tertiary: {
-          DEFAULT: "#F4CE14",
+          DEFAULT: "#FFFFFF",
+          foreground: "#1C1C1C",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",

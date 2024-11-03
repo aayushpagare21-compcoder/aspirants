@@ -3,7 +3,7 @@ import React from "react";
 
 export const LandingPageFooter = () => {
   return (
-    <footer className="z-10 w-full bg-landingSecondary p-4 text-secondary-foreground lg:bg-inherit lg:text-primary">
+    <footer className="z-10 w-full bg-[#45474B] p-4 text-secondary-foreground lg:bg-inherit lg:text-primary">
       <nav>
         <ul className="flex items-center justify-start gap-6 font-[family-name:var(--font-sohneone)] text-[12px] lg:justify-center lg:text-[#6B6B6B]">
           <Link href="#">

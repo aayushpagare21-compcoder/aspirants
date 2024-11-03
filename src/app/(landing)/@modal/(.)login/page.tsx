@@ -12,7 +12,7 @@ export default function InterceptedLogin() {
       <Dialog defaultOpen={true}>
         <DialogContent>
           <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <div className="relative flex h-full w-full flex-col justify-center gap-6 bg-accent md:h-[20rem] md:w-[30rem] md:gap-4 md:rounded-lg md:shadow-lg">
+            <div className="relative flex h-full w-full flex-col justify-center gap-6 bg-primary md:h-[20rem] md:w-[30rem] md:gap-4 md:rounded-lg md:shadow-lg">
               <div className="absolute right-4 top-4">
                 <button onClick={() => router.push("/")}>
                   <Cross2Icon className="h-6 w-6" />
