@@ -26,7 +26,7 @@ const config: Config = {
         },
         primary: {
           DEFAULT: "#1C1C1C",
-          foreground: "#1C1C1C",
+          foreground: "#FFFFFF",
         },
         secondary: {
           DEFAULT: "#45474B",
@@ -41,6 +41,7 @@ const config: Config = {
         },
         accent: {
           DEFAULT: "#FFFFFF",
+          foreground: "#1C1C1C",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
