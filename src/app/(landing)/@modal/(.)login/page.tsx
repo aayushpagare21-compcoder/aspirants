@@ -3,10 +3,8 @@ import { Dialog } from "@/app/components/ui/dialog";
 import { DialogContent } from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { LoginComponent } from "@/app/components/auth/LoginComponent";
 export default function InterceptedLogin() {
-  const [showEmailInput, setShowEmailInput] = useState<boolean>(false);
   const router = useRouter();
   return (
     <>
@@ -20,10 +18,7 @@ export default function InterceptedLogin() {
                   <Cross2Icon className="h-6 w-6" />
                 </button>
               </div>
-              <LoginComponent
-                showEmailInput={showEmailInput}
-                setShowEmailInput={setShowEmailInput}
-              />
+              <LoginComponent />
             </div>
           </div>
         </DialogContent>

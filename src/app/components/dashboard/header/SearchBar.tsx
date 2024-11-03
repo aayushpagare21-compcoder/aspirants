@@ -154,7 +154,7 @@ export const SearchBar = () => {
         />
       </div>
       {combinedFilteredResults.every((result) => result.data.length !== 0) && (
-        // @ts-expect-error TODO: Idk how to fix this now. Running outta time.
+        // @ts-expect-error TODO: Idk how to fix this now.
         <div className="relative" ref={ref}>
           <div className="absolute -top-2 left-8 z-10 h-4 w-4 rotate-[45deg] border-l border-t bg-white"></div>
           <SearchResults data={combinedFilteredResults} />

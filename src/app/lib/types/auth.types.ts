@@ -1,17 +1,10 @@
-export type Provider = "google" | "resend";
-
+export type Provider = "google";
 export interface BaseSignInInterface {
   provider: Provider;
 }
-
 export interface SignInWithGoogle extends BaseSignInInterface {
   provider: "google";
   redirectTo: "/feed";
 }
 
-export interface SignInWithResend extends BaseSignInInterface {
-  provider: "resend";
-  email: string;
-}
-
-export type SignInParams = SignInWithGoogle | SignInWithResend;
+export type SignInParams = SignInWithGoogle;

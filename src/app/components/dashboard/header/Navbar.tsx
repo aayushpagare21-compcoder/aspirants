@@ -3,16 +3,15 @@ import { AspirantsLogo } from "@/app/components/shared/Logo/AspirantsLogo";
 import { BellIcon, EditIcon } from "lucide-react";
 import { SearchBar } from "@/app/components/dashboard/header/SearchBar";
 import Image from "next/image";
-import { User } from "@auth/core/src/types";
 import { Button } from "@/app/components/ui/button";
-
 import { useRef, useState } from "react";
 import useOutsideClick from "@/app/hooks/useOutsideClick";
 import { aspirantsSignOut } from "@/app/server/actions/auth.actions";
+import { User } from "next-auth";
 
 export const Navbar = ({ user }: { user: User }) => {
   const [showProfileTab, setShowProfileTab] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>();
 
   useOutsideClick(ref, () => {
     setShowProfileTab(false);
@@ -41,7 +40,8 @@ export const Navbar = ({ user }: { user: User }) => {
             aria-label="Profile menu"
           >
             <Image
-              src={user.image ?? "/default-profile.jpg"} // Provide a default image URL here
+              // TODO: default image
+              src={user.image ?? "/default-profile.jpg"}
               alt="Profile Picture"
               layout="fill"
               objectFit="cover"
@@ -49,13 +49,13 @@ export const Navbar = ({ user }: { user: User }) => {
             />
           </div>
           {showProfileTab && (
+            // @ts-expect-error TODO: Idk how to fix this now.
             <div className="relative" ref={ref}>
               <div className="absolute -left-3 top-1 rounded-lg bg-accent shadow-lg">
                 <div className="absolute -top-2 left-8 z-10 h-4 w-4 rotate-[45deg] border-l border-t bg-white"></div>
                 <ul>
                   <li>
                     <Button
-                      variant="primary"
                       onClick={async () => {
                         await aspirantsSignOut();
                       }}
