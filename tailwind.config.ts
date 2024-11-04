@@ -32,7 +32,7 @@ const config: Config = {
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          foreground: "#808080",
         },
         accent: {
           DEFAULT: "#FFFFFF",

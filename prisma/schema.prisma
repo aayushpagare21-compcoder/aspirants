@@ -17,6 +17,10 @@ model User {
   sessions      Session[]
   // Optional for WebAuthn support
   Authenticator Authenticator[]
+  // Answers which user wrote.
+  answers       Answer[]
+  // Answers on which user clapped.
+  claps         Claps[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -75,4 +79,45 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
+}
+
+model Claps {
+  id       String @id @default(cuid())
+  answerId String @map("answer_id")
+  userId   String @map("user_id")
+  // Answer which got clapped by a paricular user.
+  answer   Answer @relation(references: [id], fields: [answerId])
+  // Users who clapped on a particular answer.
+  user     User   @relation(references: [id], fields: [userId])
+
+  // A user can clap once per answer.
+  @@unique([userId, answerId])
+  @@map("claps")
+}
+
+model Topics {
+  id      String   @id @default(cuid())
+  name    String   @unique
+  // Answers of that topic - for example answer written on topic Socialogy.
+  answers Answer[]
+
+  @@map("topics")
+}
+
+model Answer {
+  id             String  @id @default(cuid())
+  question       String
+  answer         String
+  markdownAnswer String  @map("markdown_answer")
+  userId         String  @map("user_id")
+  published      Boolean @default(false)
+
+  // User who wrote the answer.
+  user   User     @relation(fields: [userId], references: [id])
+  // Topics related to that answer such as Socialogy, Sciene and Tech etc.
+  topics Topics[]
+  // Users who clapped on answer
+  claps  Claps[]
+
+  @@map("answers")
 }
