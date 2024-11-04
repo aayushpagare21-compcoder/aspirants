@@ -17,6 +17,7 @@ export const BlogIntroCard = ({
   topics,
   paper,
   words,
+  marks,
 }: {
   heading: string;
   description: string;
@@ -27,10 +28,11 @@ export const BlogIntroCard = ({
   topics: string[];
   paper: string;
   words: number;
+  marks: number;
 }) => {
   return (
     <div>
-      <Card className="max-h-[500px] max-w-[100vw] overflow-auto p-4 sm:max-w-[50vw]">
+      <Card className="max-h-[500px] w-[100vw] overflow-auto p-4 md:w-[90vw] xl:w-[60vw]">
         <div>
           <CardHeader>
             <CardTitle className="mb-2 font-[family-name:var(--font-gtsuper-medium)] font-bold leading-[1.2rem]">
@@ -45,14 +47,14 @@ export const BlogIntroCard = ({
                 </div>
                 <div className="flex flex-col justify-end text-sm">{user}</div>
               </div>
-              <div>{`${heading} (${words} words)`}</div>
+              <div>{`${heading} (${words} words | ${marks} marks)`}</div>
             </CardTitle>
             <CardDescription>
               <div className="mb-4 text-muted text-muted-foreground">
                 {description}...
               </div>
-              <div className="flex justify-center text-primary-foreground">
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <div className="flex-start flex items-center text-primary-foreground">
+                <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
                   <div className="flex items-center gap-1">
                     <div className="text-sm"> {date} </div>
                     <div className="text-sm"> {paper} </div>

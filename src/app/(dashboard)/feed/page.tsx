@@ -20,6 +20,7 @@ export default async function WelcomePage() {
           topics={topics}
           likeCount={50}
           words={250}
+          marks={15}
         />
         <BlogIntroCard
           heading="Discuss the key drivers and challenges in India's innovation ecosystem. Suggest measure for growth"
@@ -31,6 +32,7 @@ export default async function WelcomePage() {
           topics={topics}
           likeCount={50}
           words={250}
+          marks={15}
         />
         <BlogIntroCard
           heading="Discuss the key drivers and challenges in India's innovation ecosystem. Suggest measure for growth of innovation ecosystem in India"
@@ -42,6 +44,7 @@ export default async function WelcomePage() {
           topics={topics}
           likeCount={50}
           words={250}
+          marks={15}
         />
       </div>
     </div>

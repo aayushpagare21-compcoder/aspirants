@@ -104,13 +104,26 @@ model Topics {
   @@map("topics")
 }
 
+enum Papers {
+  GS1
+  GS2
+  GS3
+  GS4
+  ESSAY
+  OPTIONAL
+}
+
 model Answer {
-  id             String  @id @default(cuid())
+  id             String    @id @default(cuid())
   question       String
   answer         String
-  markdownAnswer String  @map("markdown_answer")
-  userId         String  @map("user_id")
-  published      Boolean @default(false)
+  markdownAnswer String    @map("markdown_answer")
+  userId         String    @map("user_id")
+  published      Boolean   @default(false)
+  paper          Papers?
+  paperDate      DateTime? @map("paper_date")
+  words          Int?
+  marks          Int?
 
   // User who wrote the answer.
   user   User     @relation(fields: [userId], references: [id])

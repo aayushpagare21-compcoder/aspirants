@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "Papers" AS ENUM ('GS1', 'GS2', 'GS3', 'GS4', 'ESSAY', 'OPTIONAL');
+
 -- CreateTable
 CREATE TABLE "claps" (
     "id" TEXT NOT NULL,
@@ -23,6 +26,10 @@ CREATE TABLE "answers" (
     "markdown_answer" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
     "published" BOOLEAN NOT NULL DEFAULT false,
+    "paper" "Papers",
+    "paper_date" TIMESTAMP(3),
+    "words" INTEGER,
+    "marks" INTEGER,
 
     CONSTRAINT "answers_pkey" PRIMARY KEY ("id")
 );
