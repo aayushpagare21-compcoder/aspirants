@@ -83,12 +83,15 @@ model Authenticator {
 
 model Claps {
   id       String @id @default(cuid())
-  answerId String @map("answer_id")
-  userId   String @map("user_id")
+  answerId String @map("answer_id") // references to id in answers table
+  userId   String @map("user_id") // refereces to id in users table
   // Answer which got clapped by a paricular user.
   answer   Answer @relation(references: [id], fields: [answerId])
   // Users who clapped on a particular answer.
   user     User   @relation(references: [id], fields: [userId])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   // A user can clap once per answer.
   @@unique([userId, answerId])
@@ -96,10 +99,13 @@ model Claps {
 }
 
 model Topics {
-  id      String   @id @default(cuid())
-  name    String   @unique
-  // Answers of that topic - for example answer written on topic Socialogy.
-  answers Answer[]
+  id        String     @id @default(cuid())
+  name      String     @unique // name of the topic e.g Socialogy
+  // Questions on that topic.
+  questions Question[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("topics")
 }
@@ -113,24 +119,38 @@ enum Papers {
   OPTIONAL
 }
 
-model Answer {
-  id             String    @id @default(cuid())
-  question       String
-  answer         String
-  markdownAnswer String    @map("markdown_answer")
-  userId         String    @map("user_id")
-  published      Boolean   @default(false)
-  paper          Papers?
-  paperDate      DateTime? @map("paper_date")
-  words          Int?
-  marks          Int?
+model Question {
+  id        String    @id @default(cuid())
+  text      String // question as plain text
+  published Boolean   @default(false) // field to determine weather the question is published or not
+  paper     Papers? // Which paper this question is asked. There might be a case the question is not yet asked in any paper.
+  askedDate DateTime? @map("asked_date") // date of paper conducted when this question was asked in that paper. If not asked in any paper then date is the date published
+  words     Int? // Answer to be written in words
+  marks     Int? // Maximum marks for the answer
+  topics    Topics[] // Topics related to that question
+  answers   Answer[] // Answers written for the question
 
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model Answer {
+  id           String  @id @default(cuid())
+  text         String // answer as a plain text.
+  markdownText String  @map("markdown_text") // answer as markdown text.
+  published    Boolean @default(false) // published field to determine weather the answer is published or not.
+  userId       String  @map("user_id") // references to id in the users table
+  questionId   String  @map("question_id") // references to id in the questions table
+
+  // Question for which answer is written.
+  question Question @relation(fields: [questionId], references: [id])
   // User who wrote the answer.
-  user   User     @relation(fields: [userId], references: [id])
-  // Topics related to that answer such as Socialogy, Sciene and Tech etc.
-  topics Topics[]
+  user     User     @relation(fields: [userId], references: [id])
   // Users who clapped on answer
-  claps  Claps[]
+  claps    Claps[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("answers")
 }
