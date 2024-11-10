@@ -17,9 +17,15 @@ model User {
   sessions      Session[]
   // Optional for WebAuthn support
   Authenticator Authenticator[]
+  // Answers which user wrote.
+  answers       Answer[]
+  // Answers on which user clapped.
+  claps         Claps[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("users")
 }
 
 model Account {
@@ -41,6 +47,8 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
+
+  @@map("accounts")
 }
 
 model Session {
@@ -51,6 +59,8 @@ model Session {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("sessions")
 }
 
 model VerificationToken {
@@ -59,6 +69,7 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+  @@map("verification_tokens")
 }
 
 // Optional for WebAuthn support
@@ -75,4 +86,81 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
+  @@map("authenticators")
+}
+
+model Claps {
+  id       String @id @default(cuid())
+  answerId String @map("answer_id") // references to id in answers table
+  userId   String @map("user_id") // refereces to id in users table
+  // Answer which got clapped by a paricular user.
+  answer   Answer @relation(references: [id], fields: [answerId])
+  // Users who clapped on a particular answer.
+  user     User   @relation(references: [id], fields: [userId])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // A user can clap once per answer.
+  @@unique([userId, answerId])
+  @@map("claps")
+}
+
+model Topics {
+  id        String     @id @default(cuid())
+  name      String     @unique // name of the topic e.g Socialogy
+  // Questions on that topic.
+  questions Question[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("topics")
+}
+
+enum Papers {
+  GS1
+  GS2
+  GS3
+  GS4
+  ESSAY
+  OPTIONAL
+}
+
+model Question {
+  id        String    @id @default(cuid())
+  text      String // question as plain text
+  published Boolean   @default(false) // field to determine weather the question is published or not
+  paper     Papers? // Which paper this question is asked. There might be a case the question is not yet asked in any paper.
+  askedDate DateTime? @map("asked_date") // date of paper conducted when this question was asked in that paper. If not asked in any paper then date is the date published
+  words     Int? // Answer to be written in words
+  marks     Int? // Maximum marks for the answer
+  topics    Topics[] // Topics related to that question
+  answers   Answer[] // Answers written for the question
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("questions")
+}
+
+model Answer {
+  id           String  @id @default(cuid())
+  text         String // answer as a plain text.
+  markdownText String  @map("markdown_text") // answer as markdown text.
+  published    Boolean @default(false) // published field to determine weather the answer is published or not.
+  userId       String  @map("user_id") // references to id in the users table
+  questionId   String  @map("question_id") // references to id in the questions table
+
+  // Question for which answer is written.
+  question Question @relation(fields: [questionId], references: [id])
+  // User who wrote the answer.
+  user     User     @relation(fields: [userId], references: [id])
+  // Users who clapped on answer
+  claps    Claps[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("answers")
 }

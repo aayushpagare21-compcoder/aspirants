@@ -1,10 +1,7 @@
-import { SuggestionsBar } from "@/app/components/dashboard/SuggestionsBar";
+import { getQuestions } from "@/app/server/actions/questions.actions";
+import { QuestionsList } from "@/app/components/dashboard/questions/QuestionsList";
+
 export default async function WelcomePage() {
-  return (
-    <div>
-      <div className="flex max-w-[100vw] justify-center">
-        <SuggestionsBar />
-      </div>
-    </div>
-  );
+  const initialQuestions = await getQuestions();
+  return <QuestionsList initialQuestions={initialQuestions} />;
 }

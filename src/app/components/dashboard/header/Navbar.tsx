@@ -26,7 +26,7 @@ export const Navbar = ({ user }: { user: User }) => {
       <div className="flex items-center gap-8">
         <div className="hidden gap-3 md:flex">
           <EditIcon strokeWidth={1} />
-          <span className="text-tertiary flex items-center text-sm">Write</span>
+          <span className="flex items-center text-sm text-tertiary">Write</span>
         </div>
         <BellIcon
           className="h-[1.5rem] w-[2rem]"

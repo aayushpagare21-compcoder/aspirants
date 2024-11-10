@@ -27,17 +27,18 @@ const config: Config = {
           foreground: "#1C1C1C",
         },
         secondary: {
-          DEFAULT: "#FFFFFF",
-          foreground: "#1C1C1C",
+          DEFAULT: "#1C1C1C",
+          foreground: "#FFFFFF",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          foreground: "#808080",
         },
         accent: {
           DEFAULT: "#FFFFFF",
           foreground: "#1C1C1C",
         },
+        tertiary: "#E75480",
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",

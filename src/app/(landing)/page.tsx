@@ -18,7 +18,7 @@ export default async function LandingPage() {
           A place to connect and collaborate with other aspirants
         </div>
 
-        <Button className="mb-[1rem] w-[12rem] rounded-full bg-[#F4CE14] py-6 text-[1.2rem] text-black md:bg-[#45474B] md:text-secondary-foreground md:text-white md:hover:bg-[#45474B]/80">
+        <Button className="mb-[1rem] w-[12rem] rounded-full bg-[#F4CE14] py-6 text-[1.2rem] text-black md:bg-[#45474B] md:text-secondary-foreground md:hover:bg-[#45474B]/80">
           <Link href="/login"> Start Writing </Link>
         </Button>
       </div>
