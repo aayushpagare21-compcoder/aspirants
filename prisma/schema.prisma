@@ -24,6 +24,8 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("users")
 }
 
 model Account {
@@ -45,6 +47,8 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
+
+  @@map("accounts")
 }
 
 model Session {
@@ -55,6 +59,8 @@ model Session {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("sessions")
 }
 
 model VerificationToken {
@@ -63,6 +69,7 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+  @@map("verification_tokens")
 }
 
 // Optional for WebAuthn support
@@ -79,6 +86,7 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
+  @@map("authenticators")
 }
 
 model Claps {
@@ -132,6 +140,8 @@ model Question {
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("questions")
 }
 
 model Answer {
