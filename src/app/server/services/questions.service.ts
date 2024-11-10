@@ -1,22 +1,29 @@
 import {
   AnswersWithEverything,
+  DEFAULT_QUESTIONS_FETCH_COUNT,
   Papers,
   QuestionsWithEverything,
 } from "@/app/lib/types/feed.types";
 import { prisma } from "../db/prisma";
 
+const DEFAULT_ANSWER_LIMIT = 5;
+const DEFAULT_QUESTIONS_OFFSET = 0;
+const DEFAULT_ANSWER_OFFSET = 0;
+
 export async function getAllPublishedQuestionsWithEverything({
   limit,
   offset,
   answerOffset,
+  answerLimit,
 }: {
   limit?: number;
   offset?: number;
   answerOffset?: number;
+  answerLimit?: number;
 }): Promise<QuestionsWithEverything[]> {
   const questions = await prisma.question.findMany({
-    take: limit ?? 10,
-    skip: offset ?? 0,
+    take: limit ?? DEFAULT_QUESTIONS_FETCH_COUNT,
+    skip: offset ?? DEFAULT_QUESTIONS_OFFSET,
     where: {
       published: true,
     },
@@ -26,8 +33,8 @@ export async function getAllPublishedQuestionsWithEverything({
     include: {
       topics: true,
       answers: {
-        take: 5,
-        skip: answerOffset ?? 0,
+        take: answerLimit ?? DEFAULT_ANSWER_LIMIT,
+        skip: answerOffset ?? DEFAULT_ANSWER_OFFSET,
         where: {
           published: true,
         },

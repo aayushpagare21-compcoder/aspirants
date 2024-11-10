@@ -7,6 +7,8 @@ export enum Papers {
   OPTIONAL = "OPTIONAL",
 }
 
+export const DEFAULT_QUESTIONS_FETCH_COUNT = 10;
+
 export const convertPaperToDisplayType = (paper: Papers | null): string => {
   switch (paper) {
     case Papers.GS1:

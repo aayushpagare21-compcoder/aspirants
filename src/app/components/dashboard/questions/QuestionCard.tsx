@@ -22,9 +22,9 @@ export const QuestionsCard = ({
   questionAskedDate: string;
   answersOnQuestion: number;
   topicsRelatedToQuestion: string[];
-  paperOnWhichQuestionsAsked: string;
-  maxWordsAnswerToWrite: number;
-  maxMarksAnswerToWrite: number;
+  paperOnWhichQuestionsAsked?: string;
+  maxWordsAnswerToWrite?: number;
+  maxMarksAnswerToWrite?: number;
   answeredByImages: string[];
 }) => {
   return (
@@ -34,8 +34,21 @@ export const QuestionsCard = ({
           <CardHeader>
             <CardTitle className="mb-2 text-[1.2rem] font-bold leading-[1.5rem]">
               <div>
-                {" "}
-                {`${questionText} (${maxWordsAnswerToWrite} words | ${maxMarksAnswerToWrite} marks)`}
+                <span> {questionText} </span>
+                {maxMarksAnswerToWrite || maxWordsAnswerToWrite ? "(" : ""}
+                <span>
+                  {" "}
+                  {maxWordsAnswerToWrite
+                    ? `${maxWordsAnswerToWrite} words`
+                    : ``}{" "}
+                </span>
+                {maxMarksAnswerToWrite && maxWordsAnswerToWrite ? "|" : ""}
+                <span>
+                  {maxMarksAnswerToWrite
+                    ? `${maxMarksAnswerToWrite} marks`
+                    : ``}
+                </span>
+                {maxMarksAnswerToWrite || maxWordsAnswerToWrite ? ")" : ""}
               </div>
             </CardTitle>
           </CardHeader>
@@ -45,10 +58,12 @@ export const QuestionsCard = ({
                 {" "}
                 {questionAskedDate}{" "}
               </div>
-              <div className="text-sm text-muted-foreground md:col-span-2">
-                {" "}
-                {paperOnWhichQuestionsAsked}{" "}
-              </div>
+              {paperOnWhichQuestionsAsked && (
+                <div className="text-sm text-muted-foreground md:col-span-2">
+                  {" "}
+                  {paperOnWhichQuestionsAsked}{" "}
+                </div>
+              )}
               <div className="text-muted-foregrund text-sm md:col-span-8">
                 {topicsRelatedToQuestion.map((topic, index) => {
                   return (
@@ -67,7 +82,7 @@ export const QuestionsCard = ({
                     {answersOnQuestion} ans
                   </div>
                 </div>
-                {answeredByImages?.length > 2 && (
+                {answeredByImages.length > 2 && (
                   <div>
                     <div className="flex">
                       {answeredByImages.map((user, index) => {
