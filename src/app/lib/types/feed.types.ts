@@ -10,13 +10,13 @@ export enum Papers {
 export const convertPaperToDisplayType = (paper: Papers | null): string => {
   switch (paper) {
     case Papers.GS1:
-      return "GS-1";
+      return "GS Paper 1";
     case Papers.GS2:
-      return "GS-2";
+      return "GS Paper 2";
     case Papers.GS3:
-      return "GS-3";
+      return "GS Paper 3";
     case Papers.GS4:
-      return "GS-4";
+      return "GS Paper 4";
     case Papers.ESSAY:
       return "Essay";
     case Papers.OPTIONAL:

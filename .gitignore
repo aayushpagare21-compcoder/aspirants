@@ -37,3 +37,6 @@ next-env.d.ts
 
 #editor
 .idea
+
+/public/questions
+/scrape.js
