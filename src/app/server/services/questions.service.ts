@@ -15,17 +15,32 @@ export async function getAllPublishedQuestionsWithEverything({
   offset,
   answerOffset,
   answerLimit,
+  paper,
+  topic,
+  year,
 }: {
   limit?: number;
   offset?: number;
   answerOffset?: number;
   answerLimit?: number;
+  paper?: Papers;
+  topic?: string;
+  year?: number;
 }): Promise<QuestionsWithEverything[]> {
   const questions = await prisma.question.findMany({
     take: limit ?? DEFAULT_QUESTIONS_FETCH_COUNT,
     skip: offset ?? DEFAULT_QUESTIONS_OFFSET,
     where: {
       published: true,
+      ...(topic && {
+        topics: {
+          some: {
+            name: topic,
+          },
+        },
+      }),
+      ...(paper && { paper }),
+      ...(year && { year: year }),
     },
     orderBy: {
       createdAt: "desc",
