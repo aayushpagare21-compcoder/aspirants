@@ -9,7 +9,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 6px; /* Change the width of the scrollbar */
+  width: 4px; /* Change the width of the scrollbar */
   height: 2px; /* Change the height of the scrollbar */
 }
 

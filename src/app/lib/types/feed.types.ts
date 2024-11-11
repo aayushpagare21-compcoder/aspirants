@@ -32,26 +32,32 @@ export const slidingNavBarStaticItems = [
   {
     id: "All",
     label: "All",
+    type: "paper",
   },
   {
     id: Papers.GS1,
     label: "GS Paper 1",
+    type: "paper",
   },
   {
     id: Papers.GS2,
     label: "GS Paper 2",
+    type: "paper",
   },
   {
     id: Papers.GS3,
     label: "GS Paper 3",
+    type: "paper",
   },
   {
     id: Papers.GS4,
     label: "GS Paper 4",
+    type: "paper",
   },
   {
     id: Papers.ESSAY,
     label: "Essay",
+    type: "paper",
   },
 ];
 export interface Topics {
