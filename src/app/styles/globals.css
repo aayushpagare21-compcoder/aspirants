@@ -11,9 +11,11 @@
 ::-webkit-scrollbar {
   width: 4px; /* Change the width of the scrollbar */
   height: 2px; /* Change the height of the scrollbar */
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #e75480; /* Change the color of the scrollbar thumb */
   border-radius: 0; /* Remove the border radius to make the scrollbar appear as a thin line */
+  cursor: pointer;
 }
