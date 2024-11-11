@@ -22,9 +22,11 @@ export const QuestionsList = ({
 }) => {
   const [offset, setOffset] = useState<number>(DEFAULT_QUESTIONS_FETCH_COUNT);
   const [questions, setQuestions] = useState<QuestionsWithEverything[]>([]);
+  const [loading, setLoading] = useState(false);
   const { ref, inView } = useInView();
 
   const loadMoreQuestions = async () => {
+    setLoading(true)
     const apiQuestions = await getQuestions({
       questionsLimit: DEFAULT_QUESTIONS_FETCH_COUNT,
       questionsOffset: offset,
@@ -33,6 +35,7 @@ export const QuestionsList = ({
     });
     setQuestions((questions) => [...questions, ...apiQuestions]);
     setOffset((offset) => offset + DEFAULT_QUESTIONS_FETCH_COUNT);
+    setLoading(false)
   };
 
   useEffect(() => {
@@ -47,7 +50,7 @@ export const QuestionsList = ({
     loadMoreQuestions();
   }, [paper, topic]);
 
-  if (isEmpty(questions)) {
+  if (!loading && isEmpty(questions)) {
     return (
       <div className="flex items-start justify-center font-bold text-tertiary">
         {" "}
