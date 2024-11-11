@@ -1,0 +1,1 @@
+export const NEXT_REVALIDATE_TOPICS_AFTER = 86400;

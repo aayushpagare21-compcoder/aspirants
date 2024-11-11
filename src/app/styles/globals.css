@@ -7,3 +7,13 @@
   --font-sohneone: "Sohne", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 6px; /* Change the width of the scrollbar */
+  height: 2px; /* Change the height of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e75480; /* Change the color of the scrollbar thumb */
+  border-radius: 0; /* Remove the border radius to make the scrollbar appear as a thin line */
+}

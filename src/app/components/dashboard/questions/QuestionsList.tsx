@@ -6,7 +6,6 @@ import {
 } from "@/app/lib/types/feed.types";
 import { DateTime } from "luxon";
 import { QuestionsCard } from "./QuestionCard";
-import { Divider } from "../../shared/Divider/Divider";
 import _ from "lodash";
 import { useEffect, useState } from "react";
 import { getQuestions } from "@/app/server/actions/questions.actions";
@@ -33,7 +32,6 @@ export const QuestionsList = ({
   };
 
   useEffect(() => {
-    // Trigger loadMoreQuestions only if not already loading
     if (inView) {
       loadMoreQuestions();
     }
@@ -41,7 +39,6 @@ export const QuestionsList = ({
 
   return (
     <div>
-      <Divider />
       <div className="mt-4 flex flex-col items-center justify-center gap-8">
         {questions.map((q) => {
           const answeredByImages = _.compact(

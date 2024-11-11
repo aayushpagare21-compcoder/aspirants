@@ -28,9 +28,37 @@ export const convertPaperToDisplayType = (paper: Papers | null): string => {
   }
 };
 
+export const slidingNavBarStaticItems = [
+  {
+    id: "All",
+    label: "All",
+  },
+  {
+    id: Papers.GS1,
+    label: "GS Paper 1",
+  },
+  {
+    id: Papers.GS2,
+    label: "GS Paper 2",
+  },
+  {
+    id: Papers.GS3,
+    label: "GS Paper 3",
+  },
+  {
+    id: Papers.GS4,
+    label: "GS Paper 4",
+  },
+  {
+    id: Papers.ESSAY,
+    label: "Essay",
+  },
+];
 export interface Topics {
   id: string;
   name: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface User {
