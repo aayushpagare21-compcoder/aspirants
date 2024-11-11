@@ -7,7 +7,7 @@ import {
 } from "@/app/lib/types/feed.types";
 import { DateTime } from "luxon";
 import { QuestionsCard } from "./QuestionCard";
-import _, { has, isEmpty } from "lodash";
+import _, { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { getQuestions } from "@/app/server/actions/questions.actions";
 import { useInView } from "react-intersection-observer";
@@ -22,24 +22,24 @@ export const QuestionsList = ({
 }) => {
   const [offset, setOffset] = useState<number>(DEFAULT_QUESTIONS_FETCH_COUNT);
   const [questions, setQuestions] = useState<QuestionsWithEverything[]>([]);
-  const [hasMoreQuestions, setHasMoreQuestions] = useState<boolean>(true)
+  const [hasMoreQuestions, setHasMoreQuestions] = useState<boolean>(true);
   const [loading, setLoading] = useState(false);
   const { ref, inView } = useInView();
 
   const loadMoreQuestions = async () => {
-    setLoading(true)
+    setLoading(true);
     const apiQuestions = await getQuestions({
       questionsLimit: DEFAULT_QUESTIONS_FETCH_COUNT,
       questionsOffset: offset,
       paper,
       topic,
     });
-    if(isEmpty(apiQuestions)) { 
-      setHasMoreQuestions(false)
+    if (isEmpty(apiQuestions)) {
+      setHasMoreQuestions(false);
     }
     setQuestions((questions) => [...questions, ...apiQuestions]);
     setOffset((offset) => offset + DEFAULT_QUESTIONS_FETCH_COUNT);
-    setLoading(false)
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -81,21 +81,21 @@ export const QuestionsList = ({
             />
           );
         })}
-       {hasMoreQuestions && ( 
-           <div
-           className="flex min-h-[300px] w-[100vw] flex-col items-center gap-4 md:min-h-[100px] md:w-[90vw] xl:w-[60vw]"
-           ref={ref}
-         >
-           <SkeletonLoader />
-           <SkeletonLoader />
-           <SkeletonLoader />
-         </div>
-       )}
-       {!hasMoreQuestions && !loading && (
-        <div className="flex justify-center items-center text-tertiary font-bold text-sm"> 
-          Oops😲 More questions to be added yet.
-        </div>
-       )}
+        {hasMoreQuestions && (
+          <div
+            className="flex min-h-[300px] w-[100vw] flex-col items-center gap-4 md:min-h-[100px] md:w-[90vw] xl:w-[60vw]"
+            ref={ref}
+          >
+            <SkeletonLoader />
+            <SkeletonLoader />
+            <SkeletonLoader />
+          </div>
+        )}
+        {!hasMoreQuestions && !loading && (
+          <div className="flex items-center justify-center text-sm font-bold text-tertiary">
+            Oops😲 More questions to be added yet.
+          </div>
+        )}
       </div>
     </div>
   );
