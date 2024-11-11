@@ -7,7 +7,7 @@ import {
 } from "@/app/lib/types/feed.types";
 import { DateTime } from "luxon";
 import { QuestionsCard } from "./QuestionCard";
-import _, { isEmpty } from "lodash";
+import _ from "lodash";
 import { useEffect, useState } from "react";
 import { getQuestions } from "@/app/server/actions/questions.actions";
 import { useInView } from "react-intersection-observer";
@@ -22,11 +22,9 @@ export const QuestionsList = ({
 }) => {
   const [offset, setOffset] = useState<number>(DEFAULT_QUESTIONS_FETCH_COUNT);
   const [questions, setQuestions] = useState<QuestionsWithEverything[]>([]);
-  const [loading, setLoading] = useState(false);
   const { ref, inView } = useInView();
 
   const loadMoreQuestions = async () => {
-    setLoading(true)
     const apiQuestions = await getQuestions({
       questionsLimit: DEFAULT_QUESTIONS_FETCH_COUNT,
       questionsOffset: offset,
@@ -35,7 +33,6 @@ export const QuestionsList = ({
     });
     setQuestions((questions) => [...questions, ...apiQuestions]);
     setOffset((offset) => offset + DEFAULT_QUESTIONS_FETCH_COUNT);
-    setLoading(false)
   };
 
   useEffect(() => {
@@ -49,15 +46,6 @@ export const QuestionsList = ({
     setOffset(DEFAULT_QUESTIONS_FETCH_COUNT);
     loadMoreQuestions();
   }, [paper, topic]);
-
-  if (!loading && isEmpty(questions)) {
-    return (
-      <div className="flex items-start justify-center font-bold text-tertiary">
-        {" "}
-        Questions to be added yet.{" "}
-      </div>
-    );
-  }
 
   return (
     <div>
