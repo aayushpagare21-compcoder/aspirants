@@ -74,6 +74,8 @@ export async function getAllPublishedQuestionsWithEverything({
     topics: question.topics.map((t) => ({
       id: t.id,
       name: t.name,
+      createdAt: t.createdAt,
+      updatedAt: t.updatedAt,
     })),
     answers: question.answers.map((answer) => ({
       id: answer.id,

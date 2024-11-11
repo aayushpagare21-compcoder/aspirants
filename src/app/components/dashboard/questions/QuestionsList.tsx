@@ -2,46 +2,62 @@
 import {
   convertPaperToDisplayType,
   DEFAULT_QUESTIONS_FETCH_COUNT,
+  Papers,
   QuestionsWithEverything,
 } from "@/app/lib/types/feed.types";
 import { DateTime } from "luxon";
 import { QuestionsCard } from "./QuestionCard";
-import { Divider } from "../../shared/Divider/Divider";
-import _ from "lodash";
+import _, { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import { getQuestions } from "@/app/server/actions/questions.actions";
 import { useInView } from "react-intersection-observer";
 import { SkeletonLoader } from "../../shared/Loaders/SkeletonLoader";
 
 export const QuestionsList = ({
-  initialQuestions,
+  paper,
+  topic,
 }: {
-  initialQuestions: QuestionsWithEverything[];
+  paper?: Papers;
+  topic?: string;
 }) => {
   const [offset, setOffset] = useState<number>(DEFAULT_QUESTIONS_FETCH_COUNT);
-  const [questions, setQuestions] =
-    useState<QuestionsWithEverything[]>(initialQuestions);
+  const [questions, setQuestions] = useState<QuestionsWithEverything[]>([]);
   const { ref, inView } = useInView();
 
   const loadMoreQuestions = async () => {
     const apiQuestions = await getQuestions({
       questionsLimit: DEFAULT_QUESTIONS_FETCH_COUNT,
       questionsOffset: offset,
+      paper,
+      topic,
     });
     setQuestions((questions) => [...questions, ...apiQuestions]);
     setOffset((offset) => offset + DEFAULT_QUESTIONS_FETCH_COUNT);
   };
 
   useEffect(() => {
-    // Trigger loadMoreQuestions only if not already loading
     if (inView) {
       loadMoreQuestions();
     }
   }, [inView]);
 
+  useEffect(() => {
+    setQuestions([]);
+    setOffset(DEFAULT_QUESTIONS_FETCH_COUNT);
+    loadMoreQuestions();
+  }, [paper, topic]);
+
+  if (isEmpty(questions)) {
+    return (
+      <div className="flex items-start justify-center font-bold text-tertiary">
+        {" "}
+        Questions to be added yet.{" "}
+      </div>
+    );
+  }
+
   return (
     <div>
-      <Divider />
       <div className="mt-4 flex flex-col items-center justify-center gap-8">
         {questions.map((q) => {
           const answeredByImages = _.compact(
