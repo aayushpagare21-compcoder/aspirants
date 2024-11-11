@@ -37,10 +37,9 @@ export const QuestionsCard = ({
                 <span> {questionText} </span>
                 {maxMarksAnswerToWrite || maxWordsAnswerToWrite ? "(" : ""}
                 <span>
-                  {" "}
                   {maxWordsAnswerToWrite
                     ? `${maxWordsAnswerToWrite} words`
-                    : ``}{" "}
+                    : ``}
                 </span>
                 {maxMarksAnswerToWrite && maxWordsAnswerToWrite ? "|" : ""}
                 <span>
