@@ -7,7 +7,7 @@ import {
 } from "@/app/lib/types/feed.types";
 import { DateTime } from "luxon";
 import { QuestionsCard } from "./QuestionCard";
-import { isEmpty, debounce, startCase, toLower, compact } from "lodash";
+import { debounce, startCase, toLower, compact } from "lodash";
 import { useEffect, useState, useCallback } from "react";
 import { getQuestions } from "@/app/server/actions/questions.actions";
 import { useInView } from "react-intersection-observer";
