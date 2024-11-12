@@ -7,12 +7,13 @@ import {
 } from "@/app/lib/types/feed.types";
 import { DateTime } from "luxon";
 import { QuestionsCard } from "./QuestionCard";
-import _, { isEmpty, debounce } from "lodash";
+import  { isEmpty, debounce, startCase, toLower, compact } from "lodash";
 import { useEffect, useState, useCallback } from "react";
 import { getQuestions } from "@/app/server/actions/questions.actions";
 import { useInView } from "react-intersection-observer";
 import { SkeletonLoader } from "../../shared/Loaders/SkeletonLoader";
 import usePrevious from "@/app/hooks/usePrevious";
+import { useEffectOnce } from "react-use";
 
 export const QuestionsList = ({
   paper,
@@ -39,7 +40,7 @@ export const QuestionsList = ({
   const prevTopic = usePrevious(topic ?? "");
   const prevPaper = usePrevious(paper);
 
-  // Function to fetch questions with a debounce
+  
   const fetchQuestions = useCallback(
     debounce(async () => {
       setLoading(true);
@@ -54,9 +55,10 @@ export const QuestionsList = ({
       setOffset(DEFAULT_QUESTIONS_FETCH_COUNT);
       setHasMoreQuestions(!isEmpty(apiQuestions));
       setLoading(false);
-    }, 300), // 300ms debounce delay
-    [paper, topic, searchValue],
+    }, 500),
+    [paper, topic, searchValue]
   );
+  
 
   // Load more questions on scroll
   const loadMoreQuestions = async () => {
@@ -74,6 +76,10 @@ export const QuestionsList = ({
     setHasMoreQuestions(!isEmpty(apiQuestions));
     setLoading(false);
   };
+
+  useEffectOnce(() => {
+    fetchQuestions()
+  })
 
   // Trigger initial load or refresh on filter change
   useEffect(() => {
@@ -99,12 +105,7 @@ export const QuestionsList = ({
     paper,
     topic,
     searchValue,
-    prevSearchText,
-    prevTopic,
-    prevPaper,
-    fetchQuestions,
   ]);
-
   // Load more when the user scrolls to the bottom
   useEffect(() => {
     if (inView) {
@@ -116,7 +117,7 @@ export const QuestionsList = ({
     <div>
       <div className="mt-4 flex flex-col items-center justify-center gap-8">
         {questions.map((q) => {
-          const answeredByImages = _.compact(
+          const answeredByImages = compact(
             q.answers.slice(0, 5).map((a) => a.user.image),
           );
           return (
@@ -131,7 +132,7 @@ export const QuestionsList = ({
               }
               paperOnWhichQuestionsAsked={convertPaperToDisplayType(q.paper)}
               topicsRelatedToQuestion={q.topics.map((t) =>
-                _.startCase(_.toLower(t.name)),
+                startCase(toLower(t.name)),
               )}
               answersOnQuestion={q.answers.length}
               maxWordsAnswerToWrite={q.words ?? 0}
