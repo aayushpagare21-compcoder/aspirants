@@ -9,6 +9,7 @@ export async function getQuestions(params?: {
   topic?: string;
   paper?: Papers;
   year?: number;
+  textToSearch?: string;
 }) {
   const questions = await getAllPublishedQuestionsWithEverything({
     limit: params?.questionsLimit,
@@ -16,6 +17,7 @@ export async function getQuestions(params?: {
     paper: params?.paper,
     topic: params?.topic,
     year: params?.year,
+    textToSearch: params?.textToSearch,
   });
 
   return questions;

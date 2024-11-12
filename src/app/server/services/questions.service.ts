@@ -10,6 +10,40 @@ const DEFAULT_ANSWER_LIMIT = 5;
 const DEFAULT_QUESTIONS_OFFSET = 0;
 const DEFAULT_ANSWER_OFFSET = 0;
 
+async function questionsFullTextSearch(websearchQuery: string) {
+  const foundQuestions = await prisma.$queryRaw<{ id: string; rank: number }[]>`
+  SELECT 
+    q.id,
+    ts_rank(
+      to_tsvector('english', 
+        q.text || ' ' || 
+        q.paper || ' ' || 
+        t.name || ' ' || 
+        DATE_PART('year', q.asked_date)::text || ' ' || 
+        q.words
+      ),
+      websearch_to_tsquery('english', ${websearchQuery})
+    ) as rank
+  FROM 
+    "questions" q
+  LEFT JOIN 
+    "_QuestionToTopics" qt ON q.id = qt."A"
+  LEFT JOIN 
+    "topics" t ON t.id = qt."B"
+  WHERE 
+    to_tsvector('english', 
+      q.text || ' ' || 
+      q.paper || ' ' || 
+      t.name || ' ' || 
+      DATE_PART('year', q.asked_date)::text || ' ' || 
+      q.words
+    ) @@ websearch_to_tsquery('english', ${websearchQuery})
+  ORDER BY 
+    rank DESC;
+`;
+  return foundQuestions.map((q) => q.id);
+}
+
 export async function getAllPublishedQuestionsWithEverything({
   limit,
   offset,
@@ -18,6 +52,7 @@ export async function getAllPublishedQuestionsWithEverything({
   paper,
   topic,
   year,
+  textToSearch,
 }: {
   limit?: number;
   offset?: number;
@@ -26,11 +61,18 @@ export async function getAllPublishedQuestionsWithEverything({
   paper?: Papers;
   topic?: string;
   year?: number;
+  textToSearch?: string;
 }): Promise<QuestionsWithEverything[]> {
+  let questionIds = null;
+  if (textToSearch) {
+    questionIds = await questionsFullTextSearch(textToSearch);
+  }
+
   const questions = await prisma.question.findMany({
     take: limit ?? DEFAULT_QUESTIONS_FETCH_COUNT,
     skip: offset ?? DEFAULT_QUESTIONS_OFFSET,
     where: {
+      ...(questionIds && { id: { in: questionIds } }),
       published: true,
       ...(topic && {
         topics: {
@@ -60,6 +102,8 @@ export async function getAllPublishedQuestionsWithEverything({
       },
     },
   });
+
+  console.log("|=============", questions);
 
   return questions.map((question) => ({
     id: question.id,

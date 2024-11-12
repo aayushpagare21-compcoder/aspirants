@@ -7,9 +7,18 @@ import { Button } from "@/app/components/ui/button";
 import { useRef, useState } from "react";
 import useOutsideClick from "@/app/hooks/useOutsideClick";
 import { aspirantsSignOut } from "@/app/server/actions/auth.actions";
-import { User } from "next-auth";
 
-export const Navbar = ({ user }: { user: User }) => {
+export const Navbar = ({
+  userImage,
+  onChangeSearchText,
+  onSearchIconClick,
+  searchText,
+}: {
+  userImage?: string;
+  onSearchIconClick?: () => void;
+  onChangeSearchText: (s: string) => void;
+  searchText: string;
+}) => {
   const [showProfileTab, setShowProfileTab] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>();
 
@@ -21,7 +30,11 @@ export const Navbar = ({ user }: { user: User }) => {
     <nav className="flex justify-between px-8 py-2">
       <div className="flex items-center gap-4">
         <AspirantsLogo />
-        <SearchBar />
+        <SearchBar
+          onChangeSearchText={onChangeSearchText}
+          onSearchIconClick={onSearchIconClick}
+          searchText={searchText}
+        />
       </div>
       <div className="flex items-center gap-8">
         <div className="hidden gap-3 md:flex">
@@ -41,7 +54,7 @@ export const Navbar = ({ user }: { user: User }) => {
           >
             <Image
               // TODO: default image
-              src={user.image ?? "/default-profile.jpg"}
+              src={userImage ?? "/default-profile.jpg"}
               alt="Profile Picture"
               layout="fill"
               objectFit="cover"

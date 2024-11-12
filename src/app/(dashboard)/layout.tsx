@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import { Navbar } from "@/app/components/dashboard/header/Navbar";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Be an aspirant",
@@ -13,14 +10,5 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
-  if (!session?.user) {
-    redirect("/");
-  }
-  return (
-    <div>
-      <Navbar user={session.user} />
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }
