@@ -7,7 +7,7 @@ import {
 } from "@/app/lib/types/feed.types";
 import { DateTime } from "luxon";
 import { QuestionsCard } from "./QuestionCard";
-import  { isEmpty, debounce, startCase, toLower, compact } from "lodash";
+import { isEmpty, debounce, startCase, toLower, compact } from "lodash";
 import { useEffect, useState, useCallback } from "react";
 import { getQuestions } from "@/app/server/actions/questions.actions";
 import { useInView } from "react-intersection-observer";
@@ -32,18 +32,15 @@ export const QuestionsList = ({
 }) => {
   const [offset, setOffset] = useState<number>(0);
   const [questions, setQuestions] = useState<QuestionsWithEverything[]>([]);
-  const [hasMoreQuestions, setHasMoreQuestions] = useState<boolean>(true);
-  const [loading, setLoading] = useState(false);
+
   const { ref, inView } = useInView();
 
   const prevSearchText = usePrevious(searchValue ?? "");
   const prevTopic = usePrevious(topic ?? "");
   const prevPaper = usePrevious(paper);
 
-  
   const fetchQuestions = useCallback(
     debounce(async () => {
-      setLoading(true);
       const apiQuestions = await getQuestions({
         questionsLimit: DEFAULT_QUESTIONS_FETCH_COUNT,
         questionsOffset: 0,
@@ -53,17 +50,12 @@ export const QuestionsList = ({
       });
       setQuestions(apiQuestions);
       setOffset(DEFAULT_QUESTIONS_FETCH_COUNT);
-      setHasMoreQuestions(!isEmpty(apiQuestions));
-      setLoading(false);
     }, 500),
-    [paper, topic, searchValue]
+    [paper, topic, searchValue],
   );
-  
 
   // Load more questions on scroll
   const loadMoreQuestions = async () => {
-    if (loading || !hasMoreQuestions) return;
-    setLoading(true);
     const apiQuestions = await getQuestions({
       questionsLimit: DEFAULT_QUESTIONS_FETCH_COUNT,
       questionsOffset: offset,
@@ -73,13 +65,11 @@ export const QuestionsList = ({
     });
     setQuestions((prevQuestions) => [...prevQuestions, ...apiQuestions]);
     setOffset((prevOffset) => prevOffset + DEFAULT_QUESTIONS_FETCH_COUNT);
-    setHasMoreQuestions(!isEmpty(apiQuestions));
-    setLoading(false);
   };
 
   useEffectOnce(() => {
-    fetchQuestions()
-  })
+    fetchQuestions();
+  });
 
   // Trigger initial load or refresh on filter change
   useEffect(() => {
@@ -101,11 +91,7 @@ export const QuestionsList = ({
       }
       fetchQuestions();
     }
-  }, [
-    paper,
-    topic,
-    searchValue,
-  ]);
+  }, [paper, topic, searchValue]);
   // Load more when the user scrolls to the bottom
   useEffect(() => {
     if (inView) {
@@ -140,21 +126,15 @@ export const QuestionsList = ({
             />
           );
         })}
-        {questions.length > 3 && (hasMoreQuestions || loading) && (
-          <div
-            className="flex min-h-[300px] w-[100vw] flex-col items-center gap-4 md:min-h-[100px] md:w-[90vw] xl:w-[60vw]"
-            ref={ref}
-          >
-            <SkeletonLoader />
-            <SkeletonLoader />
-            <SkeletonLoader />
-          </div>
-        )}
-        {!hasMoreQuestions && (
-          <div className="flex items-center justify-center text-sm font-bold text-tertiary">
-            Oops😲 No questions available.
-          </div>
-        )}
+
+        <div
+          className="flex min-h-[300px] w-[100vw] flex-col items-center gap-4 md:min-h-[100px] md:w-[90vw] xl:w-[60vw]"
+          ref={ref}
+        >
+          <SkeletonLoader />
+          <SkeletonLoader />
+          <SkeletonLoader />
+        </div>
       </div>
     </div>
   );
