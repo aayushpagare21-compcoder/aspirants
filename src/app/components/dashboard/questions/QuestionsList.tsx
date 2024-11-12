@@ -32,6 +32,7 @@ export const QuestionsList = ({
 }) => {
   const [offset, setOffset] = useState<number>(0);
   const [questions, setQuestions] = useState<QuestionsWithEverything[]>([]);
+  const [showNoQuestionsMessage, setShowNoQuestionsMessage] = useState(false);
 
   const { ref, inView } = useInView();
 
@@ -41,6 +42,7 @@ export const QuestionsList = ({
 
   const fetchQuestions = useCallback(
     debounce(async () => {
+      setQuestions([]);
       const apiQuestions = await getQuestions({
         questionsLimit: DEFAULT_QUESTIONS_FETCH_COUNT,
         questionsOffset: 0,
@@ -73,7 +75,6 @@ export const QuestionsList = ({
 
   // Trigger initial load or refresh on filter change
   useEffect(() => {
-    // Only reset when a new search starts
     if (
       searchValue !== prevSearchText ||
       topic !== prevTopic ||
@@ -92,6 +93,18 @@ export const QuestionsList = ({
       fetchQuestions();
     }
   }, [paper, topic, searchValue]);
+
+  // Show "No questions" message if questions remain empty after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (questions.length === 0) {
+        setShowNoQuestionsMessage(true);
+      }
+    }, 5000);
+
+    return () => clearTimeout(timer); // Cleanup the timer on unmount or when questions change
+  }, [questions]);
+
   // Load more when the user scrolls to the bottom
   useEffect(() => {
     if (inView) {
@@ -127,14 +140,22 @@ export const QuestionsList = ({
           );
         })}
 
-        <div
-          className="flex min-h-[300px] w-[100vw] flex-col items-center gap-4 md:min-h-[100px] md:w-[90vw] xl:w-[60vw]"
-          ref={ref}
-        >
-          <SkeletonLoader />
-          <SkeletonLoader />
-          <SkeletonLoader />
-        </div>
+        {!showNoQuestionsMessage && (
+          <div
+            className="flex min-h-[300px] w-[100vw] flex-col items-center gap-4 md:min-h-[100px] md:w-[90vw] xl:w-[60vw]"
+            ref={ref}
+          >
+            <SkeletonLoader />
+            <SkeletonLoader />
+            <SkeletonLoader />
+          </div>
+        )}
+
+        {showNoQuestionsMessage && (
+          <div className="flex items-center justify-center text-sm font-bold text-tertiary">
+            Oops😲 No questions available.
+          </div>
+        )}
       </div>
     </div>
   );
