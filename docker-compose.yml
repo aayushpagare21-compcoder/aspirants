@@ -10,10 +10,3 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5433:5432" # Local port 5433 to container port 5432
-
-  mailhog:
-    image: mailhog/mailhog:latest
-    container_name: aspirants-mailhog
-    ports:
-      - "1025:1025" # SMTP port for sending emails
-      - "8025:8025" # Web UI for viewing emails

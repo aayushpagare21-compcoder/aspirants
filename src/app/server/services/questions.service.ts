@@ -103,8 +103,6 @@ export async function getAllPublishedQuestionsWithEverything({
     },
   });
 
-  console.log("|=============", questions);
-
   return questions.map((question) => ({
     id: question.id,
     askedDate: question.askedDate ? question.askedDate.toISOString() : null,
