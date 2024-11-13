@@ -37,15 +37,6 @@ export const Navbar = ({
         />
       </div>
       <div className="flex items-center gap-8">
-        <div className="hidden gap-3 md:flex">
-          <EditIcon strokeWidth={1} />
-          <span className="flex items-center text-sm text-tertiary">Write</span>
-        </div>
-        <BellIcon
-          className="h-[1.5rem] w-[2rem]"
-          strokeWidth={1}
-          aria-label="Notifications"
-        />
         <div className="flex flex-col">
           <div
             className="relative h-10 w-10 overflow-hidden rounded-full"

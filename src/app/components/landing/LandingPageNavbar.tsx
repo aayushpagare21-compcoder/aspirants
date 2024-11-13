@@ -10,16 +10,16 @@ export const LandingPageNavBar = () => {
         <AspirantsLogo />
         <div className="flex justify-around gap-8">
           <ul className="hidden items-center gap-6 font-[family-name:var(--font-sohneone)] text-[14px] md:flex">
-            <Link href="#">
+            <Link href="/about-us">
               <li> About Us </li>
             </Link>
-            <Link href="#">
+            <Link href="/guide">
               <li> Guide </li>
             </Link>
-            <Link href="#">
+            <Link href="/login">
               <li> Write</li>
             </Link>
-            <Link href="#">
+            <Link href="/login">
               <li> Sign in</li>
             </Link>
           </ul>

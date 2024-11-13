@@ -44,3 +44,5 @@ Ensure you have the following installed:
    npm run dev
    ```
 Open [http://localhost:8080](http://localhost:8080) with your browser to see the result.
+
+For contributing please check [this](https://github.com/aayushpagare21-compcoder/aspirants/blob/main/CONTRIBUTING.md)

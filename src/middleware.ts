@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function authMiddleware(req: NextRequest) {
   const session = await auth();
   if (!session) {
-    if (req.nextUrl.pathname !== "/login" && req.nextUrl.pathname !== "/") {
+    if (!['/login', '/', '/guide', '/about-us'].includes(req.nextUrl.pathname)) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
   }
