@@ -26,7 +26,7 @@ Always feel free to ask questions or seek clarification on the issue.
 
 ## Developing
 
-The development branch is <code>main</code>. All pull requests should be made against this branch.
+The development branch is <code>main</code>. All pull requests should be made against this branch. If you need help getting started, join us on [Slack](https://join.slack.com/t/aspirants-t0o1796/shared_invite/zt-2up5ccfkg-xNVNOstFvtiLEkYsU8x9rA).
 
 1. [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your
    own GitHub account and then
