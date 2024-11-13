@@ -1,6 +1,5 @@
 "use client";
 import { AspirantsLogo } from "@/app/components/shared/Logo/AspirantsLogo";
-import { BellIcon, EditIcon } from "lucide-react";
 import { SearchBar } from "@/app/components/dashboard/header/SearchBar";
 import Image from "next/image";
 import { Button } from "@/app/components/ui/button";
