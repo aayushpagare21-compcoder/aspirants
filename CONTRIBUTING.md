@@ -39,7 +39,7 @@ The development branch is <code>main</code>. All pull requests should be made ag
   git checkout -b feat/asp-111-this-is-a-amazing-feature
   ```
 
-3. Check the readme please for dev setup.
+3. Check the [readme](https://github.com/aayushpagare21-compcoder/aspirants/blob/main/README.md) please for dev setup.
 
 ## Building
 
