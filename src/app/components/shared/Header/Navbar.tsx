@@ -3,7 +3,7 @@ import { AspirantsLogo } from "@/app/components/shared/Logo/AspirantsLogo";
 import { SearchBar } from "@/app/components/shared/Header/SearchBar";
 import Image from "next/image";
 import { Button } from "@/app/components/ui/button";
-import { useRef, useState } from "react";
+import { RefObject, useRef, useState } from "react";
 import useOutsideClick from "@/app/hooks/useOutsideClick";
 import { aspirantsSignOut } from "@/app/server/actions/auth.actions";
 
@@ -55,7 +55,7 @@ export const Navbar = ({
             />
           </div>
           {showProfileTab && (
-            <div className="relative" ref={ref}>
+            <div className="relative" ref={ref as RefObject<HTMLDivElement>}>
               <div className="absolute -left-3 top-1 rounded-lg shadow-lg">
                 <div className="absolute -top-2 left-8 z-10 h-4 w-4 rotate-[45deg] border-l border-t"></div>
                 <ul>
