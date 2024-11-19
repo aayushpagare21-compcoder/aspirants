@@ -112,8 +112,8 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
             <Image
               src={src}
               alt={`Preview ${index + 1}`}
-              width={96}
-              height={96}
+              width={40}
+              height={40}
               className="rounded border object-cover"
             />
             <button
