@@ -8,7 +8,7 @@ import {
   Topics,
 } from "@/app/lib/types/feed.types";
 import { QuestionsList } from "./QuestionsList";
-import { Navbar } from "../header/Navbar";
+import { Navbar } from "../../shared/Header/Navbar";
 import { SearchModal } from "./SearchModal";
 
 export const QuestionsContainer = ({

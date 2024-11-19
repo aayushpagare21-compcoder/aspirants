@@ -11,8 +11,8 @@ export const SearchBar = ({
   searchIconStyles,
   containerClasses,
 }: {
-  searchText: string;
-  onChangeSearchText: (searchVal: string) => void;
+  searchText?: string;
+  onChangeSearchText?: (searchVal: string) => void;
   onSearchIconClick?: () => void;
   searchBarStyles?: string;
   searchIconStyles?: string;
@@ -37,9 +37,9 @@ export const SearchBar = ({
             searchBarStyles,
           )}
           placeholder="Search"
-          value={searchText}
+          value={searchText ?? ""}
           onChange={(e) => {
-            onChangeSearchText(e.target.value);
+            onChangeSearchText?.(e.target.value);
           }}
         />
       </div>
