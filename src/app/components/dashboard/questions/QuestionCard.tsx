@@ -7,6 +7,7 @@ import {
 import Image from "next/image";
 import { Button } from "@/app/components/ui/button";
 import { BookAIcon } from "lucide-react";
+import Link from "next/link";
 
 export const QuestionsCard = ({
   questionText,
@@ -101,11 +102,16 @@ export const QuestionsCard = ({
                 )}
               </div>
               <div className="flex">
-                <Button variant="link" className="pl-0">
-                  {" "}
-                  Write{" "}
-                </Button>
-                |<Button variant="link"> View top answers </Button>
+                <Link
+                  href={{
+                    pathname: "/ai/answer-evaluator",
+                    query: { question: questionText }, // passing question as query parameter
+                  }}
+                >
+                  <Button variant="link" className="pl-0">
+                    Evaluate your answer with AI
+                  </Button>
+                </Link>
               </div>
             </div>
           </CardFooter>

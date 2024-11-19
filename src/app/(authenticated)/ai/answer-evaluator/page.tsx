@@ -3,7 +3,11 @@ import { Navbar } from "@/app/components/shared/Header/Navbar";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
-export default async function AIAnswerEvaluator() {
+export default async function AIAnswerEvaluator({
+  searchParams,
+}: {
+  searchParams: { question?: string };
+}) {
   const session = await auth();
   if (!session?.user) {
     redirect("/");
@@ -12,7 +16,7 @@ export default async function AIAnswerEvaluator() {
   return (
     <>
       <Navbar userImage={session.user.image ?? undefined} />
-      <AnswerEvaluatorForm />
+      <AnswerEvaluatorForm question={searchParams.question ?? ""} />
     </>
   );
 }
