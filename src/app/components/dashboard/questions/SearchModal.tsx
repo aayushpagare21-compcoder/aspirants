@@ -1,5 +1,5 @@
 import { Dialog, DialogContent } from "../../ui/dialog";
-import { SearchBar } from "../header/SearchBar";
+import { SearchBar } from "../../shared/Header/SearchBar";
 
 export const SearchModal = ({
   searchText,

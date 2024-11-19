@@ -40,3 +40,5 @@ next-env.d.ts
 
 /public/questions
 /scrape.js
+
+/llama.ts

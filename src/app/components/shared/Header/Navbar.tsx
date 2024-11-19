@@ -1,9 +1,9 @@
 "use client";
 import { AspirantsLogo } from "@/app/components/shared/Logo/AspirantsLogo";
-import { SearchBar } from "@/app/components/dashboard/header/SearchBar";
+import { SearchBar } from "@/app/components/shared/Header/SearchBar";
 import Image from "next/image";
 import { Button } from "@/app/components/ui/button";
-import { useRef, useState } from "react";
+import { RefObject, useRef, useState } from "react";
 import useOutsideClick from "@/app/hooks/useOutsideClick";
 import { aspirantsSignOut } from "@/app/server/actions/auth.actions";
 
@@ -15,8 +15,9 @@ export const Navbar = ({
 }: {
   userImage?: string;
   onSearchIconClick?: () => void;
-  onChangeSearchText: (s: string) => void;
-  searchText: string;
+  onChangeSearchText?: (s: string) => void;
+  searchText?: string;
+  hideSearchBar?: boolean;
 }) => {
   const [showProfileTab, setShowProfileTab] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>();
@@ -29,11 +30,13 @@ export const Navbar = ({
     <nav className="flex justify-between px-8 py-2">
       <div className="flex items-center gap-4">
         <AspirantsLogo />
-        <SearchBar
-          onChangeSearchText={onChangeSearchText}
-          onSearchIconClick={onSearchIconClick}
-          searchText={searchText}
-        />
+        {onChangeSearchText && (
+          <SearchBar
+            onChangeSearchText={onChangeSearchText}
+            onSearchIconClick={onSearchIconClick}
+            searchText={searchText}
+          />
+        )}
       </div>
       <div className="flex items-center gap-8">
         <div className="flex flex-col">
@@ -52,8 +55,7 @@ export const Navbar = ({
             />
           </div>
           {showProfileTab && (
-            // @ts-expect-error TODO: Idk how to fix this now.
-            <div className="relative" ref={ref}>
+            <div className="relative" ref={ref as RefObject<HTMLDivElement>}>
               <div className="absolute -left-3 top-1 rounded-lg shadow-lg">
                 <div className="absolute -top-2 left-8 z-10 h-4 w-4 rotate-[45deg] border-l border-t"></div>
                 <ul>
