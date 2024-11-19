@@ -17,7 +17,7 @@ export const AnswerEvaluatorForm = ({ question }: { question: string }) => {
         ) : (
           <Textarea
             placeholder="Please enter the question to be evaluated here"
-            rows={50}
+            rows={20}
           />
         )}
 
