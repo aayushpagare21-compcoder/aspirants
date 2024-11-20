@@ -11,6 +11,7 @@ import Link from "next/link";
 
 export const QuestionsCard = ({
   questionText,
+  questionId,
   questionAskedDate,
   answersOnQuestion,
   topicsRelatedToQuestion,
@@ -20,6 +21,7 @@ export const QuestionsCard = ({
   answeredByImages,
 }: {
   questionText: string;
+  questionId: string;
   questionAskedDate: string;
   answersOnQuestion: number;
   topicsRelatedToQuestion: string[];
@@ -105,7 +107,7 @@ export const QuestionsCard = ({
                 <Link
                   href={{
                     pathname: "/ai/answer-evaluator",
-                    query: { question: questionText }, // passing question as query parameter
+                    query: { question: questionText, questionId }, // passing question as query parameter
                   }}
                 >
                   <Button variant="link" className="pl-0">

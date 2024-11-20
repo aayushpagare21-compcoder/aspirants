@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 export default async function AIAnswerEvaluator({
   searchParams,
 }: {
-  searchParams: { question?: string };
+  searchParams: { question?: string; questionId?: string };
 }) {
   const session = await auth();
   if (!session?.user) {
@@ -16,7 +16,10 @@ export default async function AIAnswerEvaluator({
   return (
     <>
       <Navbar userImage={session.user.image ?? undefined} />
-      <AnswerEvaluatorForm question={searchParams.question ?? ""} />
+      <AnswerEvaluatorForm
+        question={searchParams.question ?? ""}
+        questionId={searchParams.questionId ?? ""}
+      />
     </>
   );
 }

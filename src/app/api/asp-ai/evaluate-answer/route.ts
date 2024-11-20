@@ -1,3 +1,4 @@
+import { createAnswer } from "@/app/server/services/answers.service";
 import { cloudinaryUpload } from "@/app/server/services/cloudinary.service";
 import { mergeImagesVertically } from "@/app/server/services/images.service";
 import { getUserByEmail } from "@/app/server/services/user.service";
@@ -13,6 +14,7 @@ export async function POST(req: Request) {
 
     const form = await req.formData();
     const files = form.getAll("files");
+    const questionId = form.get("questionId");
     const imagesToBeMerged = [];
     for (const file of files) {
       if (file instanceof File) {
@@ -24,11 +26,16 @@ export async function POST(req: Request) {
 
     const { public_id, secure_url } = await cloudinaryUpload(
       finalImageBuffer,
-      `answers/${user.id}`,
+      `/${questionId}/${user.id}`,
     );
-    console.log("secure_url: ", secure_url, public_id);
 
-    NextResponse.json({ tmkoc: "band hoja bhai" }, { status: 200 });
+    await createAnswer({
+      cloudinaryPublicId: public_id,
+      questionId: questionId?.toString() ?? "",
+      userId: user.id,
+    });
+
+    return NextResponse.json({ secure_url }, { status: 200 });
   } catch (error) {
     console.error("Error handling file upload:", error);
     return NextResponse.json(

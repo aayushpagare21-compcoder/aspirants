@@ -15,8 +15,6 @@ export const fetchAllTopics = async (): Promise<Topics[]> => {
 };
 
 export const evaluateAnswer = async (formData: FormData) => {
-  console.log("=======", baseUrl);
-  console.log("=======", `${baseUrl}/asp-ai/evaluate-answer`);
   const resp = await fetch(`${baseUrl}/asp-ai/evaluate-answer`, {
     method: "POST",
     body: formData,

@@ -122,6 +122,7 @@ export const QuestionsList = ({
           return (
             <QuestionsCard
               key={q.id}
+              questionId={q.id}
               questionText={q.text}
               answeredByImages={answeredByImages}
               questionAskedDate={

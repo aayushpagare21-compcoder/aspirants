@@ -92,9 +92,6 @@ export async function getAllPublishedQuestionsWithEverything({
       answers: {
         take: answerLimit ?? DEFAULT_ANSWER_LIMIT,
         skip: answerOffset ?? DEFAULT_ANSWER_OFFSET,
-        where: {
-          published: true,
-        },
         include: {
           user: true,
           claps: true,
