@@ -4,10 +4,23 @@ import { Textarea } from "../ui/textarea";
 import { Groq } from "../shared/Logo/GroqEmbedding";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { useState } from "react";
+import { evaluateAnswer } from "../../lib/fetchUtils";
 
-const MAX_NUMBER_OF_IMAGES_ALLOWED = 5;
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_NUMBER_OF_IMAGES_ALLOWED = 3;
+const MAX_FILE_SIZE = 5 * 1024 * 1024; 
 export const AnswerEvaluatorForm = ({ question }: { question: string }) => {
+  const [uploadedImages, setUploadedImages] = useState<File[]>([]);
+
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    for (const image of Array.from(uploadedImages)) {
+      formData.append('files', image);
+    }
+    formData.append("question", question);
+    await evaluateAnswer(formData);
+  };
+
   return (
     <div className="flex h-[100vh] w-[100vw] justify-center">
       <div className="flex w-[100vw] flex-col items-center gap-4 p-8 md:w-[50vw]">
@@ -15,18 +28,20 @@ export const AnswerEvaluatorForm = ({ question }: { question: string }) => {
           {" "}
           <span className="text-tertiary"> AI </span> answer evaluator{" "}
         </div>
+
         {question ? (
           <strong> {question} </strong>
         ) : (
           <Textarea
             placeholder="Please enter the question to be evaluated here"
             rows={20}
+            name="question"
           />
         )}
 
         <ImageUploader
           onUpload={(images) => {
-            console.log("======images======", images);
+            setUploadedImages(images);
           }}
           maxNumberOfImages={MAX_NUMBER_OF_IMAGES_ALLOWED}
           maxFileSize={MAX_FILE_SIZE}
@@ -50,6 +65,7 @@ export const AnswerEvaluatorForm = ({ question }: { question: string }) => {
             <Button
               variant="tertiary"
               className="w-full rounded-full p-6 text-[1rem] shadow-lg shadow-primary md:w-[14rem]"
+              onClick={handleSubmit}
             >
               {" "}
               Evaluate Answer{" "}
@@ -65,7 +81,6 @@ export const AnswerEvaluatorForm = ({ question }: { question: string }) => {
             </Link>
           </div>
         </div>
-
         <Groq />
       </div>
     </div>

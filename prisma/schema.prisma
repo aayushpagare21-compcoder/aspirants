@@ -146,9 +146,7 @@ model Question {
 
 model Answer {
   id           String  @id @default(cuid())
-  text         String // answer as a plain text.
-  markdownText String  @map("markdown_text") // answer as markdown text.
-  published    Boolean @default(false) // published field to determine weather the answer is published or not.
+  cloudinaryPublicId    String @map("cloudinary_public_id") // public id of the image uploaded on cloudinary
   userId       String  @map("user_id") // references to id in the users table
   questionId   String  @map("question_id") // references to id in the questions table
 

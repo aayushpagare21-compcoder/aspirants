@@ -101,6 +101,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
           id="image-upload-input"
           className="hidden"
           ref={inputRef}
+          name="answer_images"
         />
         <UploadIcon />
         <div>{getStatusMessage(status, error)}</div>
