@@ -8,14 +8,14 @@ import { useState } from "react";
 import { evaluateAnswer } from "../../lib/fetchUtils";
 
 const MAX_NUMBER_OF_IMAGES_ALLOWED = 3;
-const MAX_FILE_SIZE = 5 * 1024 * 1024; 
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 export const AnswerEvaluatorForm = ({ question }: { question: string }) => {
   const [uploadedImages, setUploadedImages] = useState<File[]>([]);
 
   const handleSubmit = async () => {
     const formData = new FormData();
     for (const image of Array.from(uploadedImages)) {
-      formData.append('files', image);
+      formData.append("files", image);
     }
     formData.append("question", question);
     await evaluateAnswer(formData);
