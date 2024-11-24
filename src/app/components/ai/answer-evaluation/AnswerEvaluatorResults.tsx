@@ -77,13 +77,15 @@ export const EvaluationResults = ({
         </div>
       )}
 
-      <Button
-        variant="link"
-        className="mb-8 w-full p-6 text-[1rem] md:w-[14rem]"
-        onClick={onBack}
-      >
-        Back
-      </Button>
+      <div className="flex justify-center">
+        <Button
+          variant="link"
+          className="mb-8 w-full p-6 text-[1rem] md:w-[14rem]"
+          onClick={onBack}
+        >
+          Back
+        </Button>
+      </div>
     </div>
   );
 };

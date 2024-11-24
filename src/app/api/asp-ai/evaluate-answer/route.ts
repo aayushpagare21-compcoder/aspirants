@@ -40,7 +40,6 @@ export async function POST(req: Request) {
       }),
     );
 
-
     if (questionId && user?.id) {
       await createAnswer({
         cloudinaryPublicIds: imageUrls,
