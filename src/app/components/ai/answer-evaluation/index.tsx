@@ -1,5 +1,4 @@
 "use client";
-import { evaluateAnswer } from "@/app/lib/fetchUtils";
 import { EvaluationResult } from "@/app/lib/types/ai.types";
 import { useState } from "react";
 import DynamicLoader from "../../shared/Loaders/DynamicLoader";
@@ -7,7 +6,21 @@ import { AnswerEvaluatorForm } from "./AnswerEvaluatorForm";
 import { EvaluationResults } from "./AnswerEvaluatorResults";
 import { redirect } from "next/navigation";
 
-type Screens = "FORM" | "RESULT";
+type Screens = "FORM" | "RESULT"; 
+
+export const evaluateAnswer = async (
+  formData: FormData,
+): Promise<EvaluationResult> => {
+  const resp = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/asp-ai/evaluate-answer`, {
+    method: "POST",
+    body: formData,
+  });
+
+  const evaluatedAnswer = await resp.json();
+
+  return evaluatedAnswer;
+};
+
 export const EvaluateAnswer = ({
   isTypedQuestion,
   question: initialQuestion,

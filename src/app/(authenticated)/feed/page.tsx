@@ -1,7 +1,20 @@
-import { fetchAllTopics } from "@/app/lib/fetchUtils";
 import { QuestionsContainer } from "@/app/components/dashboard/questions/QuestionsContainer";
+import { NEXT_REVALIDATE_TOPICS_AFTER } from "@/app/lib/constants";
 import { auth } from "@/auth";
+import { Topics } from "@prisma/client";
 import { redirect } from "next/navigation";
+
+export const fetchAllTopics = async (): Promise<Topics[]> => {
+  const resp = await fetch(`/api/topics`, {
+    next: {
+      revalidate: NEXT_REVALIDATE_TOPICS_AFTER,
+    },
+  });
+
+  const topics = await resp.json();
+
+  return topics;
+};
 
 export default async function WelcomePage() {
   const session = await auth();
