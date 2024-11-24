@@ -11,7 +11,7 @@ type Screens = "FORM" | "RESULT";
 const evaluateAnswer = async (
   formData: FormData,
 ): Promise<EvaluationResult> => {
-  const resp = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/asp-ai/evaluate-answer`, {
+  const resp = await fetch(`/api/asp-ai/evaluate-answer`, {
     method: "POST",
     body: formData,
   });
