@@ -51,10 +51,12 @@ export async function POST(req: Request) {
     }
     const evaluation = await evaluateAnswer(question ?? "", imageUrls); 
 
+   if(questionId && user?.id) {
     await updateAnswer({ 
       answerId,
       evaluationJSON: JSON.stringify(evaluation), 
     })
+   }
 
     return NextResponse.json({
       modelAnswer: evaluation.modelAnswer,
