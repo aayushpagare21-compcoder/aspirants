@@ -1,9 +1,11 @@
 import { NEXT_REVALIDATE_TOPICS_AFTER } from "./constants";
 import { EvaluationResult } from "./types/ai.types";
-import { Topics } from "./types/feed.types";
+import { Topics } from "./types/feed.types"; 
+
+const baseUrl  = process.env.NEXT_PUBLIC_BASE_URL
 
 export const fetchAllTopics = async (): Promise<Topics[]> => {
-  const resp = await fetch(`/api/topics`, {
+  const resp = await fetch(`${baseUrl}/api/topics`, {
     next: {
       revalidate: NEXT_REVALIDATE_TOPICS_AFTER,
     },
@@ -17,7 +19,7 @@ export const fetchAllTopics = async (): Promise<Topics[]> => {
 export const evaluateAnswer = async (
   formData: FormData,
 ): Promise<EvaluationResult> => {
-  const resp = await fetch(`/api/asp-ai/evaluate-answer`, {
+  const resp = await fetch(`${baseUrl}/api/asp-ai/evaluate-answer`, {
     method: "POST",
     body: formData,
   });
