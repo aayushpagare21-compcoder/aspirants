@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 
 type Screens = "FORM" | "RESULT"; 
 
-export const evaluateAnswer = async (
+const evaluateAnswer = async (
   formData: FormData,
 ): Promise<EvaluationResult> => {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/asp-ai/evaluate-answer`, {

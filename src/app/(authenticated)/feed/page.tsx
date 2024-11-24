@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 import { Topics } from "@prisma/client";
 import { redirect } from "next/navigation";
 
-export const fetchAllTopics = async (): Promise<Topics[]> => {
+const fetchAllTopics = async (): Promise<Topics[]> => {
   const resp = await fetch(`/api/topics`, {
     next: {
       revalidate: NEXT_REVALIDATE_TOPICS_AFTER,
