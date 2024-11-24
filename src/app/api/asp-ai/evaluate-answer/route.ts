@@ -3,18 +3,9 @@ import { cloudinaryUpload } from "@/app/server/services/integrations/cloudinary.
 import { NextResponse } from "next/server";
 import cuid from "cuid";
 import { createAnswer } from "@/app/server/services/answers.service";
-import { auth } from "@/auth";
-import { getUserByEmail } from "@/app/server/services/user.service";
+
 export async function POST(req: Request) {
   try {
-    const session = await auth();
-    const userEmail = session?.user?.email;
-
-    const user = await getUserByEmail(userEmail ?? "");
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
-
     const form = await req.formData();
     const files = form.getAll("files");
     const questionId = form.get("questionId")?.toString();
@@ -44,7 +35,6 @@ export async function POST(req: Request) {
         cloudinaryPublicIds: imageUrls,
         questionId: questionId?.toString() ?? "",
         id: answerId,
-        userId: user.id,
       });
     }
     const evaluation = await evaluateAnswer(question ?? "", imageUrls);
