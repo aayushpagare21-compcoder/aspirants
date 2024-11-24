@@ -1,3 +1,4 @@
+"use client";
 import { evaluateAnswer } from "@/app/lib/fetchUtils";
 import { EvaluationResult } from "@/app/lib/types/ai.types";
 import { useState } from "react";
@@ -33,8 +34,9 @@ export const EvaluateAnswer = ({
     setLoading(true);
     const data = await evaluateAnswer(formData);
     setLoading(false);
-    setUploadedImages([])
+    setUploadedImages([]);
     setResults(data);
+    setAnswerEvaluationScreen("RESULT");
   };
 
   return (
@@ -72,7 +74,7 @@ export const EvaluateAnswer = ({
                   if (isTypedQuestion) {
                     redirect("/feed");
                   } else {
-                    setAnswerEvaluationScreen("RESULT");
+                    setAnswerEvaluationScreen("FORM");
                   }
                 }}
               />
@@ -82,19 +84,4 @@ export const EvaluateAnswer = ({
       </div>
     </div>
   );
-  //       <EvaluationResults results={results} setResults={setResults} />
-  //     </Container>
-  //   ) : (
-  //     <Container question={question || ""} loading={loading}>
-  //       <>
-  //         <AnswerForm
-  //           handleSubmit={handleSubmit}
-  //           setUploadedImages={setUploadedImages}
-  //           disableSubmitButton={uploadedImages.length === 0}
-  //           question={question}
-  //           setQuestion={setQuestion}
-  //         />
-  //       </>
-  //     </Container>
-  //   );
 };

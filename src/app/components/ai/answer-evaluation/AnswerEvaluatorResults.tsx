@@ -13,12 +13,14 @@ export const EvaluationResults = ({
   return (
     <div className="flex flex-col rounded-md">
       <h2 className="text-xl font-bold text-primary-foreground">
-        Evaluation Results
+        {results ? "Evaluation Results" : "Error evaluating the results."}
       </h2>
-      <div className="mb-4">
-        <h3 className="text-xl font-semibold text-tertiary">Score</h3>
-        <p className="text-lg text-primary-foreground">{score}</p>
-      </div>
+      {score && (
+        <div className="mb-4">
+          <h3 className="text-xl font-semibold text-tertiary">Score</h3>
+          <p className="text-lg text-primary-foreground">{score}</p>
+        </div>
+      )}
 
       {mistakesAndCorrections && mistakesAndCorrections.length > 0 && (
         <div>
@@ -66,12 +68,14 @@ export const EvaluationResults = ({
         </div>
       )}
 
-      <div>
-        <h3 className="text-xl font-semibold text-tertiary">Model Answer</h3>
-        <p className="whitespace-pre-line text-primary-foreground">
-          {modelAnswer}
-        </p>
-      </div>
+      {modelAnswer && (
+        <div>
+          <h3 className="text-xl font-semibold text-tertiary">Model Answer</h3>
+          <p className="whitespace-pre-line text-primary-foreground">
+            {modelAnswer}
+          </p>
+        </div>
+      )}
 
       <Button
         variant="link"

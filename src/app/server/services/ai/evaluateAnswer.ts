@@ -11,58 +11,58 @@ const model = new ChatGoogleGenerativeAI({
   topP: 1,
 });
 
+const parser = StructuredOutputParser.fromZodSchema(
+  z.object({
+    mistakesAndCorrections: z
+      .array(
+        z.object({
+          mistake: z.string(),
+          correction: z.string(),
+        }),
+      )
+      .describe(
+        "An array of objects, each describing a mistake in the answer and its corresponding correction.",
+      )
+      .nullable()
+      .optional(),
+    goodParts: z
+      .array(
+        z.object({
+          goodPart: z.string(),
+          appreciation: z.string().optional().nullable(),
+        }),
+      )
+      .describe(
+        "An array of objects, each highlighting a good aspect of the answer and optionally providing appreciation for diagrams or flowcharts.",
+      )
+      .nullable()
+      .optional(),
+    score: z
+      .number()
+      .max(15)
+      .min(0)
+      .describe(
+        "The total score out of 15, in the format 'X / 15'. This is required.",
+      ),
+    modelAnswer: z
+      .string()
+      .describe(
+        "A corrected version of the answer that satisfies the evaluation criteria.",
+      ),
+  }),
+);
+
 export async function evaluateAnswer(question: string, imageUrls: string[]) {
   try {
-    const parser = StructuredOutputParser.fromZodSchema(
-      z.object({
-        mistakesAndCorrections: z
-          .array(
-            z.object({
-              mistake: z.string(),
-              correction: z.string(),
-            }),
-          )
-          .describe(
-            "An array of objects, each describing a mistake in the answer and its corresponding correction.",
-          )
-          .nullable()
-          .optional(),
-        goodParts: z
-          .array(
-            z.object({
-              goodPart: z.string(),
-              appreciation: z.string().optional().nullable(),
-            }),
-          )
-          .describe(
-            "An array of objects, each highlighting a good aspect of the answer and optionally providing appreciation for diagrams or flowcharts.",
-          )
-          .nullable()
-          .optional(),
-        score: z
-          .number()
-          .max(15)
-          .min(0)
-          .describe(
-            "The total score out of 15, in the format 'X / 15'. This is required.",
-          ),
-        modelAnswer: z
-          .string()
-          .describe(
-            "A corrected version of the answer that satisfies the evaluation criteria.",
-          ),
-      }),
-    );
-
     const evaluationRubric = `
     Role and Task: You are an experienced UPSC Mains evaluator. 
     Your task is to assess a candidate's written answer to the provided question.
     Use the given evaluation rubric to assign scores for each criterion, based on the quality of the response.
 
     Instructions for Evaluation:
-    Carefully read the question and extract the answer's text from the provided images.
-    If the answer is shorter than 10 words or completely unrelated to the question, mark it as "Not Evaluated" with a reason (e.g., "Answer too short" or "Unrelated to the question"). Do not proceed with further evaluation.
-    For valid answers, evaluate the response against each of the five criteria in the rubric. 
+    STEP 1:  Carefully read the question and extract the answer's text from the provided images.
+    STEP 2:  If the answer is shorter than 10 words or completely unrelated to the question give zero marks
+    STEP 3:  For valid answers, evaluate the response against each of the five criteria in the rubric. 
     
     Evaluation Rubric:
 
@@ -85,7 +85,7 @@ export async function evaluateAnswer(question: string, imageUrls: string[]) {
     Criteria 5: Use of Examples:
     Excellent (2/2): Relevant, diverse, and well-integrated examples that effectively support the analysis.
     Good (1/2): Examples provided but limited in relevance, diversity, or integration with the analysis.
-    Poor (0/2): No examples or irrelevant examples that do not support the analysis.
+    Poor (0/2): No examples or irrelevant examples that do not support the analysis.  
   Output Format: Please follow these formatting instructions for the output:
   ${parser.getFormatInstructions()}
   Question to Evaluate: ${question}`;
@@ -115,5 +115,3 @@ export async function evaluateAnswer(question: string, imageUrls: string[]) {
     throw error;
   }
 }
-
-evaluateAnswer("", []);

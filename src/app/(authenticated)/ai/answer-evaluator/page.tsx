@@ -19,7 +19,7 @@ export default async function AIAnswerEvaluator({
       <EvaluateAnswer
         question={searchParams.question}
         questionId={searchParams.questionId}
-        isTypedQuestion={!!searchParams.question}
+        isTypedQuestion={!searchParams.question}
       />
     </>
   );
