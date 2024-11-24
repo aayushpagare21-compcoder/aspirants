@@ -8,5 +8,5 @@ export const AspirantsLogo = ({
 }) => {
   const defaultClasses =
     "font-[family-name:var(--font-gtsuper-medium)] text-[1.6rem] md:text-[1.8rem] font-bold";
-  return <div className={cn(defaultClasses, overrideClasses)}>Aspirants</div>;
+  return <div className={cn(defaultClasses, overrideClasses)}>AspirantAI</div>;
 };

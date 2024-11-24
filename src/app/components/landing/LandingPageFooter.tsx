@@ -12,11 +12,8 @@ export const LandingPageFooter = () => {
           <Link href="/guide">
             <li> Guide </li>
           </Link>
-          <Link href="/login">
-            <li> Write </li>
-          </Link>
-          <Link href="/login">
-            <li> Sign In </li>
+          <Link href="/ai/answer-evaluator">
+            <li> AI answer evaluation </li>
           </Link>
         </ul>
       </nav>

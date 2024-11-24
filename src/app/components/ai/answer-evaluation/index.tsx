@@ -6,7 +6,7 @@ import { AnswerEvaluatorForm } from "./AnswerEvaluatorForm";
 import { EvaluationResults } from "./AnswerEvaluatorResults";
 import { redirect } from "next/navigation";
 
-type Screens = "FORM" | "RESULT"; 
+type Screens = "FORM" | "RESULT";
 
 const evaluateAnswer = async (
   formData: FormData,

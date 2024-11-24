@@ -16,11 +16,8 @@ export const LandingPageNavBar = () => {
             <Link href="/guide">
               <li> Guide </li>
             </Link>
-            <Link href="/login">
-              <li> Write</li>
-            </Link>
-            <Link href="/login">
-              <li> Sign in</li>
+            <Link href="/ai/answer-evaluator">
+              <li> AI answer evaluation</li>
             </Link>
           </ul>
           <div className="flex items-center">

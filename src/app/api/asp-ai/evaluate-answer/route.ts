@@ -37,7 +37,7 @@ export async function POST(req: Request) {
         );
         return secure_url;
       }),
-    ); 
+    );
 
     if (questionId) {
       await createAnswer({
@@ -47,8 +47,8 @@ export async function POST(req: Request) {
         userId: user.id,
       });
     }
-    const evaluation = await evaluateAnswer(question ?? "", imageUrls); 
-   
+    const evaluation = await evaluateAnswer(question ?? "", imageUrls);
+
     return NextResponse.json({
       modelAnswer: evaluation.modelAnswer,
       score: evaluation.score,
