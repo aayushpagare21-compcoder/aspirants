@@ -1,20 +1,25 @@
-import { createAnswer } from "@/app/server/services/answers.service";
-import { cloudinaryUpload } from "@/app/server/services/cloudinary.service";
-import { mergeImagesVertically } from "@/app/server/services/images.service";
-import { getUserByEmail } from "@/app/server/services/user.service";
-import { auth } from "@/auth";
+import { evaluateAnswer } from "@/app/server/services/ai/evaluateAnswer";
+import { cloudinaryUpload } from "@/app/server/services/integrations/cloudinary.service";
 import { NextResponse } from "next/server";
+import cuid from "cuid";
+import { createAnswer } from "@/app/server/services/answers.service";
+import { auth } from "@/auth";
+import { getUserByEmail } from "@/app/server/services/user.service";
 export async function POST(req: Request) {
   try {
     const session = await auth();
-    const user = await getUserByEmail(session?.user?.email ?? "");
+    const userEmail = session?.user?.email;
+
+    const user = await getUserByEmail(userEmail ?? "");
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     const form = await req.formData();
     const files = form.getAll("files");
-    const questionId = form.get("questionId");
+    const questionId = form.get("questionId")?.toString();
+    const question = form.get("question")?.toString();
+    const answerId = cuid();
     const imagesToBeMerged = [];
     for (const file of files) {
       if (file instanceof File) {
@@ -22,24 +27,37 @@ export async function POST(req: Request) {
         imagesToBeMerged.push(buffer);
       }
     }
-    const finalImageBuffer = await mergeImagesVertically(imagesToBeMerged);
-
-    const { public_id, secure_url } = await cloudinaryUpload(
-      finalImageBuffer,
-      `/${questionId}/${user.id}`,
+    const imageUrls = await Promise.all(
+      imagesToBeMerged.map(async (image) => {
+        const { secure_url } = await cloudinaryUpload(
+          image,
+          questionId
+            ? `${process.env.NODE_ENV}/${questionId}/${answerId}`
+            : `${process.env.NODE_ENV}`,
+        );
+        return secure_url;
+      }),
     );
+    if (questionId) {
+      await createAnswer({
+        cloudinaryPublicIds: imageUrls,
+        questionId: questionId?.toString() ?? "",
+        id: answerId,
+        userId: user.id,
+      });
+    }
+    const evaluation = await evaluateAnswer(question ?? "", imageUrls);
 
-    await createAnswer({
-      cloudinaryPublicId: public_id,
-      questionId: questionId?.toString() ?? "",
-      userId: user.id,
+    return NextResponse.json({
+      modelAnswer: evaluation.modelAnswer,
+      score: evaluation.score,
+      mistakesAndCorrections: evaluation.mistakesAndCorrections,
+      goodParts: evaluation.goodParts,
     });
-
-    return NextResponse.json({ secure_url }, { status: 200 });
   } catch (error) {
-    console.error("Error handling file upload:", error);
+    console.error("Error evaluating answer:", error);
     return NextResponse.json(
-      { error: "Failed to process file upload" },
+      { error: "Error evaluating answer" },
       { status: 500 },
     );
   }

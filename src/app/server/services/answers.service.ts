@@ -1,17 +1,20 @@
 import { prisma } from "../db/prisma";
 
 export async function createAnswer({
-  cloudinaryPublicId,
+  id,
+  cloudinaryPublicIds,
   questionId,
   userId,
 }: {
-  cloudinaryPublicId: string;
+  id?: string;
+  cloudinaryPublicIds: string[];
   questionId: string;
   userId: string;
 }) {
   const answer = await prisma.answer.create({
     data: {
-      cloudinaryPublicId,
+      id,
+      cloudinaryPublicIds,
       questionId,
       userId,
     },

@@ -120,9 +120,6 @@ export async function getAllPublishedQuestionsWithEverything({
       id: answer.id,
       createdAt: answer.createdAt,
       updatedAt: answer.updatedAt,
-      markdownText: answer.markdownText,
-      published: answer.published,
-      text: answer.text,
       claps: answer.claps.map((clap) => ({
         id: clap.id,
         userId: clap.userId,

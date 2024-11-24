@@ -1,4 +1,4 @@
-import { AnswerEvaluatorForm } from "@/app/components/ai/AnswerEvaluatorForm";
+import { EvaluateAnswer } from "@/app/components/ai/answer-evaluation";
 import { Navbar } from "@/app/components/shared/Header/Navbar";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
@@ -16,9 +16,10 @@ export default async function AIAnswerEvaluator({
   return (
     <>
       <Navbar userImage={session.user.image ?? undefined} />
-      <AnswerEvaluatorForm
-        question={searchParams.question ?? ""}
-        questionId={searchParams.questionId ?? ""}
+      <EvaluateAnswer
+        question={searchParams.question}
+        questionId={searchParams.questionId}
+        isTypedQuestion={!!searchParams.question}
       />
     </>
   );
