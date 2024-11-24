@@ -2,7 +2,7 @@ import { evaluateAnswer } from "@/app/server/services/ai/evaluateAnswer";
 import { cloudinaryUpload } from "@/app/server/services/integrations/cloudinary.service";
 import { NextResponse } from "next/server";
 import cuid from "cuid";
-import { createAnswer } from "@/app/server/services/answers.service";
+import { createAnswer, updateAnswer } from "@/app/server/services/answers.service";
 import { auth } from "@/auth";
 import { getUserByEmail } from "@/app/server/services/user.service";
 export async function POST(req: Request) {
@@ -40,6 +40,7 @@ export async function POST(req: Request) {
       }),
     );
 
+    // TODO: In the prisma transaction
     if (questionId && user?.id) {
       await createAnswer({
         cloudinaryPublicIds: imageUrls,
@@ -48,7 +49,12 @@ export async function POST(req: Request) {
         userId: user.id,
       });
     }
-    const evaluation = await evaluateAnswer(question ?? "", imageUrls);
+    const evaluation = await evaluateAnswer(question ?? "", imageUrls); 
+
+    await updateAnswer({ 
+      answerId,
+      evaluationJSON: JSON.stringify(evaluation), 
+    })
 
     return NextResponse.json({
       modelAnswer: evaluation.modelAnswer,

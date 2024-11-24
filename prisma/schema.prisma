@@ -156,9 +156,19 @@ model Answer {
   user     User     @relation(fields: [userId], references: [id])
   // Users who clapped on answer
   claps    Claps[]
+  // Evaluations for the answer
+  evaluations EvaluationResult[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("answers")
+} 
+
+model EvaluationResult { 
+  id        String     @id @default(cuid())
+  evaluationJSON Json?  @map("evaluation_json") 
+  answerId String? @map("answer_id")
+  answer Answer? @relation(fields: [answerId], references: [id]) 
 }
+
