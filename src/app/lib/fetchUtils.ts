@@ -5,7 +5,6 @@ import { Topics } from "./types/feed.types";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 export const fetchAllTopics = async (): Promise<Topics[]> => {
-  console.log("=================", process.env.NEXT_PUBLIC_API_URI)
   const resp = await fetch(`${baseUrl}/topics`, {
     next: {
       revalidate: NEXT_REVALIDATE_TOPICS_AFTER,
