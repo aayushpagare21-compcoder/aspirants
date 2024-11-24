@@ -92,9 +92,6 @@ export async function getAllPublishedQuestionsWithEverything({
       answers: {
         take: answerLimit ?? DEFAULT_ANSWER_LIMIT,
         skip: answerOffset ?? DEFAULT_ANSWER_OFFSET,
-        where: {
-          published: true,
-        },
         include: {
           user: true,
           claps: true,
@@ -123,9 +120,6 @@ export async function getAllPublishedQuestionsWithEverything({
       id: answer.id,
       createdAt: answer.createdAt,
       updatedAt: answer.updatedAt,
-      markdownText: answer.markdownText,
-      published: answer.published,
-      text: answer.text,
       claps: answer.claps.map((clap) => ({
         id: clap.id,
         userId: clap.userId,
