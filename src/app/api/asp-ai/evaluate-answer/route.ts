@@ -3,11 +3,20 @@ import { cloudinaryUpload } from "@/app/server/services/integrations/cloudinary.
 import { NextResponse } from "next/server";
 import cuid from "cuid";
 import { createAnswer } from "@/app/server/services/answers.service";
-
+import { auth } from "@/auth";
+import { getUserByEmail } from "@/app/server/services/user.service";
 export async function POST(req: Request) {
   try {
+    // Check if the user is authenticated or not
+    const session = await auth();
+    const userEmail = session?.user?.email;
+
+    const user = await getUserByEmail(userEmail ?? "");
+
     const form = await req.formData();
     const files = form.getAll("files");
+
+    // if these is our question
     const questionId = form.get("questionId")?.toString();
     const question = form.get("question")?.toString();
     const answerId = cuid();
@@ -22,6 +31,7 @@ export async function POST(req: Request) {
       imagesToBeMerged.map(async (image) => {
         const { secure_url } = await cloudinaryUpload(
           image,
+          // for our question, we are going to crate a folde in cloudinary
           questionId
             ? `${process.env.NODE_ENV}/${questionId}/${answerId}`
             : `${process.env.NODE_ENV}`,
@@ -30,11 +40,13 @@ export async function POST(req: Request) {
       }),
     );
 
-    if (questionId) {
+
+    if (questionId && user?.id) {
       await createAnswer({
         cloudinaryPublicIds: imageUrls,
         questionId: questionId?.toString() ?? "",
         id: answerId,
+        userId: user.id,
       });
     }
     const evaluation = await evaluateAnswer(question ?? "", imageUrls);
