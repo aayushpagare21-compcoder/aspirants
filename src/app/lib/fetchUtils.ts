@@ -1,3 +1,4 @@
+"use client"
 import { NEXT_REVALIDATE_TOPICS_AFTER } from "./constants";
 import { EvaluationResult } from "./types/ai.types";
 import { Topics } from "./types/feed.types";
