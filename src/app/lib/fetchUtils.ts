@@ -1,9 +1,8 @@
-"use client"
 import { NEXT_REVALIDATE_TOPICS_AFTER } from "./constants";
 import { EvaluationResult } from "./types/ai.types";
 import { Topics } from "./types/feed.types";
 
-const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+const baseUrl = process.env.PUBLIC_API_URL;
 export const fetchAllTopics = async (): Promise<Topics[]> => {
   const resp = await fetch(`${baseUrl}/topics`, {
     next: {
