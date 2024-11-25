@@ -23,7 +23,9 @@ export default function InterceptedLogin({
                   <Cross2Icon className="h-6 w-6" />
                 </button>
               </div>
-              <LoginComponent redirectTo={searchParams?.redirectTo ?? '/feed'} />
+              <LoginComponent
+                redirectTo={searchParams?.redirectTo ?? "/feed"}
+              />
             </div>
           </div>
         </DialogContent>

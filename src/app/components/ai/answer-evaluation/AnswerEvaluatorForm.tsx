@@ -69,7 +69,7 @@ export const AnswerEvaluatorForm = ({
             Evaluate Answer
           </Button>
 
-          {!isTypedQuestion && (
+          <div>
             <Link href="/feed">
               <Button
                 variant="link"
@@ -78,7 +78,7 @@ export const AnswerEvaluatorForm = ({
                 Back
               </Button>
             </Link>
-          )}
+          </div>
         </div>
       </div>
     </>

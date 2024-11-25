@@ -84,7 +84,7 @@ export const EvaluateAnswer = ({
               <EvaluationResults
                 results={results}
                 onBack={() => {
-                  if (isTypedQuestion) {
+                  if (!isTypedQuestion) {
                     redirect("/feed");
                   } else {
                     setAnswerEvaluationScreen("FORM");

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import SlidingNavbar from "../../shared/Caraousels/SlidingNavBar";
-import { Divider } from "../../shared/Divider/Divider";
+
 import {
   Papers,
   slidingNavBarStaticItems,
@@ -49,7 +49,6 @@ export const QuestionsContainer = ({
           if (isMobileOrTablet) setShowSearchModal(true);
         }}
       />
-      <Divider />
       <SlidingNavbar
         navItems={slidingNavBarStaticItems.concat(
           topics.map((topic) => ({
