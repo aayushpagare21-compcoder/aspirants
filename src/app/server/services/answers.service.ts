@@ -5,34 +5,27 @@ export async function createAnswer({
   cloudinaryPublicIds,
   questionId,
   userId,
+  evaluationJSON
 }: {
   id?: string;
   cloudinaryPublicIds: string[];
-  questionId: string;
+  questionId?: string;
   userId: string;
+  evaluationJSON: string
 }) {
   const answer = await prisma.answer.create({
     data: {
       id,
       cloudinaryPublicIds,
-      questionId,
+      ...(questionId && {questionId}),
       userId,
+      evaluations: { 
+        create: { 
+          evaluationJSON
+        }
+      }
     },
   });
   return answer;
 }
 
-export async function updateAnswer({evaluationJSON, answerId}: {evaluationJSON: string, answerId: string}) { 
-  return prisma.answer.update({ 
-    where: {
-      id: answerId,
-    },
-    data: { 
-      evaluations: { 
-        create: { 
-          evaluationJSON
-        },
-      }
-    }
-  })
-}
