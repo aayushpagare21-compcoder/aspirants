@@ -16,7 +16,7 @@ export const LandingPageNavBar = () => {
             <Link href="/guide">
               <li> Guide </li>
             </Link>
-            <Link href="/ai/answer-evaluator">
+            <Link href="/login?redirectTo=/ai/answer-evaluator">
               <li> AI answer evaluation</li>
             </Link>
           </ul>

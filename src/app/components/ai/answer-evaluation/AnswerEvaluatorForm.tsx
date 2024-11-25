@@ -28,7 +28,7 @@ export const AnswerEvaluatorForm = ({
         <div className="mb-4 w-full">
           <Textarea
             id="questionInput"
-            className="w-full text-sm text-primary-foreground shadow-sm"
+            className="focus-visible:none border-md w-full bg-inherit p-2"
             placeholder="Type your question here..."
             value={question || ""}
             onChange={(e) => setQuestion(e.target.value)}

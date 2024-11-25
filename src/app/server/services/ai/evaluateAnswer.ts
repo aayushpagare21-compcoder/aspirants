@@ -53,8 +53,7 @@ const parser = StructuredOutputParser.fromZodSchema(
 );
 
 export async function evaluateAnswer(question: string, imageUrls: string[]) {
-  try {
-    const evaluationRubric = `
+  const evaluationRubric = `
     Role and Task: You are an experienced UPSC Mains evaluator. 
     Your task is to assess a candidate's written answer to the provided question.
     Use the given evaluation rubric to assign scores for each criterion, based on the quality of the response.
@@ -90,28 +89,24 @@ export async function evaluateAnswer(question: string, imageUrls: string[]) {
   ${parser.getFormatInstructions()}
   Question to Evaluate: ${question}`;
 
-    // Create message content with the evaluation rubric and image URLs
-    const messageContent = [
-      { type: "text", text: evaluationRubric },
-      ...imageUrls.map((url, index) => ({
-        type: "image_url",
-        image_url: { url, id: `image-${index}` },
-      })),
-    ];
+  // Create message content with the evaluation rubric and image URLs
+  const messageContent = [
+    { type: "text", text: evaluationRubric },
+    ...imageUrls.map((url, index) => ({
+      type: "image_url",
+      image_url: { url, id: `image-${index}` },
+    })),
+  ];
 
-    const messages = [
-      new HumanMessage({
-        content: JSON.stringify(messageContent),
-      }),
-    ];
-    const chain = ChatPromptTemplate.fromMessages(messages)
-      .pipe(model)
-      .pipe(parser);
+  const messages = [
+    new HumanMessage({
+      content: JSON.stringify(messageContent),
+    }),
+  ];
+  const chain = ChatPromptTemplate.fromMessages(messages)
+    .pipe(model)
+    .pipe(parser);
 
-    const evaluation = await chain.invoke({});
-    return evaluation;
-  } catch (error) {
-    console.error("Error in evaluation:", error);
-    throw error;
-  }
+  const evaluation = await chain.invoke({});
+  return evaluation;
 }

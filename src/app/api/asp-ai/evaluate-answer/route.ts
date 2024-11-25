@@ -13,11 +13,8 @@ export async function POST(req: Request) {
 
     const user = await getUserByEmail(userEmail ?? "");
 
-    if(!user) { 
-      return NextResponse.json(
-        { error: "User not found" },
-        { status: 404 },
-      );
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     const form = await req.formData();
@@ -25,9 +22,9 @@ export async function POST(req: Request) {
 
     // if this is our question
     const questionId = form.get("questionId")?.toString();
-    const question = form.get("question")?.toString(); 
+    const question = form.get("question")?.toString();
 
-    if(!question) { 
+    if (!question) {
       return NextResponse.json(
         { error: "Bad Request, Enter a question to get it evaluated." },
         { status: 400 },
@@ -54,8 +51,8 @@ export async function POST(req: Request) {
         return secure_url;
       }),
     );
-  
-    const evaluation = await evaluateAnswer(question, imageUrls); 
+
+    const evaluation = await evaluateAnswer(question, imageUrls);
 
     await createAnswer({
       cloudinaryPublicIds: imageUrls,
@@ -71,8 +68,8 @@ export async function POST(req: Request) {
       mistakesAndCorrections: evaluation.mistakesAndCorrections,
       goodParts: evaluation.goodParts,
     });
-  } catch (error) {
-    console.error("Error evaluating answer:", error);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (err: unknown) {
     return NextResponse.json(
       { error: "Error evaluating answer" },
       { status: 500 },

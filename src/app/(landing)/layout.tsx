@@ -2,13 +2,19 @@ import { LandingPageNavBar } from "@/app/components/landing/LandingPageNavbar";
 import { Divider } from "@/app/components/shared/Divider/Divider";
 import { LandingPageFooter } from "@/app/components/landing/LandingPageFooter";
 import React from "react";
-export default function LandingLayout({
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+export default async function LandingLayout({
   children,
   modal,
 }: Readonly<{
   children: React.ReactNode;
   modal: React.ReactNode;
 }>) {
+  const session = await auth();
+  if (session) {
+    redirect("/feed");
+  }
   return (
     <div>
       {modal}

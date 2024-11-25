@@ -1,10 +1,15 @@
 "use client";
 import { Dialog } from "@/app/components/ui/dialog";
 import { DialogContent } from "@radix-ui/react-dialog";
+import { LoginComponent } from "@/app/components/auth/LoginComponent";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
-import { LoginComponent } from "@/app/components/auth/LoginComponent";
-export default function InterceptedLogin() {
+
+export default function InterceptedLogin({
+  searchParams,
+}: {
+  searchParams: { redirectTo?: string };
+}) {
   const router = useRouter();
   return (
     <>
@@ -18,7 +23,7 @@ export default function InterceptedLogin() {
                   <Cross2Icon className="h-6 w-6" />
                 </button>
               </div>
-              <LoginComponent />
+              <LoginComponent redirectTo={searchParams?.redirectTo} />
             </div>
           </div>
         </DialogContent>

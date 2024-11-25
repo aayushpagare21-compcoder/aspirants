@@ -1,13 +1,8 @@
 import { Button } from "@/app/components/ui/button";
 import React from "react";
 import Link from "next/link";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
+
 export default async function LandingPage() {
-  const session = await auth();
-  if (session) {
-    redirect("/feed");
-  }
   return (
     <section className="flex h-[90vh] w-[90vw] justify-between xl:w-[80vw] 2xl:w-[60vw]">
       <div className="mt-[6rem] flex flex-col justify-center gap-8 md:gap-12">

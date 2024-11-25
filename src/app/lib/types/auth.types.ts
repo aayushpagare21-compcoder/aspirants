@@ -4,7 +4,7 @@ export interface BaseSignInInterface {
 }
 export interface SignInWithGoogle extends BaseSignInInterface {
   provider: "google";
-  redirectTo: "/feed";
+  redirectTo: string;
 }
 
 export type SignInParams = SignInWithGoogle;

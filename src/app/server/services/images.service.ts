@@ -36,8 +36,8 @@ export async function mergeImagesVertically(
       .toBuffer();
 
     return finalImageBuffer;
-  } catch (error) {
-    console.error("Error merging images:", error);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error: unknown) {
     throw new Error("Failed to merge images");
   }
 }

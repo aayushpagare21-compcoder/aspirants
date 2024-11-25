@@ -5,27 +5,26 @@ export async function createAnswer({
   cloudinaryPublicIds,
   questionId,
   userId,
-  evaluationJSON
+  evaluationJSON,
 }: {
   id?: string;
   cloudinaryPublicIds: string[];
   questionId?: string;
   userId: string;
-  evaluationJSON: string
+  evaluationJSON: string;
 }) {
   const answer = await prisma.answer.create({
     data: {
       id,
       cloudinaryPublicIds,
-      ...(questionId && {questionId}),
+      ...(questionId && { questionId }),
       userId,
-      evaluations: { 
-        create: { 
-          evaluationJSON
-        }
-      }
+      evaluations: {
+        create: {
+          evaluationJSON,
+        },
+      },
     },
   });
   return answer;
 }
-

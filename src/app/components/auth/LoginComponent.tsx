@@ -1,3 +1,4 @@
+"use client";
 import { AuthButtons } from "@/app/components/auth/AuthButtons";
 const Header = () => {
   return (
@@ -15,11 +16,11 @@ const Footer = () => {
   );
 };
 
-export const LoginComponent = () => {
+export const LoginComponent = ({ redirectTo }: { redirectTo?: string }) => {
   return (
     <>
       <Header />
-      <AuthButtons />
+      <AuthButtons redirectTo={redirectTo} />
       <Footer />
     </>
   );
