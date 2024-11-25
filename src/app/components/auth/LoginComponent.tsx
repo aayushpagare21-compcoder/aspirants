@@ -16,7 +16,7 @@ const Footer = () => {
   );
 };
 
-export const LoginComponent = ({ redirectTo }: { redirectTo?: string }) => {
+export const LoginComponent = ({ redirectTo }: { redirectTo: string }) => {
   return (
     <>
       <Header />

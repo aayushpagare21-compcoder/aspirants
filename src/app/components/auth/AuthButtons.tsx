@@ -1,7 +1,7 @@
 import { Button } from "@/app/components/ui/button";
 import { aspirantsSignIn } from "@/app/server/actions/auth.actions";
 import { GoogleIcon } from "@/app/components/shared/Logo/GoogleIcon";
-export const AuthButtons = ({ redirectTo }: { redirectTo?: string }) => {
+export const AuthButtons = ({ redirectTo }: { redirectTo: string }) => {
   return (
     <div className="flex flex-col items-center gap-3">
       <Button
@@ -10,7 +10,7 @@ export const AuthButtons = ({ redirectTo }: { redirectTo?: string }) => {
         onClick={() =>
           aspirantsSignIn({
             provider: "google",
-            redirectTo: redirectTo ?? "/feed",
+            redirectTo: redirectTo,
           })
         }
       >
