@@ -1,75 +1,79 @@
-import { evaluateAnswer } from "@/app/server/services/ai/evaluateAnswer";
-import { cloudinaryUpload } from "@/app/server/services/integrations/cloudinary.service";
 import { NextResponse } from "next/server";
 import cuid from "cuid";
 import { createAnswer } from "@/app/server/services/answers.service";
 import { auth } from "@/auth";
 import { getUserByEmail } from "@/app/server/services/user.service";
+import { S3Service } from "@/app/server/services/integrations/s3.service";
+import { ContentType } from "@/app/lib/types/utils.types";
+import { TextractService } from "@/app/server/services/integrations/texextract.service";
+import { evaluateAnswer } from "@/app/server/services/ai/evaluateAnswer";
+
+const s3 = new S3Service(process.env.AWS_S3_BUCKET_NAME!);
+const textExtract = new TextractService(process.env.AWS_S3_BUCKET_NAME!);
+
+async function validate(
+  answerPDF: FormDataEntryValue | null,
+  question?: string,
+) {
+  const session = await auth();
+  const userEmail = session?.user?.email;
+  const user = await getUserByEmail(userEmail ?? "");
+
+  if (!user) {
+    throw new Error(`User with email ${userEmail} not found`);
+  }
+  if (!answerPDF) {
+    throw new Error("No answer PDF found.");
+  }
+
+  if (!question) {
+    throw new Error("No question found");
+  }
+  return user.id;
+}
+
 export async function POST(req: Request) {
   try {
-    // Check if the user is authenticated or not
-    const session = await auth();
-    const userEmail = session?.user?.email;
-
-    const user = await getUserByEmail(userEmail ?? "");
-
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
-
     const form = await req.formData();
-    const files = form.getAll("files");
-
+    const answerPDF = form.get("answer");
     // if this is our question
     const questionId = form.get("questionId")?.toString();
     const question = form.get("question")?.toString();
 
-    if (!question) {
-      return NextResponse.json(
-        { error: "Bad Request, Enter a question to get it evaluated." },
-        { status: 400 },
-      );
-    }
+    const userId = await validate(answerPDF, question);
 
     const answerId = cuid();
-    const imagesToUpload = [];
-    for (const file of files) {
-      if (file instanceof File) {
-        const buffer = Buffer.from(await file.arrayBuffer());
-        imagesToUpload.push(buffer);
-      }
-    }
-    const imageUrls = await Promise.all(
-      imagesToUpload.map(async (image) => {
-        const { secure_url } = await cloudinaryUpload(
-          image,
-          // for our question, we are going to create a folder in cloudinary
-          questionId
-            ? `${process.env.NODE_ENV}/${questionId}/${answerId}`
-            : `${process.env.NODE_ENV}`,
-        );
-        return secure_url;
-      }),
-    );
+    const s3Key = questionId
+      ? `${process.env.NODE_ENV}/${questionId}/${answerId}.pdf`
+      : `${process.env.NODE_ENV}/random-user-uploads/${answerId}.pdf`;
 
-    const evaluation = await evaluateAnswer(question, imageUrls);
+    const answerFile = answerPDF as File;
+    await s3.uploadFile(
+      s3Key,
+      Buffer.from(await answerFile.arrayBuffer()),
+      ContentType.PDF,
+    );
+    const extractedAnswer = await textExtract.extractTextFromS3PDF(s3Key);
+
+    const evaluation = await evaluateAnswer(question!, extractedAnswer);
 
     await createAnswer({
-      cloudinaryPublicIds: imageUrls,
+      s3Key,
       id: answerId,
-      userId: user.id,
+      userId: userId!,
       questionId: questionId,
       evaluationJSON: JSON.stringify(evaluation),
     });
 
     return NextResponse.json({
-      modelAnswer: evaluation.modelAnswer,
+      modelAnswer: evaluation.modelAnswer.replace,
       score: evaluation.score,
       mistakesAndCorrections: evaluation.mistakesAndCorrections,
       goodParts: evaluation.goodParts,
     });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err: unknown) {
+    console.error("Error evaluating answer", err);
     return NextResponse.json(
       { error: "Error evaluating answer" },
       { status: 500 },

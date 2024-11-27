@@ -33,7 +33,7 @@ const parser = StructuredOutputParser.fromZodSchema(
         }),
       )
       .describe(
-        "An array of objects, each highlighting a good aspect of the answer and optionally providing appreciation for diagrams or flowcharts.",
+        "An array of objects, each highlighting a good aspect of the answer",
       )
       .nullable()
       .optional(),
@@ -47,19 +47,19 @@ const parser = StructuredOutputParser.fromZodSchema(
     modelAnswer: z
       .string()
       .describe(
-        "A corrected version of the answer that satisfies the evaluation criteria.",
+        "A corrected version of the answer that satisfies the evaluation criteria and is within word limit.",
       ),
   }),
 );
 
-export async function evaluateAnswer(question: string, imageUrls: string[]) {
+export async function evaluateAnswer(question: string, answer: string) {
   const evaluationRubric = `
     Role and Task: You are an experienced UPSC Mains evaluator. 
-    Your task is to assess a candidate's written answer to the provided question.
+    Your task is to assess a candidate's answer to the provided question.
     Use the given evaluation rubric to assign scores for each criterion, based on the quality of the response.
 
     Instructions for Evaluation:
-    STEP 1:  Carefully read the question and extract the answer's text from the provided images.
+    STEP 1:  Carefully read the question and answer.
     STEP 2:  If the answer is shorter than 10 words or completely unrelated to the question give zero marks
     STEP 3:  For valid answers, evaluate the response against each of the five criteria in the rubric. 
     
@@ -87,17 +87,11 @@ export async function evaluateAnswer(question: string, imageUrls: string[]) {
     Poor (0/2): No examples or irrelevant examples that do not support the analysis.  
   Output Format: Please follow these formatting instructions for the output:
   ${parser.getFormatInstructions()}
-  Question to Evaluate: ${question}`;
+  Question to Evaluate: ${question}
+  Answer written by candidate ${answer}`;
 
-  // Create message content with the evaluation rubric and image URLs
-  const messageContent = [
-    { type: "text", text: evaluationRubric },
-    ...imageUrls.map((url, index) => ({
-      type: "image_url",
-      image_url: { url, id: `image-${index}` },
-    })),
-  ];
-
+  // Create message content with the evaluation rubric
+  const messageContent = [{ type: "text", text: evaluationRubric }];
   const messages = [
     new HumanMessage({
       content: JSON.stringify(messageContent),

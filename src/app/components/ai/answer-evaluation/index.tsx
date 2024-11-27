@@ -33,21 +33,25 @@ export const EvaluateAnswer = ({
   const [answerEvaluationScreen, setAnswerEvaluationScreen] =
     useState<Screens>("FORM");
   const [results, setResults] = useState<EvaluationResult | null>(null);
-  const [uploadedImages, setUploadedImages] = useState<File[]>([]);
+  const [uploadedAnswer, setUploadedAnswer] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [question, setQuestion] = useState<string | undefined>(initialQuestion);
 
   const handleSubmit = async () => {
     const formData = new FormData();
-    for (const image of Array.from(uploadedImages)) {
-      formData.append("files", image);
+    if (question) {
+      formData.append("question", question);
     }
-    formData.append("question", question ?? "");
-    formData.append("questionId", questionId ?? "");
+    if (uploadedAnswer) {
+      formData.append("answer", uploadedAnswer);
+    }
+    if (questionId) {
+      formData.append("questionId", questionId);
+    }
     setLoading(true);
     const data = await evaluateAnswer(formData);
     setLoading(false);
-    setUploadedImages([]);
+    setUploadedAnswer(null);
     setResults(data);
     setAnswerEvaluationScreen("RESULT");
   };
@@ -73,11 +77,11 @@ export const EvaluateAnswer = ({
             {answerEvaluationScreen === "FORM" && (
               <AnswerEvaluatorForm
                 question={question}
-                disabledSubmitButton={uploadedImages.length === 0}
+                disabledSubmitButton={!uploadedAnswer || !question}
                 isTypedQuestion={isTypedQuestion}
                 handleSubmit={handleSubmit}
                 setQuestion={setQuestion}
-                setUploadedImages={setUploadedImages}
+                setUploadedAnswer={setUploadedAnswer}
               />
             )}
             {answerEvaluationScreen === "RESULT" && results && (

@@ -146,7 +146,7 @@ model Question {
 
 model Answer {
   id           String  @id @default(cuid())
-  cloudinaryPublicIds    String[] @map("cloudinary_public_ids") // public ids of the images uploaded on cloudinary
+  path         String?
   userId       String  @map("user_id") // references to id in the users table
   questionId   String?  @map("question_id") // references to id in the questions table
 

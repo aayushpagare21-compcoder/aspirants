@@ -2,13 +2,13 @@ import { prisma } from "../db/prisma";
 
 export async function createAnswer({
   id,
-  cloudinaryPublicIds,
+  s3Key,
   questionId,
   userId,
   evaluationJSON,
 }: {
   id?: string;
-  cloudinaryPublicIds: string[];
+  s3Key: string;
   questionId?: string;
   userId: string;
   evaluationJSON: string;
@@ -16,7 +16,7 @@ export async function createAnswer({
   const answer = await prisma.answer.create({
     data: {
       id,
-      cloudinaryPublicIds,
+      path: s3Key,
       ...(questionId && { questionId }),
       userId,
       evaluations: {
