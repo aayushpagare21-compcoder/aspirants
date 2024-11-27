@@ -8,7 +8,9 @@ interface DynamicLoaderProps {
 const DynamicLoader = ({ messages }: DynamicLoaderProps) => {
   const [currentMessage, setCurrentMessage] = useState(messages[0]);
   const [messageIndex, setMessageIndex] = useState(0);
+  const [timer, setTimer] = useState(60); // Initialize the timer at 60 seconds
 
+  // Handles the message switching logic
   useEffect(() => {
     const interval = setInterval(() => {
       setMessageIndex((prevIndex) =>
@@ -19,15 +21,26 @@ const DynamicLoader = ({ messages }: DynamicLoaderProps) => {
     return () => clearInterval(interval);
   }, [messages.length]);
 
+  // Updates the current message whenever the message index changes
   useEffect(() => {
     setCurrentMessage(messages[messageIndex]);
   }, [messageIndex, messages]);
 
+  // Handles the countdown timer
+  useEffect(() => {
+    const countdown = setInterval(() => {
+      setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : prevTimer));
+    }, 1000);
+
+    return () => clearInterval(countdown);
+  }, []);
+
   return (
     <div className="flex h-[100%] w-[100%] flex-col items-center justify-center gap-8">
       <div className="text-center text-[1.5rem] font-semibold text-black">
-        <i> {currentMessage} </i>
+        <i>{currentMessage}</i>
       </div>
+      <div className="text-[2rem] font-bold text-red-500">{timer}</div>
       <div className="loader">
         <div className="circle"></div>
         <div className="circle"></div>

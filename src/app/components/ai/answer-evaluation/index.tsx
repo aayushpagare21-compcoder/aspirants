@@ -63,7 +63,7 @@ export const EvaluateAnswer = ({
           <span className="text-tertiary">AI</span> answer evaluator
         </div>
         <strong>{question}</strong>
-        {loading ? (
+        {!loading ? (
           <DynamicLoader
             messages={[
               "⏳ Please wait...",

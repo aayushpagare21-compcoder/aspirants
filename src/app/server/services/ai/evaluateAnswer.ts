@@ -47,7 +47,7 @@ const parser = StructuredOutputParser.fromZodSchema(
     modelAnswer: z
       .string()
       .describe(
-        "A corrected version of the answer that satisfies the evaluation criteria and is within word limit.",
+        "A corrected version of the answer that satisfies the evaluation criteria and is within word limit of 250 words.",
       ),
   }),
 );
