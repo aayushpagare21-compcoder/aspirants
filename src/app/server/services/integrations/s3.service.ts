@@ -22,6 +22,7 @@ export class S3Service {
     body: Buffer | Readable,
     contentType: string,
   ): Promise<void> {
+    console.log("===========>bucketName=" + this.bucketName)
     const upload = new Upload({
       client: this.s3Client,
       params: {
