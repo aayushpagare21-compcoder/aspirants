@@ -11,6 +11,8 @@ import { evaluateAnswer } from "@/app/server/services/ai/evaluateAnswer";
 const s3 = new S3Service(process.env.AWS_S3_BUCKET_NAME!);
 const textExtract = new TextractService(process.env.AWS_S3_BUCKET_NAME!);
 
+export const maxDuration = 60 
+
 async function validate(
   answerPDF: FormDataEntryValue | null,
   question?: string,

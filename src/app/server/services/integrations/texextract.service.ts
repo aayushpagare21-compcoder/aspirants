@@ -4,6 +4,8 @@ import {
   GetDocumentTextDetectionCommand,
 } from "@aws-sdk/client-textract";
 
+export const maxDuration = 60;
+
 export class TextractService {
   private textractClient: TextractClient;
   private bucketName: string;
