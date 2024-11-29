@@ -32,13 +32,11 @@ export const Navbar = ({
       <div className="flex items-center gap-4">
         <AspirantsLogo />
         {onChangeSearchText && (
-          <div className="hidden sm:block">
-            <SearchBar
-              onChangeSearchText={onChangeSearchText}
-              onSearchIconClick={onSearchIconClick}
-              searchText={searchText}
-            />
-          </div>
+          <SearchBar
+            onChangeSearchText={onChangeSearchText}
+            onSearchIconClick={onSearchIconClick}
+            searchText={searchText}
+          />
         )}
         <div className="hidden md:block">
           <Link
