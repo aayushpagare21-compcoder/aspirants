@@ -6,6 +6,8 @@ import { AnswerEvaluatorForm } from "./AnswerEvaluatorForm";
 import { EvaluationResults } from "./AnswerEvaluatorResults";
 import { redirect } from "next/navigation";
 import { useAsyncFn } from "react-use";
+import { ErrorPage } from "../../error/ErrorPage";
+import { ErrorCodes } from "@/app/lib/constants";
 
 type Screens = "FORM" | "RESULT";
 
@@ -19,6 +21,9 @@ const evaluateAnswer = async (
 
   const evaluatedAnswer = await resp.json();
 
+  if (evaluatedAnswer.errorCode) {
+    throw new Error(evaluatedAnswer.errorCode);
+  }
   return evaluatedAnswer;
 };
 
@@ -52,19 +57,24 @@ export const EvaluateAnswer = ({
       const results = await evaluateAnswer(formData);
       setAnswerEvaluationScreen("RESULT");
       setUploadedAnswer(null);
-      setQuestion("");
 
       return results;
     },
   );
 
   if (error) {
-    return (
-      <span className="text-bold text-tertiary">
-        {" "}
-        Something went wrong while evaluating the result.{" "}
-      </span>
-    );
+    switch ("RATE_LIMIT_EXCEEDED") {
+      case ErrorCodes.RATE_LIMIT_EXCEEDED:
+        return (
+          <ErrorPage
+            title="To many requests"
+            message="You can only evaluate three answers per day. We are working on increasing this limit."
+            onRetry={() => window.location.reload()}
+          />
+        );
+      default:
+        return <ErrorPage />;
+    }
   }
 
   return (

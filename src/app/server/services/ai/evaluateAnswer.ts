@@ -4,7 +4,7 @@ import { StructuredOutputParser } from "@langchain/core/output_parsers";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { z } from "zod";
 
-export const maxDuration = 60
+export const maxDuration = 60;
 
 const model = new ChatGoogleGenerativeAI({
   model: "gemini-1.5-flash",

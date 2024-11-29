@@ -82,8 +82,12 @@ export const Navbar = ({
                       </Button>
                     </li>
                     <li>
-                      <Link href="/ai/answer-evaluator" className="text-sm">
-                        <Button>AI answer writing</Button>
+                      <Link href="/ai/answer-evaluator">
+                        <Button
+                          className={`text-sm font-medium hover:underline`}
+                        >
+                          AI answer writing
+                        </Button>
                       </Link>
                     </li>
                   </ul>
