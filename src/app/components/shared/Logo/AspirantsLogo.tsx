@@ -11,7 +11,7 @@ export const AspirantsLogo = ({
     "font-[family-name:var(--font-gtsuper-medium)] text-[1.6rem] md:text-[1.8rem] font-bold";
   return (
     <Link href="/">
-      <div className={cn(defaultClasses, overrideClasses)}>AspirantAI</div>;
+      <div className={cn(defaultClasses, overrideClasses)}>AspirantAI</div>
     </Link>
   );
 };
