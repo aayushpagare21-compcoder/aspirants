@@ -5,6 +5,7 @@ import DynamicLoader from "../../shared/Loaders/DynamicLoader";
 import { AnswerEvaluatorForm } from "./AnswerEvaluatorForm";
 import { EvaluationResults } from "./AnswerEvaluatorResults";
 import { redirect } from "next/navigation";
+import { useAsyncFn } from "react-use";
 
 type Screens = "FORM" | "RESULT";
 
@@ -32,29 +33,39 @@ export const EvaluateAnswer = ({
 }) => {
   const [answerEvaluationScreen, setAnswerEvaluationScreen] =
     useState<Screens>("FORM");
-  const [results, setResults] = useState<EvaluationResult | null>(null);
   const [uploadedAnswer, setUploadedAnswer] = useState<File | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
   const [question, setQuestion] = useState<string | undefined>(initialQuestion);
 
-  const handleSubmit = async () => {
-    const formData = new FormData();
-    if (question) {
-      formData.append("question", question);
-    }
-    if (uploadedAnswer) {
-      formData.append("answer", uploadedAnswer);
-    }
-    if (questionId) {
-      formData.append("questionId", questionId);
-    }
-    setLoading(true);
-    const data = await evaluateAnswer(formData);
-    setLoading(false);
-    setUploadedAnswer(null);
-    setResults(data);
-    setAnswerEvaluationScreen("RESULT");
-  };
+  const [{ loading, error, value: results }, handleSubmit] = useAsyncFn(
+    async () => {
+      const formData = new FormData();
+      if (question) {
+        formData.append("question", question);
+      }
+      if (uploadedAnswer) {
+        formData.append("answer", uploadedAnswer);
+      }
+      if (questionId) {
+        formData.append("questionId", questionId);
+      }
+
+      const results = await evaluateAnswer(formData);
+      setAnswerEvaluationScreen("RESULT");
+      setUploadedAnswer(null);
+      setQuestion("");
+
+      return results;
+    },
+  );
+
+  if (error) {
+    return (
+      <span className="text-bold text-tertiary">
+        {" "}
+        Something went wrong while evaluating the result.{" "}
+      </span>
+    );
+  }
 
   return (
     <div className="flex h-[100vh] w-[100vw] justify-center">

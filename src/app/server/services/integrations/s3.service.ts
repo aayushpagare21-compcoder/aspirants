@@ -2,6 +2,7 @@ import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 import { Readable } from "stream";
 
+// TODO: Singleton pattern
 export class S3Service {
   private s3Client: S3Client;
   private bucketName: string;

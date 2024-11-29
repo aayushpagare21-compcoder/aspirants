@@ -18,7 +18,7 @@ async function validate(
   question?: string,
 ) {
   const session = await auth();
-  const userEmail = session?.user?.email;
+  const userEmail = session?.user?.email; 
   const user = await getUserByEmail(userEmail ?? "");
 
   if (!user) {
