@@ -38,7 +38,7 @@ export const Navbar = ({
             href="/feed"
             className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline ${path === "/feed" ? "text-green-700" : ""}`}
           >
-            Mains PYQ's
+            Mains PYQs
           </Link>
         </div>
         <div className="hidden md:block">
@@ -103,7 +103,7 @@ export const Navbar = ({
                         <Button
                           className={`w-full text-sm font-medium hover:underline ${path === "/feed" ? "text-green-700" : ""}`}
                         >
-                          Mains PYQ's
+                          Mains PYQs
                         </Button>
                       </Link>
                     </li>
