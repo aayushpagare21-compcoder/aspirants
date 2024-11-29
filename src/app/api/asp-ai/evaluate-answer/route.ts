@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     // Rate limiting
     //apiPath:keyPerfix:key
     const rateLimitCheck = await ratelimit.limit(
-      `/asp-ai/evaluate-answer:userId:${user.id}`,
+      `${process.env.NODE_ENV}:/asp-ai/evaluate-answer:userId:${user.id}`,
     );
 
     if (!rateLimitCheck.success) {
