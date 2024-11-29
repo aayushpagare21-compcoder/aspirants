@@ -7,6 +7,7 @@ import { Button } from "@/app/components/ui/button";
 import { RefObject, useRef, useState } from "react";
 import useOutsideClick from "@/app/hooks/useOutsideClick";
 import { aspirantsSignOut } from "@/app/server/actions/auth.actions";
+import { usePathname } from "next/navigation";
 
 export const Navbar = ({
   userImage,
@@ -22,6 +23,7 @@ export const Navbar = ({
 }) => {
   const [showProfileTab, setShowProfileTab] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>();
+  const path = usePathname();
 
   useOutsideClick(ref, () => {
     setShowProfileTab(false);
@@ -31,6 +33,22 @@ export const Navbar = ({
     <nav className="flex items-center justify-between bg-gray-50 px-4 py-2 shadow-md lg:px-8">
       <div className="flex items-center gap-4">
         <AspirantsLogo />
+        <div className="hidden md:block">
+          <Link
+            href="/feed"
+            className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline ${path === "/feed" ? "text-green-700" : ""}`}
+          >
+            Mains PYQ's
+          </Link>
+        </div>
+        <div className="hidden md:block">
+          <Link
+            href="/ai/answer-evaluator"
+            className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline ${path === "/ai/answer-evaluator" ? "text-green-700" : ""}`}
+          >
+            AI Answer Evaluator
+          </Link>
+        </div>
         {onChangeSearchText && (
           <SearchBar
             onChangeSearchText={onChangeSearchText}
@@ -38,14 +56,6 @@ export const Navbar = ({
             searchText={searchText}
           />
         )}
-        <div className="hidden md:block">
-          <Link
-            href="/ai/answer-evaluator"
-            className="text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline"
-          >
-            AI Answer Evaluator
-          </Link>
-        </div>
       </div>
       {userImage && (
         <div className="flex items-center gap-8">
@@ -74,7 +84,7 @@ export const Navbar = ({
                         onClick={async () => {
                           await aspirantsSignOut();
                         }}
-                        className="w-full"
+                        className="w-full text-sm font-medium hover:underline"
                       >
                         Logout
                       </Button>
@@ -82,9 +92,18 @@ export const Navbar = ({
                     <li>
                       <Link href="/ai/answer-evaluator">
                         <Button
-                          className={`text-sm font-medium hover:underline`}
+                          className={`text-sm font-medium hover:underline ${path === "/ai/answer-evaluator" ? "text-green-700" : ""}`}
                         >
                           AI answer writing
+                        </Button>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/feed">
+                        <Button
+                          className={`w-full text-sm font-medium hover:underline ${path === "/feed" ? "text-green-700" : ""}`}
+                        >
+                          Mains PYQ's
                         </Button>
                       </Link>
                     </li>
