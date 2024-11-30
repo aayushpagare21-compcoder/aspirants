@@ -1,8 +1,8 @@
 # [Aspirants](https://aspirants-six.vercel.app)
 
-This platform is an AI-powered solution designed to enhance answer-writing skills for UPSC Mains aspirants. 
-It provides various AI backed tools Now open for open-source contributions.
+This platform is an AI-powered solution designed to facilitate UPSC preparation for aspirants. Now open for open-source contributions.
 
+It provides various AI backed tools
 ### Tools
 1. [AI Answer writing](https://aspirants-six.vercel.app/ai/answer-evaluator)
 
