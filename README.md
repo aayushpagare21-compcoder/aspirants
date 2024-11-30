@@ -1,15 +1,25 @@
 # [Aspirants](https://aspirants-six.vercel.app)
 
-This platform is an AI-powered solution designed to enhance answer-writing skills for UPSC Mains aspirants. It provides AI-based answer evaluation, giving users valuable insights to improve their writing. Now open for open-source contributions, the platform invites the community to help make high-quality answer-writing practice even more accessible and effective for all UPSC aspirants.
+This platform is an AI-powered solution designed to enhance answer-writing skills for UPSC Mains aspirants. 
+It provides various AI backed tools Now open for open-source contributions.
+
+### Tools
+1. [AI Answer writing](https://aspirants-six.vercel.app/ai/answer-evaluator)
 
 ### Our Tech Stack
-
-1. [Next](https://nextjs.org/) : Core framework.
-2. [Postgres](https://www.postgresql.org/): Database.
-3. [Prisma](https://www.prisma.io/): ORM.
-4. [Shadcn](https://ui.shadcn.com/): Component library.
-5. [Tailwind](https://tailwindcss.com/): CSS utility.
-6. [AuthJS](https://authjs.dev/): Authentication
+1. [Next](https://nextjs.org/)
+2. [Postgres](https://www.postgresql.org/)
+3. [Prisma](https://www.prisma.io/)
+4. [Shadcn](https://ui.shadcn.com/)
+5. [Tailwind](https://tailwindcss.com/)
+6. [AuthJS](https://authjs.dev/)
+7. [Langchainjs](https://js.langchain.com/)
+8. [GeminiAI](https://gemini.google.com/)
+9. [AWS Textract](https://aws.amazon.com/textract/)
+10. [AWS S3](https://aws.amazon.com/s3/)
+11. [NeonDB](https://neon.tech)
+12. [Upstash](https://upstash.com)
+13. [Vercel](https://vercel.com)
 
 ## Getting Started
 
