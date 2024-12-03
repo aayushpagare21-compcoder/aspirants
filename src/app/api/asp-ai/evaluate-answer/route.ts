@@ -30,26 +30,22 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
 
-     // Get the form data
-     const form = await req.formData();
-     const answerPDF = form.get("answer");
-     // if this is our question
-     const questionId = form.get("questionId")?.toString();
-     const question = form.get("question")?.toString();
-
-     console.log("form======", form) 
-     console.log("answerPDF======", answerPDF)
- 
-     // Validate the form data
-     if (!validateEvaluateAnswerAPIFormData(answerPDF, question)) {
-       return NextResponse.json(
-         {
-           error: "Invalid form data, requires both question and answerPDF",
-           errorCode: ErrorCodes.BAD_REQUEST,
-         },
-         { status: 400 },
-       );
-     }
+    // Get the form data
+    const form = await req.formData();
+    const answerPDF = form.get("answer");
+    // if this is our question
+    const questionId = form.get("questionId")?.toString();
+    const question = form.get("question")?.toString();
+    // Validate the form data
+    if (!validateEvaluateAnswerAPIFormData(answerPDF, question)) {
+      return NextResponse.json(
+        {
+          error: "Invalid form data, requires both question and answerPDF",
+          errorCode: ErrorCodes.BAD_REQUEST,
+        },
+        { status: 400 },
+      );
+    }
 
     if (process.env.RATE_LIMIT_DISABLED !== "true") {
       // Rate limiting
