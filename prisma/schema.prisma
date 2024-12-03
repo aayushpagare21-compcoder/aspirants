@@ -135,6 +135,7 @@ model Question {
   askedDate DateTime? @map("asked_date") // date of paper conducted when this question was asked in that paper. If not asked in any paper then date is the date published
   words     Int? // Answer to be written in words
   marks     Int? // Maximum marks for the answer
+  hasEmbedding Boolean? @default(false) @map("has_embedding") // If the question has any image or video embedding
   topics    Topics[] // Topics related to that question
   answers   Answer[] // Answers written for the question
 
