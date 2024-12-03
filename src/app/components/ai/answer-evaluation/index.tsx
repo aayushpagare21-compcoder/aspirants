@@ -40,26 +40,35 @@ export const EvaluateAnswer = ({
     useState<Screens>("FORM");
   const [uploadedAnswer, setUploadedAnswer] = useState<File | null>(null);
   const [question, setQuestion] = useState<string | undefined>(initialQuestion);
-  console.log("======uploadedANswer", uploadedAnswer)
-  console.log("======question", question)
+  console.log("======uploadedANswer", uploadedAnswer);
+  console.log("======question", question);
 
   const [{ loading, error, value: results }, handleSubmit] = useAsyncFn(
-    async () => {
+    async ({
+      question,
+      questionId,
+      uploadedAnswer,
+    }: {
+      question?: string;
+      questionId?: string;
+      uploadedAnswer?: File | null;
+    }) => {
+      console.log("=======question, uploaded answer", question, uploadedAnswer);
       const formData = new FormData();
       if (question) {
-        console.log("question in FE====", question)
+        console.log("question in FE====", question);
         formData.append("question", question);
       }
       if (uploadedAnswer) {
-        console.log("uploadedANswer in FE====", uploadedAnswer)
+        console.log("uploadedANswer in FE====", uploadedAnswer);
         formData.append("answer", uploadedAnswer);
       }
       if (questionId) {
-        console.log("questionId in FE====", questionId)
+        console.log("questionId in FE====", questionId);
         formData.append("questionId", questionId);
       }
 
-      console.log("formdata in FE====", formData)
+      console.log("formdata in FE====", formData);
       const results = await evaluateAnswer(formData);
       setAnswerEvaluationScreen("RESULT");
       setUploadedAnswer(null);
@@ -106,7 +115,9 @@ export const EvaluateAnswer = ({
                 question={question}
                 disabledSubmitButton={!uploadedAnswer || !question}
                 isTypedQuestion={isTypedQuestion}
-                handleSubmit={handleSubmit}
+                handleSubmit={() => {
+                  handleSubmit({ question, questionId, uploadedAnswer });
+                }}
                 setQuestion={setQuestion}
                 setUploadedAnswer={setUploadedAnswer}
               />
