@@ -40,6 +40,8 @@ export const EvaluateAnswer = ({
     useState<Screens>("FORM");
   const [uploadedAnswer, setUploadedAnswer] = useState<File | null>(null);
   const [question, setQuestion] = useState<string | undefined>(initialQuestion);
+  console.log("======uploadedANswer", uploadedAnswer)
+  console.log("======question", question)
 
   const [{ loading, error, value: results }, handleSubmit] = useAsyncFn(
     async () => {
