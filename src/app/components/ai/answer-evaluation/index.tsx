@@ -63,7 +63,7 @@ export const EvaluateAnswer = ({
   );
 
   if (error) {
-    switch ("RATE_LIMIT_EXCEEDED") {
+    switch (error.message) {
       case ErrorCodes.RATE_LIMIT_EXCEEDED:
         return (
           <ErrorPage
