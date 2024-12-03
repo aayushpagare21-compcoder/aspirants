@@ -18,6 +18,12 @@ const textExtract = TextractService.getInstance(
 const rl = RatelimitService.getInstance().getRatelimit();
 
 export const maxDuration = 60;
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 
 export async function POST(req: Request) {
   try {
