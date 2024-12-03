@@ -7,10 +7,12 @@ import {
 export const maxDuration = 60;
 
 export class TextractService {
+  private static instance: TextractService;
   private textractClient: TextractClient;
   private bucketName: string;
 
-  constructor(bucketName: string) {
+  // Private constructor to prevent direct instantiation
+  private constructor(bucketName: string) {
     this.bucketName = bucketName;
     this.textractClient = new TextractClient({
       region: process.env.AWS_REGION,
@@ -19,6 +21,14 @@ export class TextractService {
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
       },
     });
+  }
+
+  // Static method to get the singleton instance
+  public static getInstance(bucketName: string): TextractService {
+    if (!TextractService.instance) {
+      TextractService.instance = new TextractService(bucketName);
+    }
+    return TextractService.instance;
   }
 
   public async extractTextFromS3PDF(objectKey: string): Promise<string> {

@@ -1,4 +1,4 @@
-import { prisma } from "../db/prisma";
+import { prisma } from "../utils/prisma";
 
 export async function createAnswer({
   id,

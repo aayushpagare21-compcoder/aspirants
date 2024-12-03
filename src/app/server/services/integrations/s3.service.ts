@@ -2,12 +2,12 @@ import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 import { Readable } from "stream";
 
-// TODO: Singleton pattern
 export class S3Service {
+  private static instance: S3Service;
   private s3Client: S3Client;
   private bucketName: string;
 
-  constructor(bucketName: string) {
+  private constructor(bucketName: string) {
     this.bucketName = bucketName;
     this.s3Client = new S3Client({
       region: process.env.AWS_REGION,
@@ -16,6 +16,13 @@ export class S3Service {
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
       },
     });
+  }
+
+  static getInstance(bucketName: string): S3Service {
+    if (!S3Service.instance) {
+      S3Service.instance = new S3Service(bucketName);
+    }
+    return S3Service.instance;
   }
 
   async uploadFile(

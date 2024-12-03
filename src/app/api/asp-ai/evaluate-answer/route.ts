@@ -8,23 +8,12 @@ import { evaluateAnswer } from "@/app/server/services/ai/evaluateAnswer";
 import { validateEvaluateAnswerAPIFormData } from "@/app/server/validators/asp-ai.validators";
 import { getAuthenticatedUser } from "@/app/server/utils/getAuthUserDetails";
 import { User } from "@prisma/client";
-import { Duration, Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
 import { ErrorCodes } from "@/app/lib/constants";
+import RatelimitService from "@/app/server/services/integrations/rateLimitig.service";
 
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_URL,
-  token: process.env.UPSTASH_REDIS_TOKEN,
-});
-const ratelimit = new Ratelimit({
-  redis: redis,
-  limiter: Ratelimit.fixedWindow(
-    parseInt(process.env.DEFAULT_API_TOKENS!),
-    process.env.DEFAULT_API_TOKEN_FILLED_AFTER! as Duration,
-  ),
-});
-const s3 = new S3Service(process.env.AWS_S3_BUCKET_NAME!);
-const textExtract = new TextractService(process.env.AWS_S3_BUCKET_NAME!);
+const s3 = S3Service.getInstance(process.env.AWS_S3_BUCKET_NAME!);
+const textExtract =TextractService.getInstance(process.env.AWS_S3_BUCKET_NAME!);
+const rl = RatelimitService.getInstance().getRatelimit()
 
 export const maxDuration = 60;
 
@@ -41,7 +30,7 @@ export async function POST(req: Request) {
 
     // Rate limiting
     //apiPath:keyPerfix:key
-    const rateLimitCheck = await ratelimit.limit(
+    const rateLimitCheck = await rl.limit(
       `/asp-ai/evaluate-answer:userId:${user.id}`,
     );
 

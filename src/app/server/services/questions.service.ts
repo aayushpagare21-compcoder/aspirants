@@ -4,7 +4,7 @@ import {
   Papers,
   QuestionsWithEverything,
 } from "@/app/lib/types/feed.types";
-import { prisma } from "../db/prisma";
+import { prisma } from "../utils/prisma";
 
 const DEFAULT_ANSWER_LIMIT = 5;
 const DEFAULT_QUESTIONS_OFFSET = 0;
