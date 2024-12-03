@@ -47,12 +47,15 @@ export const EvaluateAnswer = ({
     async () => {
       const formData = new FormData();
       if (question) {
+        console.log("question in FE====", question)
         formData.append("question", question);
       }
       if (uploadedAnswer) {
+        console.log("uploadedANswer in FE====", uploadedAnswer)
         formData.append("answer", uploadedAnswer);
       }
       if (questionId) {
+        console.log("questionId in FE====", questionId)
         formData.append("questionId", questionId);
       }
 
