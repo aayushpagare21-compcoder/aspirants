@@ -35,7 +35,7 @@ const parser = StructuredOutputParser.fromZodSchema(
         }),
       )
       .describe(
-        "An array of objects, each highlighting a good aspect of the answer",
+        "An array of objects, each highlighting a good aspect of the answer if there are any",
       )
       .nullable()
       .optional(),

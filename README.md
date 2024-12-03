@@ -3,10 +3,13 @@
 This platform is an AI-powered solution designed to enhance UPSC preparation for aspirants. It is now open to open-source contributions, inviting the community to collaborate and improve its features.
 
 It provides various AI backed tools
+
 ### Tools
+
 1. [AI Answer writing](https://aspirants-six.vercel.app/ai/answer-evaluator)
 
 ### Our Tech Stack
+
 1. [Next](https://nextjs.org/)
 2. [Postgres](https://www.postgresql.org/)
 3. [Prisma](https://www.prisma.io/)

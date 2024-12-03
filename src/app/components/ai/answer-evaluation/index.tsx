@@ -41,6 +41,8 @@ export const EvaluateAnswer = ({
   const [uploadedAnswer, setUploadedAnswer] = useState<File | null>(null);
   const [question, setQuestion] = useState<string | undefined>(initialQuestion);
 
+  console.log("uploaded answer====", uploadedAnswer);
+
   const [{ loading, error, value: results }, handleSubmit] = useAsyncFn(
     async () => {
       const formData = new FormData();
@@ -48,6 +50,7 @@ export const EvaluateAnswer = ({
         formData.append("question", question);
       }
       if (uploadedAnswer) {
+        console.log("uploadedAnswer while calling the api", uploadedAnswer);
         formData.append("answer", uploadedAnswer);
       }
       if (questionId) {

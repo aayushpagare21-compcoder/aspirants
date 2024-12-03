@@ -12,8 +12,10 @@ import { ErrorCodes } from "@/app/lib/constants";
 import RatelimitService from "@/app/server/services/integrations/rateLimitig.service";
 
 const s3 = S3Service.getInstance(process.env.AWS_S3_BUCKET_NAME!);
-const textExtract =TextractService.getInstance(process.env.AWS_S3_BUCKET_NAME!);
-const rl = RatelimitService.getInstance().getRatelimit()
+const textExtract = TextractService.getInstance(
+  process.env.AWS_S3_BUCKET_NAME!,
+);
+const rl = RatelimitService.getInstance().getRatelimit();
 
 export const maxDuration = 60;
 
@@ -52,7 +54,15 @@ export async function POST(req: Request) {
     const question = form.get("question")?.toString();
 
     // Validate the form data
-    await validateEvaluateAnswerAPIFormData(answerPDF, question);
+    if (!validateEvaluateAnswerAPIFormData(answerPDF, question)) {
+      return NextResponse.json(
+        {
+          error: "Invalid form data, requires both question and answerPDF",
+          errorCode: ErrorCodes.BAD_REQUEST,
+        },
+        { status: 400 },
+      );
+    }
 
     const answerId = cuid();
     const s3Key = questionId
@@ -82,7 +92,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({
-      modelAnswer: evaluation.modelAnswer.replace,
+      modelAnswer: evaluation.modelAnswer,
       score: evaluation.score,
       mistakesAndCorrections: evaluation.mistakesAndCorrections,
       goodParts: evaluation.goodParts,
