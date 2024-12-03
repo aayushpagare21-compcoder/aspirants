@@ -30,20 +30,22 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
 
-    // Rate limiting
-    //apiPath:keyPerfix:key
-    const rateLimitCheck = await rl.limit(
-      `/asp-ai/evaluate-answer:userId:${user.id}`,
-    );
-
-    if (!rateLimitCheck.success) {
-      return NextResponse.json(
-        {
-          errorCode: ErrorCodes.RATE_LIMIT_EXCEEDED,
-          errorMessage: "Too many requests...",
-        },
-        { status: 429 },
+    if (process.env.RATE_LIMIT_DISABLED !== "true") {
+      // Rate limiting
+      //apiPath:keyPerfix:key
+      const rateLimitCheck = await rl.limit(
+        `/asp-ai/evaluate-answer:userId:${user.id}`,
       );
+
+      if (!rateLimitCheck.success) {
+        return NextResponse.json(
+          {
+            errorCode: ErrorCodes.RATE_LIMIT_EXCEEDED,
+            errorMessage: "Too many requests...",
+          },
+          { status: 429 },
+        );
+      }
     }
 
     // Get the form data
