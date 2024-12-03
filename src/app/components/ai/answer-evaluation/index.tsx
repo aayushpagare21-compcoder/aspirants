@@ -54,6 +54,7 @@ export const EvaluateAnswer = ({
         formData.append("questionId", questionId);
       }
 
+      console.log("formdata in FE====", formData)
       const results = await evaluateAnswer(formData);
       setAnswerEvaluationScreen("RESULT");
       setUploadedAnswer(null);
