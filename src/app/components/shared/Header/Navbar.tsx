@@ -36,17 +36,25 @@ export const Navbar = ({
         <div className="hidden md:block">
           <Link
             href="/feed"
-            className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline ${path === "/feed" ? "text-green-700" : ""}`}
+            className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline`}
           >
-            Mains PYQs
+            <span className={`${path === "/feed" ? "text-green-700" : ""}`}>
+              {" "}
+              Mains PYQs{" "}
+            </span>
           </Link>
         </div>
         <div className="hidden md:block">
           <Link
             href="/ai/answer-evaluator"
-            className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline ${path === "/ai/answer-evaluator" ? "text-green-700" : ""}`}
+            className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline`}
           >
-            AI Answer Evaluator
+            <span
+              className={`${path === "/ai/answer-evaluator" ? "text-green-700" : ""}`}
+            >
+              {" "}
+              AI Answer Evaluator{" "}
+            </span>
           </Link>
         </div>
         {onChangeSearchText && (
