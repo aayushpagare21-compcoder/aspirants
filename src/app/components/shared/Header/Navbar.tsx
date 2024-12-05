@@ -4,10 +4,159 @@ import { SearchBar } from "@/app/components/shared/Header/SearchBar";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
-import { RefObject, useRef, useState } from "react";
-import useOutsideClick from "@/app/hooks/useOutsideClick";
 import { aspirantsSignOut } from "@/app/server/actions/auth.actions";
 import { usePathname } from "next/navigation";
+import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { useState } from "react";
+import { SquareMenuIcon } from "lucide-react";
+import { Divider } from "../Divider/Divider";
+const menuItems = [
+  {
+    label: "Mains PYQs",
+    href: "/feed",
+  },
+  {
+    label: "AI Answer Evaluator",
+    href: "/ai/answer-evaluator",
+  },
+  {
+    label: "Article PYQs",
+    href: "/ai/article-pyqs",
+  },
+];
+
+const MobileMenu = ({
+  onClickCrossIcon,
+  path,
+}: {
+  onClickCrossIcon: () => void;
+  path: string;
+}) => {
+  return (
+    <div className="flex h-screen w-screen flex-col gap-4">
+      <div className="flex justify-between">
+        <AspirantsLogo />
+        <Cross2Icon className="h-8 w-4" onClick={onClickCrossIcon} />
+      </div>
+
+      <div className="flex flex-col gap-4">
+        {menuItems.map((item) => {
+          return (
+            <>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline`}
+              >
+                <span
+                  className={`${path === item.href ? "text-green-700" : ""}`}
+                >
+                  {item.label}
+                </span>
+              </Link>
+            </>
+          );
+        })}
+      </div>
+      <Divider />
+
+      <div className="flex items-center gap-4">
+        <Button
+          onClick={async () => {
+            await aspirantsSignOut();
+          }}
+          className="h-10 w-24 rounded-full text-sm font-medium hover:underline"
+          variant="secondary"
+        >
+          Logout
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+const DesktopMenu = ({
+  onChangeSearchText,
+  userImage,
+  searchText,
+  onSearchIconClick,
+  path,
+  onHamBurgerClick,
+}: {
+  path: string;
+  userImage?: string;
+  onSearchIconClick?: () => void;
+  onChangeSearchText?: (s: string) => void;
+  searchText?: string;
+  onHamBurgerClick: () => void;
+}) => {
+  return (
+    <>
+      <div className="flex items-center gap-4">
+        <AspirantsLogo />
+        <div className="hidden gap-4 md:flex">
+          {menuItems.map((item) => {
+            return (
+              <>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline`}
+                >
+                  <span
+                    className={`${path === item.href ? "text-green-700" : ""}`}
+                  >
+                    {item.label}
+                  </span>
+                </Link>
+              </>
+            );
+          })}
+        </div>
+
+        {onChangeSearchText && (
+          <SearchBar
+            onChangeSearchText={onChangeSearchText}
+            onSearchIconClick={onSearchIconClick}
+            searchText={searchText}
+          />
+        )}
+      </div>
+
+      <div className="flex items-center gap-4">
+        <SquareMenuIcon onClick={onHamBurgerClick} className="sm:hidden" />
+        {userImage && (
+          <div className="flex items-center gap-4">
+            <Button
+              onClick={async () => {
+                await aspirantsSignOut();
+              }}
+              className="hidden h-10 w-24 rounded-full text-sm font-medium hover:underline md:block"
+              variant="secondary"
+            >
+              Logout
+            </Button>
+            <div className="flex flex-col">
+              <div
+                className="relative h-10 w-10 overflow-hidden rounded-full"
+                aria-label="Profile menu"
+              >
+                <Image
+                  // TODO: default image
+                  src={userImage ?? "/default-profile.jpg"}
+                  alt="Profile Picture"
+                  layout="fill"
+                  objectFit="cover"
+                  className="hover:cursor-pointer"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
 
 export const Navbar = ({
   userImage,
@@ -21,106 +170,26 @@ export const Navbar = ({
   searchText?: string;
   hideSearchBar?: boolean;
 }) => {
-  const [showProfileTab, setShowProfileTab] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement>();
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const path = usePathname();
-
-  useOutsideClick(ref, () => {
-    setShowProfileTab(false);
-  });
 
   return (
     <nav className="flex items-center justify-between bg-gray-50 px-4 py-2 shadow-md lg:px-8">
-      <div className="flex items-center gap-4">
-        <AspirantsLogo />
-        <div className="hidden md:block">
-          <Link
-            href="/feed"
-            className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline`}
-          >
-            <span className={`${path === "/feed" ? "text-green-700" : ""}`}>
-              {" "}
-              Mains PYQs{" "}
-            </span>
-          </Link>
-        </div>
-        <div className="hidden md:block">
-          <Link
-            href="/ai/answer-evaluator"
-            className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline`}
-          >
-            <span
-              className={`${path === "/ai/answer-evaluator" ? "text-green-700" : ""}`}
-            >
-              {" "}
-              AI Answer Evaluator{" "}
-            </span>
-          </Link>
-        </div>
-        {onChangeSearchText && (
-          <SearchBar
-            onChangeSearchText={onChangeSearchText}
-            onSearchIconClick={onSearchIconClick}
-            searchText={searchText}
-          />
-        )}
-      </div>
-      {userImage && (
-        <div className="flex items-center gap-8">
-          <div className="flex flex-col">
-            <div
-              className="relative h-10 w-10 overflow-hidden rounded-full"
-              onClick={() => setShowProfileTab(!showProfileTab)}
-              aria-label="Profile menu"
-            >
-              <Image
-                // TODO: default image
-                src={userImage ?? "/default-profile.jpg"}
-                alt="Profile Picture"
-                layout="fill"
-                objectFit="cover"
-                className="hover:cursor-pointer"
-              />
-            </div>
-            {showProfileTab && (
-              <div className="relative" ref={ref as RefObject<HTMLDivElement>}>
-                <div className="absolute -left-16 top-1 z-50 rounded-lg shadow-lg">
-                  <div className="absolute -top-2 left-16 z-10 h-4 w-4 rotate-[45deg] border-l border-t"></div>
-                  <ul className="flex flex-col">
-                    <li>
-                      <Button
-                        onClick={async () => {
-                          await aspirantsSignOut();
-                        }}
-                        className="w-full text-sm font-medium hover:underline"
-                      >
-                        Logout
-                      </Button>
-                    </li>
-                    <li>
-                      <Link href="/ai/answer-evaluator">
-                        <Button
-                          className={`text-sm font-medium hover:underline ${path === "/ai/answer-evaluator" ? "text-green-700" : ""}`}
-                        >
-                          AI answer writing
-                        </Button>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/feed">
-                        <Button
-                          className={`w-full text-sm font-medium hover:underline ${path === "/feed" ? "text-green-700" : ""}`}
-                        >
-                          Mains PYQs
-                        </Button>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+      {!showMobileMenu && (
+        <DesktopMenu
+          path={path}
+          onChangeSearchText={onChangeSearchText}
+          onSearchIconClick={onSearchIconClick}
+          searchText={searchText}
+          userImage={userImage}
+          onHamBurgerClick={() => setShowMobileMenu(true)}
+        />
+      )}
+      {showMobileMenu && (
+        <MobileMenu
+          onClickCrossIcon={() => setShowMobileMenu(false)}
+          path={path}
+        />
       )}
     </nav>
   );
