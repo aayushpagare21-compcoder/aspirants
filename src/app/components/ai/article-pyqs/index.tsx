@@ -50,7 +50,6 @@ export const ArticlePYQsClient = () => {
   const [{ loading, error, value: results }, handleSubmit] = useAsyncFn(
     async ({ url }: { url: string }) => {
       const results = await getMatchingPYQs(url);
-      setArticleUrl("");
       return results;
     },
   );
