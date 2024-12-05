@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import { aspirantsSignOut } from "@/app/server/actions/auth.actions";
 import { usePathname } from "next/navigation";
-import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { Cross2Icon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { SquareMenuIcon } from "lucide-react";
 import { Divider } from "../Divider/Divider";
