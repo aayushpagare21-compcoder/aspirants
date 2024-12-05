@@ -45,6 +45,7 @@ async function questionsFullTextSearch(websearchQuery: string) {
 }
 
 export async function getAllPublishedQuestionsWithEverything({
+  ids,
   limit,
   offset,
   answerOffset,
@@ -53,7 +54,9 @@ export async function getAllPublishedQuestionsWithEverything({
   topic,
   year,
   textToSearch,
+  disableOrdering,
 }: {
+  ids?: string[];
   limit?: number;
   offset?: number;
   answerOffset?: number;
@@ -62,6 +65,7 @@ export async function getAllPublishedQuestionsWithEverything({
   topic?: string;
   year?: number;
   textToSearch?: string;
+  disableOrdering?: boolean;
 }): Promise<QuestionsWithEverything[]> {
   let questionIds = null;
   if (textToSearch) {
@@ -73,6 +77,7 @@ export async function getAllPublishedQuestionsWithEverything({
     skip: offset ?? DEFAULT_QUESTIONS_OFFSET,
     where: {
       ...(questionIds && { id: { in: questionIds } }),
+      ...(ids && { id: { in: ids } }),
       published: true,
       ...(topic && {
         topics: {
@@ -84,9 +89,11 @@ export async function getAllPublishedQuestionsWithEverything({
       ...(paper && { paper }),
       ...(year && { year: year }),
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    ...(!disableOrdering && {
+      orderBy: {
+        createdAt: "desc",
+      },
+    }),
     include: {
       topics: true,
       answers: {

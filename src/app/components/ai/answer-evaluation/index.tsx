@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 import { useAsyncFn } from "react-use";
 import { ErrorPage } from "../../error/ErrorPage";
 import { ErrorCodes } from "@/app/lib/constants";
+import { AIToolsContainer } from "../../shared/Containers/AIToolsContainer";
 
 type Screens = "FORM" | "RESULT";
 
@@ -85,50 +86,45 @@ export const EvaluateAnswer = ({
   }
 
   return (
-    <div className="flex h-[100vh] w-[100vw] justify-center">
-      <div className="flex w-[100vw] flex-col items-center gap-4 p-8 md:w-[50vw]">
-        <div className="mb-4 text-left text-[2rem] leading-none">
-          <span className="text-tertiary">AI</span> answer evaluator
-        </div>
-        <strong>{question}</strong>
-        {loading ? (
-          <DynamicLoader
-            messages={[
-              "⏳ Please wait...",
-              "🤔 Analyzing your answer...",
-              "🧪 Your results are getting ready...",
-              "🚀 Almost there...",
-            ]}
-          />
-        ) : (
-          <>
-            {answerEvaluationScreen === "FORM" && (
-              <AnswerEvaluatorForm
-                question={question}
-                disabledSubmitButton={!uploadedAnswer || !question}
-                isTypedQuestion={isTypedQuestion}
-                handleSubmit={() => {
-                  handleSubmit({ question, questionId, uploadedAnswer });
-                }}
-                setQuestion={setQuestion}
-                setUploadedAnswer={setUploadedAnswer}
-              />
-            )}
-            {answerEvaluationScreen === "RESULT" && results && (
-              <EvaluationResults
-                results={results}
-                onBack={() => {
-                  if (!isTypedQuestion) {
-                    redirect("/feed");
-                  } else {
-                    setAnswerEvaluationScreen("FORM");
-                  }
-                }}
-              />
-            )}
-          </>
-        )}
-      </div>
-    </div>
+    <AIToolsContainer heading="Answer Evaluator">
+      <strong>{question}</strong>
+      {loading ? (
+        <DynamicLoader
+          messages={[
+            "⏳ Please wait...",
+            "🤔 Analyzing your answer...",
+            "🧪 Your results are getting ready...",
+            "🚀 Almost there...",
+          ]}
+        />
+      ) : (
+        <>
+          {answerEvaluationScreen === "FORM" && (
+            <AnswerEvaluatorForm
+              question={question}
+              disabledSubmitButton={!uploadedAnswer || !question}
+              isTypedQuestion={isTypedQuestion}
+              handleSubmit={() => {
+                handleSubmit({ question, questionId, uploadedAnswer });
+              }}
+              setQuestion={setQuestion}
+              setUploadedAnswer={setUploadedAnswer}
+            />
+          )}
+          {answerEvaluationScreen === "RESULT" && results && (
+            <EvaluationResults
+              results={results}
+              onBack={() => {
+                if (!isTypedQuestion) {
+                  redirect("/feed");
+                } else {
+                  setAnswerEvaluationScreen("FORM");
+                }
+              }}
+            />
+          )}
+        </>
+      )}
+    </AIToolsContainer>
   );
 };
