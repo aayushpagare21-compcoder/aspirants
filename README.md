@@ -6,7 +6,8 @@ It provides various AI backed tools
 
 ### Tools
 
-1. [AI Answer writing](https://aspirants-six.vercel.app/ai/answer-evaluator)
+1. [AI Answer writing review](https://aspirants-six.vercel.app/ai/answer-evaluator)
+2. [PYQ's matching articles](https://aspirants-six.vercel.app/ai/article-pyqs)
 
 ### Our Tech Stack
 
