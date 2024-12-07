@@ -1,10 +1,8 @@
 "use client";
-import { Dialog } from "@/app/components/ui/dialog";
-import { DialogContent } from "@radix-ui/react-dialog";
-import { LoginComponent } from "@/app/components/auth/LoginComponent";
+import { LoginComponent } from "@/app/client/components/auth/LoginComponent";
+import { Dialog, DialogContent } from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
-
 export default function InterceptedLogin({
   searchParams,
 }: {

@@ -1,4 +1,4 @@
-import { LoginComponent } from "@/app/components/auth/LoginComponent";
+import { LoginComponent } from "@/app/client/components/auth/LoginComponent";
 
 export default async function LoginPage({
   searchParams,
