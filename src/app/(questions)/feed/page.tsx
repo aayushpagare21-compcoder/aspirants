@@ -20,9 +20,11 @@ export const metadata: Metadata = {
     "PYQs by topic",
     "UPSC study material",
   ],
-  authors: [{ 
-    name: "Aayush Pagare",
-  }],
+  authors: [
+    {
+      name: "Aayush Pagare",
+    },
+  ],
   applicationName: "AspirantsAI",
   publisher: "Aayush Pagare",
   category: "Education, UPSC, AI Tools",

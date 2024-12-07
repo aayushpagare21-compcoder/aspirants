@@ -16,7 +16,7 @@ export default function InterceptedLogin({
           router.push("/");
         }}
       >
-        <DialogContent> 
+        <DialogContent>
           <LoginComponent redirectTo={searchParams?.redirectTo ?? "/feed"} />
         </DialogContent>
       </Dialog>

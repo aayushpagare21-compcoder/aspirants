@@ -6,9 +6,13 @@ export async function authMiddleware(req: NextRequest) {
   const session = await auth();
   if (!session) {
     if (
-      !["/login", "/", "/answerEvaluator.png", "/about-us", "/Aayush.jpeg"].includes(
-        req.nextUrl.pathname,
-      )
+      ![
+        "/login",
+        "/",
+        "/answerEvaluator.png",
+        "/about-us",
+        "/Aayush.jpeg",
+      ].includes(req.nextUrl.pathname)
     ) {
       return NextResponse.redirect(new URL("/", req.url));
     }

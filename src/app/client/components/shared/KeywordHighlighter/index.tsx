@@ -34,7 +34,7 @@ const KeywordHighlighter: React.FC<KeywordHighlighterProps> = ({
     );
   };
 
-  //@ts-ignore
+  //@ts-expect-error: yeah this is neccessary to shut the lint up.
   return <>{getHighlightedText(children, keywords)}</>;
 };
 

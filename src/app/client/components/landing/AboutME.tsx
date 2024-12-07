@@ -31,20 +31,20 @@ export const AboutMe = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="mx-auto mt-16 max-w-3xl rounded-lg  md:p-12"
+      className="mx-auto mt-16 max-w-3xl rounded-lg md:p-12"
     >
       <motion.div
         variants={itemVariants}
-        className="flex flex-col md:items-end justify-center items-center gap-6 md:flex-row"
+        className="flex flex-col items-center justify-center gap-6 md:flex-row md:items-end"
       >
         <Image
-          className="h-24 w-24 bg-gray-300 rounded-full md:rounded-none"
+          className="h-24 w-24 rounded-full bg-gray-300 md:rounded-none"
           src="/Aayush.jpeg"
           alt="Your Name"
           width={80}
           height={80}
         />
-        <div className="flex flex-col px-4 justify-center items-center">
+        <div className="flex flex-col items-center justify-center px-4">
           <h2 className="text-2xl font-semibold">
             Hello<span className="text-tertiary"> World!😉</span>
           </h2>
@@ -64,7 +64,7 @@ export const AboutMe = () => {
           </div>
         </div>
       </motion.div>
-      <div className="mt-6 flex justify-center gap-2 mb-8">
+      <div className="mb-8 mt-6 flex justify-center gap-2">
         <motion.div variants={itemVariants}>
           <Link href="https://medium.com/@aayushpagare21" target="_blank">
             <Medium />
