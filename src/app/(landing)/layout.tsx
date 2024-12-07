@@ -1,6 +1,3 @@
-import { LandingPageNavBar } from "@/app/components/landing/LandingPageNavbar";
-import { Divider } from "@/app/components/shared/Divider/Divider";
-import { LandingPageFooter } from "@/app/components/landing/LandingPageFooter";
 import React from "react";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
@@ -18,15 +15,7 @@ export default async function LandingLayout({
   return (
     <div>
       {modal}
-      <div>
-        <div className="flex h-[100vh] flex-col items-center bg-[#C9E9D2]">
-          <LandingPageNavBar />
-          <Divider />
-          {children}
-          <Divider />
-          <LandingPageFooter />
-        </div>
-      </div>
+      {children}
     </div>
   );
 }

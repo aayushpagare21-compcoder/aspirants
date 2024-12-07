@@ -91,7 +91,7 @@ export async function getAllPublishedQuestionsWithEverything({
     },
     ...(!disableOrdering && {
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
     }),
     include: {

@@ -1,22 +1,42 @@
-import { Button } from "@/app/components/ui/button";
 import React from "react";
-import Link from "next/link";
+import { Metadata } from "next";
+import { LandingPageFooter } from "../client/components/landing/LandingPageFooter";
+import { LandingPageNavBar } from "../client/components/landing/LandingPageNavbar";
+import LandingPageContent from "../client/components/landing/LandingPageContent";
+export const metadata: Metadata = {
+  title: "AspirantsAI | AI-Powered Tools for UPSC Preparation",
+  description:
+    "AspirantsAI is an all-in-one platform offering AI-driven tools to enhance UPSC preparation. From AffairsQuest for linking current affairs to UPSC Mains PYQs, to SmartCheck for AI-powered answer evaluation, our suite of tools helps aspirants prepare smarter and achieve their goals.",
+  abstract:
+    "AspirantsAI is an all-in-one platform that leverages artificial intelligence to enhance the preparation process for UPSC Mains aspirants. It features AffairsQuest, an intelligent tool that connects current affairs to relevant PYQs, and SmartCheck, which provides detailed feedback on handwritten answers. Designed to streamline studies, AspirantsAI empowers aspirants with efficient search capabilities, insightful answer reviews, and tools for comprehensive preparation. Whether you're aiming to master current affairs, improve answer-writing skills, or access tailored resources, AspirantsAI is your companion for UPSC success.",
+  keywords: [
+    "AspirantsAI",
+    "UPSC preparation tools",
+    "AI for UPSC",
+    "UPSC Mains answer evaluation",
+    "current affairs UPSC",
+    "AffairsQuest",
+    "SmartCheck",
+    "AI-powered UPSC platform",
+    "UPSC study tools",
+  ],
+  authors: [
+    {
+      name: "Aayush Pagare",
+    },
+  ],
+  robots: "index, follow",
+  publisher: "Aayush Pagare",
+  applicationName: "AspirantsAI",
+  creator: "Aayush Pagare",
+};
 
-export default async function LandingPage() {
+export default function LandingPage() {
   return (
-    <section className="flex h-[90vh] w-[90vw] justify-between xl:w-[80vw] 2xl:w-[60vw]">
-      <div className="mt-[6rem] flex flex-col justify-center gap-8 md:gap-12">
-        <div className="font-[family-name:var(--font-gtsuper-medium)] text-[4rem] leading-[4rem] tracking-normal lg:text-[7rem] lg:leading-[7rem]">
-          Aspirant <br /> prepare with me
-        </div>
-        <div className="font-[family-name:var(--font-sohneone)] text-[1.5rem] leading-none">
-          Your AI prep assistant.
-        </div>
-
-        <Button className="mb-[1rem] w-[12rem] rounded-full bg-[#F4CE14] py-6 text-[1.2rem] text-black md:bg-[#45474B] md:text-secondary-foreground md:hover:bg-[#45474B]/80">
-          <Link href="/login"> Join Me </Link>
-        </Button>
-      </div>
-    </section>
+    <div className="flex h-[100vh] flex-col items-center gap-8 bg-primary">
+      <LandingPageNavBar />
+      <LandingPageContent />
+      <LandingPageFooter />
+    </div>
   );
 }

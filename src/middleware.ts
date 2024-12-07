@@ -6,9 +6,15 @@ export async function authMiddleware(req: NextRequest) {
   const session = await auth();
   if (!session) {
     if (
-      !["/login", "/", "/guide", "/about-us"].includes(req.nextUrl.pathname)
+      ![
+        "/login",
+        "/",
+        "/answerEvaluator.png",
+        "/about-us",
+        "/Aayush.jpeg",
+      ].includes(req.nextUrl.pathname)
     ) {
-      return NextResponse.redirect(new URL("/login", req.url));
+      return NextResponse.redirect(new URL("/", req.url));
     }
   }
 
@@ -17,5 +23,5 @@ export async function authMiddleware(req: NextRequest) {
 
 export { authMiddleware as middleware };
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|public).*)"],
 };
