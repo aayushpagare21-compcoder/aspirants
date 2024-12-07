@@ -101,7 +101,7 @@ export const QuestionsCard = ({
               <div className="flex">
                 <Link
                   href={{
-                    pathname: "/ai/answer-evaluator",
+                    pathname: "/ai/smartcheck",
                     query: { question: questionText, questionId }, // passing question as query parameter
                   }}
                 >

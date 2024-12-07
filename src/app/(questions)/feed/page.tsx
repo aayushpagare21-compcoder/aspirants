@@ -2,7 +2,32 @@ import { QuestionsContainer } from "@/app/client/components/questions/QuestionsC
 import { NEXT_REVALIDATE_TOPICS_AFTER } from "@/app/lib/constants";
 import { auth } from "@/auth";
 import { Topics } from "@prisma/client";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "UPSC Mains PYQs – Comprehensive Feed of Previous Year Questions",
+  description:
+    "Explore a complete feed of UPSC Mains Previous Year Questions (PYQs) categorized by topics and years. Use this resource to refine your preparation and master answer writing with ease.",
+  keywords: [
+    "UPSC Mains PYQs",
+    "Previous Year Questions",
+    "UPSC Mains questions",
+    "UPSC PYQ feed",
+    "Mains exam preparation",
+    "UPSC preparation tools",
+    "UPSC question bank",
+    "PYQs by topic",
+    "UPSC study material",
+  ],
+  authors: [{ 
+    name: "Aayush Pagare",
+  }],
+  applicationName: "AspirantsAI",
+  publisher: "Aayush Pagare",
+  category: "Education, UPSC, AI Tools",
+  robots: "index, follow",
+};
 
 const fetchAllTopics = async (): Promise<Topics[]> => {
   const resp = await fetch(`${process.env.API_BASE_URL}/api/topics`, {

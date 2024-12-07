@@ -1,8 +1,6 @@
 import React from "react";
-
-import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./styles/globals.css";
+import "./client/styles/globals.css";
 
 const gtSuper = localFont({
   src: "../../public/fonts/GT-Super/GT-Super-Display-Regular-Trial.woff2",
@@ -17,11 +15,6 @@ const sohne = localFont({
   weight: "100 900",
   display: "swap",
 });
-
-export const metadata: Metadata = {
-  title: "Be an aspirant",
-  description: "Created with ❤️ by Aayush Pagare.",
-};
 
 export default function RootLayout({
   children,

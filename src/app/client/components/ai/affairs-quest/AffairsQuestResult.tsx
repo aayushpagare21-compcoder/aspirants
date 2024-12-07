@@ -15,6 +15,14 @@ export const AffairsQuestResults = ({
   results: QuestionsWithEverything[];
   onBack: () => void;
 }) => {
+  if (!results.length) {
+    return (
+      <div className="font-bold text-red-500">
+        {" "}
+        No relavent questions found for this article.{" "}
+      </div>
+    );
+  }
   return (
     <div>
       <Divider />

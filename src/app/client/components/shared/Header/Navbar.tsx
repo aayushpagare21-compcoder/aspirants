@@ -133,7 +133,7 @@ const DesktopMenu = ({
                 await aspirantsSignOut();
               }}
               className="hidden h-10 w-24 rounded-full text-sm font-medium hover:underline md:block"
-              variant="secondary"
+              variant="tertiary"
             >
               Logout
             </Button>

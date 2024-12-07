@@ -12,6 +12,7 @@ import {
 import { AIToolNames, formatToolsName } from "@/app/lib/types/utils.types";
 import KeywordHighlighter from "../shared/KeywordHighlighter";
 import { motion, useInView } from "framer-motion";
+import { AboutMe } from "./AboutME";
 
 // Types
 type FeaturesCardProps = {
@@ -222,6 +223,7 @@ const LandingPageContent = () => (
       {/* Add Stats Here */}
     </div>
     <FeaturesSection />
+    <AboutMe />
   </div>
 );
 

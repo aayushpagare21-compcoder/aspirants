@@ -6,7 +6,7 @@ export async function authMiddleware(req: NextRequest) {
   const session = await auth();
   if (!session) {
     if (
-      !["/login", "/", "/answerEvaluator.png", "/about-us"].includes(
+      !["/login", "/", "/answerEvaluator.png", "/about-us", "/Aayush.jpeg"].includes(
         req.nextUrl.pathname,
       )
     ) {
