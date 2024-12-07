@@ -10,6 +10,7 @@ import { Cross2Icon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { SquareMenuIcon } from "lucide-react";
 import { Divider } from "../Divider/Divider";
+import { AIToolNames, formatToolsName } from "@/app/lib/types/utils.types";
 const menuItems = [
   {
     label: "Mains PYQs",
@@ -20,8 +21,8 @@ const menuItems = [
     href: "/ai/answer-evaluator",
   },
   {
-    label: "Article PYQs",
-    href: "/ai/article-pyqs",
+    label: formatToolsName(AIToolNames.AFFAIRS_QUEST),
+    href: "/ai/affairs-quest",
   },
 ];
 

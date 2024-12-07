@@ -8,7 +8,7 @@ import { DateTime } from "luxon";
 import { Divider } from "../../shared/Divider/Divider";
 import { Button } from "../../ui/button";
 
-export const ArticlePYQsResult = ({
+export const AffairsQuestResults = ({
   results,
   onBack,
 }: {
@@ -16,10 +16,10 @@ export const ArticlePYQsResult = ({
   onBack: () => void;
 }) => {
   return (
-    <>
+    <div>
       <Divider />
-      <div className="text-center text-2xl font-semibold">
-        <span className="text-tertiary"> Questions </span> matching the article
+      <div className="text-center text-2xl font-semibold mt-4">
+        Relavent <span className="text-tertiary"> Questions </span>
       </div>
       <div className="mt-4 flex flex-col items-center justify-center gap-8">
         {results.map((q) => {
@@ -57,6 +57,6 @@ export const ArticlePYQsResult = ({
           Back
         </Button>
       </div>
-    </>
+    </div>
   );
 };

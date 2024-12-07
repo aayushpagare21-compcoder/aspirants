@@ -2,7 +2,7 @@ import { SkeletonLoader } from "../../shared/Loaders/SkeletonLoader";
 import { Button } from "../../ui/button";
 import { Textarea } from "../../ui/textarea";
 
-export const ArticlePYQsForm = ({
+export const AffairsQuestForm = ({
   articleUrl,
   handleUrlChange,
   onSubmit,
@@ -20,7 +20,7 @@ export const ArticlePYQsForm = ({
       <Textarea
         id="articleUrlInput"
         className="focus-visible:none border-md w-full bg-inherit p-2"
-        placeholder={`Paste your link of article here...`}
+        placeholder={`Paste article's link here. e.g https://www.thehindu.com/life-and-style/travel/on-a-buddhist-trail-in-sanchi/article28771908.ece`}
         value={articleUrl || ""}
         onChange={handleUrlChange}
         rows={2}
@@ -33,10 +33,10 @@ export const ArticlePYQsForm = ({
               {" "}
               <span>
                 {" "}
-                Paste an article link from <i> THE HINDU here.</i>{" "}
+                Please paste an article link from <i> The Hindu here </i>.
               </span>
             </li>
-            <li>You will get all the matching PYQs of mains.</li>
+            <li>{`We'll find out all the relavent PYQs of mains.`}</li>
           </ul>
         </div>
 
@@ -47,7 +47,7 @@ export const ArticlePYQsForm = ({
             onClick={onSubmit}
             disabled={!articleUrl || !!error}
           >
-            Find Matching PYQs
+            Find Relavent PYQs
           </Button>
         </div>
       </div>

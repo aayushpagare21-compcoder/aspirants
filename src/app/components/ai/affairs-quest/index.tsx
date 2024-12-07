@@ -1,13 +1,11 @@
 "use client";
 import { useState } from "react";
-import { AIToolsContainer } from "../../shared/Containers/AIToolsContainer";
-import { ArticlePYQsForm } from "./ArticlePYQsForm";
+import { AffairsQuestForm } from "./AffairsQuestForm";
 import { QuestionsWithEverything } from "@/app/lib/types/feed.types";
 import { useAsyncFn } from "react-use";
 import { ErrorCodes } from "@/app/lib/constants";
 import { ErrorPage } from "../../error/ErrorPage";
-import { ArticlePYQsResult } from "./ArticlePYQsResult";
-
+import { AffairsQuestResults } from "./AffairsQuestResult";
 const getMatchingPYQs = async (
   url: string,
 ): Promise<QuestionsWithEverything[]> => {
@@ -24,7 +22,7 @@ const getMatchingPYQs = async (
   return matchingPYQs.questions;
 };
 
-export const ArticlePYQsClient = () => {
+export const AffairsQuest = () => {
   const [articleUrl, setArticleUrl] = useState<string>("");
   const [validationError, setValidationError] = useState<string>("");
 
@@ -78,8 +76,8 @@ export const ArticlePYQsClient = () => {
   }
 
   return (
-    <AIToolsContainer heading={`Article's PYQ's`}>
-      <ArticlePYQsForm
+    <>
+      <AffairsQuestForm
         articleUrl={articleUrl}
         handleUrlChange={handleUrlChange}
         onSubmit={() => handleSubmit({ url: articleUrl })}
@@ -87,13 +85,13 @@ export const ArticlePYQsClient = () => {
         loading={loading}
       />
       {results && (
-        <ArticlePYQsResult
+        <AffairsQuestResults
           results={results}
           onBack={() => {
             window.location.reload();
           }}
         />
       )}
-    </AIToolsContainer>
+    </>
   );
 };

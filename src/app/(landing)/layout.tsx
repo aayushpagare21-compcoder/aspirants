@@ -19,11 +19,9 @@ export default async function LandingLayout({
     <div>
       {modal}
       <div>
-        <div className="flex h-[100vh] flex-col items-center bg-[#C9E9D2]">
+        <div className="flex h-[100vh] flex-col items-center gap-8 bg-primary">
           <LandingPageNavBar />
-          <Divider />
           {children}
-          <Divider />
           <LandingPageFooter />
         </div>
       </div>
