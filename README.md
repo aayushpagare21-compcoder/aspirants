@@ -1,4 +1,4 @@
-# [Aspirants](https://aspirants-six.vercel.app)
+# [Aspirants](https://aspirantsai.com)
 
 This platform is an AI-powered solution designed to enhance UPSC preparation for aspirants. It is now open to open-source contributions, inviting the community to collaborate and improve its features.
 
