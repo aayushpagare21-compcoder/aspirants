@@ -35,7 +35,7 @@ const featuresData = [
       Aspirants can upload their PDFs, and SmartCheck's advanced AI analyzes key aspects such as content accuracy, structure, clarity, and depth. The tool offers valuable, actionable feedback to help users improve their answer-writing skills and boost their exam performance.
     `,
     keywords: ["SmartCheck", "answer-writing", "AI", "Aspirants"],
-    link: "/login?redirectTo=/ai/smartcheck",
+    link: "/ai/smartcheck",
   },
   {
     title: (
@@ -55,7 +55,7 @@ const featuresData = [
       "Aspirants",
       "newspaper",
     ],
-    link: "/login?redirectTo=/ai/affairs-quest",
+    link: "/ai/affairs-quest",
   },
   {
     title: (
@@ -76,7 +76,7 @@ const featuresData = [
       "accurate",
       "topic-specific",
     ],
-    link: "/login?redirectTo=/feed",
+    link: "/feed",
     btnText: "Coming soon... 🚀",
   },
   {
@@ -90,7 +90,7 @@ const featuresData = [
       Your ultimate UPSC preparation companion transforms how aspirants study and retain information. It turns your handwritten notes into an interactive learning tool, helping you master complex subjects with ease.
     `,
     keywords: ["UPSC", "aspirants", "handwritten", "assistant", "personalized"],
-    link: "/login?redirectTo=/feed",
+    link: "/feed",
     btnText: "Coming soon... 🚀",
   },
 ];
