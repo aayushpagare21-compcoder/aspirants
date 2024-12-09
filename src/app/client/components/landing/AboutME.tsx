@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { GithubLogo } from "../shared/Logo/GithubLogo";
-import Link from "next/link";
 import { LinkdenLogo } from "../shared/Logo/Linkden";
 import { Medium } from "../shared/Logo/Medium";
 import { GmailLogo } from "../shared/Logo/GmailLogo";
@@ -66,30 +65,16 @@ export const AboutMe = () => {
       </motion.div>
       <div className="mb-8 mt-6 flex justify-center gap-2">
         <motion.div variants={itemVariants}>
-          <Link href="https://medium.com/@aayushpagare21" target="_blank">
-            <Medium />
-          </Link>
+          <Medium link="https://medium.com/@aayushpagare21" />
         </motion.div>
         <motion.div variants={itemVariants}>
-          <Link
-            href="https://github.com/aayushpagare21-compcoder"
-            target="_blank"
-          >
-            <GithubLogo />
-          </Link>
+          <GithubLogo link="https://github.com/aayushpagare21-compcoder" />
         </motion.div>
         <motion.div variants={itemVariants}>
-          <Link
-            href="https://www.linkedin.com/in/aayush-pagare-5817a81aa/"
-            target="_blank"
-          >
-            <LinkdenLogo />
-          </Link>
+          <LinkdenLogo link="https://www.linkedin.com/in/aayush-pagare-5817a81aa/" />
         </motion.div>
         <motion.div variants={itemVariants}>
-          <Link href="mailto:aayushpagare21@gmail.com" target="_blank">
-            <GmailLogo />
-          </Link>
+          <GmailLogo link="mailto:aayushpagare21@gmail.com" />
         </motion.div>
       </div>
     </motion.div>

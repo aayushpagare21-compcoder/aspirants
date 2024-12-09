@@ -99,16 +99,16 @@ export const QuestionsCard = ({
                 )}
               </div>
               <div className="flex">
-                <Link
-                  href={{
-                    pathname: "/ai/smartcheck",
-                    query: { question: questionText, questionId }, // passing question as query parameter
-                  }}
-                >
-                  <Button variant="link" className="pl-0">
+                <Button variant="link" className="pl-0">
+                  <Link
+                    href={{
+                      pathname: "/ai/smartcheck",
+                      query: { question: questionText, questionId }, // passing question as query parameter
+                    }}
+                  >
                     Evaluate your answer with AI
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </CardFooter>
