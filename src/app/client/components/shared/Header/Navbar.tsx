@@ -47,13 +47,9 @@ const MobileMenu = ({
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline`}
+                className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline ${path === item.href ? "text-tertiary" : ""}`}
               >
-                <span
-                  className={`${path === item.href ? "text-tertiary" : ""}`}
-                >
-                  {item.label}
-                </span>
+                {item.label}
               </Link>
             </>
           );
@@ -102,13 +98,9 @@ const DesktopMenu = ({
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline`}
+                  className={`text-sm font-medium text-primary-foreground hover:text-gray-900 hover:underline ${path === item.href ? "text-tertiary" : ""}`}
                 >
-                  <span
-                    className={`${path === item.href ? "text-tertiary" : ""}`}
-                  >
-                    {item.label}
-                  </span>
+                  {item.label}
                 </Link>
               </>
             );
