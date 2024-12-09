@@ -38,7 +38,7 @@ const config: Config = {
           DEFAULT: "#FFFFFF",
           foreground: "#1C1C1C",
         },
-        tertiary: "#E75480",
+        tertiary: "#D7265E",
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",

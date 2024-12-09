@@ -12,7 +12,7 @@ const KeywordHighlighter: React.FC<KeywordHighlighterProps> = ({
   highlightStyle,
 }) => {
   const defaultHighlightStyle: React.CSSProperties = {
-    color: "pink",
+    color: "#D7265E",
   };
 
   const style = highlightStyle || defaultHighlightStyle;

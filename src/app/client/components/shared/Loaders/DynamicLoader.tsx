@@ -58,7 +58,7 @@ const DynamicLoader = ({ messages }: DynamicLoaderProps) => {
         .circle {
           width: 1rem;
           height: 1rem;
-          background-color: pink;
+          background-color: #D7265E;
           border-radius: 50%;
           animation: bounce 1.2s infinite;
         }

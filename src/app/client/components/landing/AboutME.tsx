@@ -40,9 +40,11 @@ export const AboutMe = () => {
           className="h-24 w-24 rounded-full bg-gray-300 md:rounded-none"
           src="/Aayush.jpeg"
           alt="Your Name"
-          width={80}
-          height={80}
+          width={96} // Set width for responsiveness
+          height={96} // Set height proportionally
+          layout="intrinsic" // Ensures the aspect ratio is preserved
         />
+
         <div className="flex flex-col items-center justify-center px-4">
           <h2 className="text-2xl font-semibold">
             Hello<span className="text-tertiary"> World!😉</span>

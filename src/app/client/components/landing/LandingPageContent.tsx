@@ -136,21 +136,24 @@ const FeaturesCard = ({
         damping: 15,
       }}
     >
-      <Card className="flex h-[23rem] max-w-md flex-col">
-        <CardHeader>
-          <CardTitle className="text-bold text-center text-[1.2rem]">
+      <Card className="flex h-[23rem] max-w-md flex-col rounded-lg border shadow-md">
+        <CardHeader className="p-4">
+          <CardTitle className="text-center text-lg font-bold md:text-xl">
             {cardTitle}
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex-grow">
+        <CardContent className="flex-grow p-4 text-sm text-gray-700 md:text-base">
           <KeywordHighlighter keywords={featuresData[index].keywords}>
             {cardContent}
           </KeywordHighlighter>
         </CardContent>
-        <CardFooter className="mt-auto flex justify-center pb-4 pt-4">
-          <Button variant="transparentTertiary">
-            <Link href={link}>{btnText ?? "Try Now 🚀"}</Link>
-          </Button>
+        <CardFooter className="mt-auto flex justify-center p-4">
+          <Link
+            href={link}
+            className="focus:ring-tertiary-400 flex w-full max-w-[12rem] items-center justify-center rounded-lg bg-tertiary px-4 py-3 text-sm font-medium text-white shadow focus:outline-none focus:ring-2 focus:ring-offset-2 md:text-base"
+          >
+            {btnText ?? "Try Now 🚀"}
+          </Link>
         </CardFooter>
       </Card>
     </motion.div>
