@@ -14,9 +14,11 @@ import { SearchModal } from "./SearchModal";
 export const QuestionsContainer = ({
   topics,
   userImage,
+  userLoggedIn,
 }: {
   topics: Topics[];
   userImage?: string;
+  userLoggedIn: boolean;
 }) => {
   const [paper, setPaper] = useState<Papers | null>(null);
   const [topic, setTopic] = useState<string | null>(null);
@@ -43,11 +45,12 @@ export const QuestionsContainer = ({
       />
       <Navbar
         userImage={userImage}
-        onChangeSearchText={(val) => setSearchValue(val)}
+        onChangeSearchText={(val: string) => setSearchValue(val)}
         searchText={searchValue ?? ""}
         onSearchIconClick={() => {
           if (isMobileOrTablet) setShowSearchModal(true);
         }}
+        userLoggedIn={userLoggedIn}
       />
       <SlidingNavbar
         navItems={slidingNavBarStaticItems.concat(

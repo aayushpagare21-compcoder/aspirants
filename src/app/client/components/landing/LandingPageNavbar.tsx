@@ -10,7 +10,7 @@ export const LandingPageNavBar = () => {
       <Link href="/login" passHref>
         <Button
           variant="transparentTertiary"
-          className="w-[6rem] h-[3rem] md:w-[12rem] md:h-[3.5rem] md:text-[1rem] flex items-center justify-center"
+          className="flex h-[3rem] w-[6rem] items-center justify-center md:h-[3.5rem] md:w-[12rem] md:text-[1rem]"
         >
           Get Started
         </Button>

@@ -3,7 +3,6 @@ import { NEXT_REVALIDATE_TOPICS_AFTER } from "@/app/lib/constants";
 import { auth } from "@/auth";
 import { Topics } from "@prisma/client";
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "UPSC Mains PYQs – Comprehensive Feed of Previous Year Questions",
@@ -45,9 +44,6 @@ const fetchAllTopics = async (): Promise<Topics[]> => {
 
 export default async function WelcomePage() {
   const session = await auth();
-  if (!session?.user) {
-    redirect("/");
-  }
   /*
    * Fetch all topics to be displayed on the navbar
    * These revalidates cache after every 24 hour
@@ -56,7 +52,8 @@ export default async function WelcomePage() {
   return (
     <QuestionsContainer
       topics={topics}
-      userImage={session.user.image ?? undefined}
+      userImage={session?.user?.image ?? undefined}
+      userLoggedIn={!!session}
     />
   );
 }

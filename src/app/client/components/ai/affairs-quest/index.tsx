@@ -22,7 +22,11 @@ const getMatchingPYQs = async (
   return matchingPYQs.questions;
 };
 
-export const AffairsQuestClient = () => {
+export const AffairsQuestClient = ({
+  userLoggedIn,
+}: {
+  userLoggedIn: boolean;
+}) => {
   const [articleUrl, setArticleUrl] = useState<string>("");
   const [validationError, setValidationError] = useState<string>("");
 
@@ -83,6 +87,7 @@ export const AffairsQuestClient = () => {
         onSubmit={() => handleSubmit({ url: articleUrl })}
         validationError={validationError}
         loading={loading}
+        userLoggedIn={userLoggedIn}
       />
       {results && (
         <AffairsQuestResults

@@ -15,9 +15,9 @@ export default async function AffairsQuest() {
   const session = await auth();
   return (
     <>
-      <Navbar userImage={session?.user?.image ?? ""} />
+      <Navbar userImage={session?.user?.image ?? ""} userLoggedIn={!!session} />
       <AIToolsContainer heading={formatToolsName(AIToolNames.AFFAIRS_QUEST)}>
-        <AffairsQuestClient />
+        <AffairsQuestClient userLoggedIn={!!session} />
         <AffairsQuestSEOFooter />
       </AIToolsContainer>
     </>

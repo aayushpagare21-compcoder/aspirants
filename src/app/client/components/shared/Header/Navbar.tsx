@@ -29,9 +29,11 @@ const menuItems = [
 const MobileMenu = ({
   onClickCrossIcon,
   path,
+  userLoggedIn,
 }: {
   onClickCrossIcon: () => void;
   path: string;
+  userLoggedIn: boolean;
 }) => {
   return (
     <div className="flex h-screen w-screen flex-col gap-4">
@@ -58,15 +60,25 @@ const MobileMenu = ({
       <Divider />
 
       <div className="flex items-center gap-4">
-        <Button
-          onClick={async () => {
-            await aspirantsSignOut();
-          }}
-          className="h-10 w-24 rounded-full text-sm font-medium hover:underline"
-          variant="secondary"
-        >
-          Logout
-        </Button>
+        {userLoggedIn && (
+          <Button
+            onClick={async () => {
+              await aspirantsSignOut();
+            }}
+            className="h-10 w-24 rounded-full text-sm font-medium hover:underline"
+            variant="tertiary"
+          >
+            Logout
+          </Button>
+        )}
+        {!userLoggedIn && (
+          <Button
+            className="h-10 w-24 rounded-full text-sm font-medium hover:underline"
+            variant="tertiary"
+          >
+            <Link href="/login"> Login </Link>
+          </Button>
+        )}
       </div>
     </div>
   );
@@ -79,6 +91,7 @@ const DesktopMenu = ({
   onSearchIconClick,
   path,
   onHamBurgerClick,
+  userLoggedIn,
 }: {
   path: string;
   userImage?: string;
@@ -86,6 +99,7 @@ const DesktopMenu = ({
   onChangeSearchText?: (s: string) => void;
   searchText?: string;
   onHamBurgerClick: () => void;
+  userLoggedIn: boolean;
 }) => {
   return (
     <>
@@ -118,8 +132,9 @@ const DesktopMenu = ({
 
       <div className="flex items-center gap-4">
         <SquareMenuIcon onClick={onHamBurgerClick} className="sm:hidden" />
-        {userImage && (
-          <div className="flex items-center gap-4">
+
+        <div className="flex items-center gap-4">
+          {userLoggedIn && (
             <Button
               onClick={async () => {
                 await aspirantsSignOut();
@@ -129,6 +144,16 @@ const DesktopMenu = ({
             >
               Logout
             </Button>
+          )}
+          {!userLoggedIn && (
+            <Button
+              className="hidden h-10 w-24 rounded-full text-sm font-medium hover:underline md:block"
+              variant="tertiary"
+            >
+              <Link href="/login"> Login </Link>
+            </Button>
+          )}
+          {userImage && (
             <div className="flex flex-col">
               <div
                 className="relative h-10 w-10 overflow-hidden rounded-full"
@@ -144,8 +169,8 @@ const DesktopMenu = ({
                 />
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </>
   );
@@ -156,12 +181,14 @@ export const Navbar = ({
   onChangeSearchText,
   onSearchIconClick,
   searchText,
+  userLoggedIn,
 }: {
   userImage?: string;
   onSearchIconClick?: () => void;
   onChangeSearchText?: (s: string) => void;
   searchText?: string;
   hideSearchBar?: boolean;
+  userLoggedIn: boolean;
 }) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const path = usePathname();
@@ -176,12 +203,14 @@ export const Navbar = ({
           searchText={searchText}
           userImage={userImage}
           onHamBurgerClick={() => setShowMobileMenu(true)}
+          userLoggedIn={userLoggedIn}
         />
       )}
       {showMobileMenu && (
         <MobileMenu
           onClickCrossIcon={() => setShowMobileMenu(false)}
           path={path}
+          userLoggedIn={userLoggedIn}
         />
       )}
     </nav>

@@ -4,9 +4,6 @@ import { TaskType } from "@google/generative-ai";
 import { NeonPostgres } from "@langchain/community/vectorstores/neon";
 import * as dotenv from "dotenv";
 dotenv.config();
-
-console.log("=====process.env", process.env);
-
 const embeddings = new GoogleGenerativeAIEmbeddings({
   model: "text-embedding-004",
   taskType: TaskType.RETRIEVAL_DOCUMENT,

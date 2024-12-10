@@ -12,6 +12,7 @@ export const SmartcheckForm = ({
   handleSubmit,
   disabledSubmitButton,
   setUploadedAnswer,
+  userLoggedIn,
 }: {
   isTypedQuestion: boolean;
   question?: string;
@@ -19,6 +20,7 @@ export const SmartcheckForm = ({
   handleSubmit: () => void;
   disabledSubmitButton: boolean;
   setUploadedAnswer: (pdf: File | null) => void;
+  userLoggedIn: boolean;
 }) => {
   return (
     <>
@@ -55,14 +57,28 @@ export const SmartcheckForm = ({
         </div>
 
         <div className="flex flex-col justify-center gap-1 md:items-start">
-          <Button
-            variant="tertiary"
-            className="w-full rounded-full p-6 text-[1rem] shadow-lg shadow-primary md:w-[14rem]"
-            onClick={handleSubmit}
-            disabled={disabledSubmitButton}
-          >
-            Evaluate Answer
-          </Button>
+          {userLoggedIn && (
+            <Button
+              variant="tertiary"
+              className="w-full rounded-full p-6 text-[1rem] shadow-lg shadow-primary md:w-[14rem]"
+              onClick={handleSubmit}
+              disabled={disabledSubmitButton}
+            >
+              Evaluate Answer
+            </Button>
+          )}
+          {!userLoggedIn && (
+            <Button
+              variant="tertiary"
+              className="w-full rounded-full p-6 text-[1rem] shadow-lg shadow-primary md:w-[14rem]"
+              disabled={disabledSubmitButton}
+            >
+              <Link href="/login?redirectTo=/ai/smartcheck">
+                {" "}
+                Evaluate Answer{" "}
+              </Link>
+            </Button>
+          )}
 
           <div>
             <Link href="/feed">

@@ -185,7 +185,7 @@ const HeroSection = () => (
     </motion.p>
     <motion.div className="flex justify-center" variants={itemVariants}>
       <Button className="flex w-[12rem] rounded-full bg-[#F4CE14] py-6 text-[1.2rem] text-black hover:bg-[#F4CE14]/80">
-        <Link href="/login">Start Free</Link>
+        <Link href="/login?redirectTo=/feed">Explore PYQs</Link>
       </Button>
     </motion.div>
   </motion.div>

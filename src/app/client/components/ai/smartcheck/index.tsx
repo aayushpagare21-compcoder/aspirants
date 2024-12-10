@@ -32,10 +32,12 @@ export const SmartcheckClient = ({
   isTypedQuestion,
   question: initialQuestion,
   questionId,
+  userLoggedIn,
 }: {
   isTypedQuestion: boolean;
   question?: string;
   questionId?: string;
+  userLoggedIn: boolean;
 }) => {
   const [answerEvaluationScreen, setAnswerEvaluationScreen] =
     useState<Screens>("FORM");
@@ -109,6 +111,7 @@ export const SmartcheckClient = ({
               }}
               setQuestion={setQuestion}
               setUploadedAnswer={setUploadedAnswer}
+              userLoggedIn={userLoggedIn}
             />
           )}
           {answerEvaluationScreen === "RESULT" && results && (

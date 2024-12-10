@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SkeletonLoader } from "../../shared/Loaders/SkeletonLoader";
 import { Button } from "../../ui/button";
 import { Textarea } from "../../ui/textarea";
@@ -8,12 +9,14 @@ export const AffairsQuestForm = ({
   onSubmit,
   validationError: error,
   loading,
+  userLoggedIn,
 }: {
   articleUrl: string;
   handleUrlChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onSubmit: () => void;
   validationError: string | null;
   loading: boolean;
+  userLoggedIn: boolean;
 }) => {
   return (
     <>
@@ -41,14 +44,28 @@ export const AffairsQuestForm = ({
         </div>
 
         <div className="flex flex-col justify-center gap-1 md:items-start">
-          <Button
-            variant="tertiary"
-            className="w-full rounded-full p-6 text-[1rem] shadow-lg shadow-primary md:w-[14rem]"
-            onClick={onSubmit}
-            disabled={!articleUrl || !!error}
-          >
-            Find Relavent PYQs
-          </Button>
+          {userLoggedIn && (
+            <Button
+              variant="tertiary"
+              className="w-full rounded-full p-6 text-[1rem] shadow-lg shadow-primary md:w-[14rem]"
+              onClick={onSubmit}
+              disabled={!articleUrl || !!error}
+            >
+              Find Relavent PYQs
+            </Button>
+          )}
+          {!userLoggedIn && (
+            <Button
+              variant="tertiary"
+              className="w-full rounded-full p-6 text-[1rem] shadow-lg shadow-primary md:w-[14rem]"
+              disabled={!articleUrl || !!error}
+            >
+              <Link href="/login?redirectTo=/ai/affairs-quest">
+                {" "}
+                Find Relavent PYQs{" "}
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
       {loading && (

@@ -18,12 +18,16 @@ export default async function SmartCheck({
 
   return (
     <>
-      <Navbar userImage={session?.user?.image ?? undefined} />
+      <Navbar
+        userImage={session?.user?.image ?? undefined}
+        userLoggedIn={!!session}
+      />
       <AIToolsContainer heading={formatToolsName(AIToolNames.SMARTCHECK)}>
         <SmartcheckClient
           question={searchParams.question}
           questionId={searchParams.questionId}
           isTypedQuestion={!searchParams.question}
+          userLoggedIn={!!session}
         />
         <SmartCheckSEOFooter />
       </AIToolsContainer>
