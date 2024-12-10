@@ -5,6 +5,7 @@ import { LinkdenLogo } from "../shared/Logo/Linkden";
 import { Medium } from "../shared/Logo/Medium";
 import { GmailLogo } from "../shared/Logo/GmailLogo";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -67,16 +68,36 @@ export const AboutMe = () => {
       </motion.div>
       <div className="mb-8 mt-6 flex justify-center gap-2">
         <motion.div variants={itemVariants}>
-          <Medium link="https://medium.com/@aayushpagare21" />
+          <Link
+            href="https://medium.com/@aayushpagare21"
+            passHref
+            target="_blank"
+          >
+            <Medium />
+          </Link>
         </motion.div>
         <motion.div variants={itemVariants}>
-          <GithubLogo link="https://github.com/aayushpagare21-compcoder" />
+          <Link
+            href="https://github.com/aayushpagare21-compcoder"
+            passHref
+            target="_blank"
+          >
+            <GithubLogo />
+          </Link>
         </motion.div>
         <motion.div variants={itemVariants}>
-          <LinkdenLogo link="https://www.linkedin.com/in/aayush-pagare-5817a81aa/" />
+          <Link
+            href="https://www.linkedin.com/in/aayush-pagare-5817a81aa/"
+            target="_blank"
+            passHref
+          > 
+            <LinkdenLogo />
+          </Link>
         </motion.div>
         <motion.div variants={itemVariants}>
-          <GmailLogo link="mailto:aayushpagare21@gmail.com" />
+          <Link href="mailto:aayushpagare21@gmail.com"> 
+            <GmailLogo />
+          </Link>
         </motion.div>
       </div>
     </motion.div>
