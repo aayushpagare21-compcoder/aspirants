@@ -2,8 +2,6 @@
 import { EvaluationResult } from "@/app/lib/types/ai.types";
 import { useState } from "react";
 import DynamicLoader from "../../shared/Loaders/DynamicLoader";
-
-import { redirect } from "next/navigation";
 import { useAsyncFn } from "react-use";
 import { ErrorPage } from "../../error/ErrorPage";
 import { ErrorCodes } from "@/app/lib/constants";
