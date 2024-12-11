@@ -8,18 +8,18 @@ export const AspirantsLogo = ({
   overrideClasses?: string;
 }) => {
   const defaultClasses =
-    "flex font-[family-name:var(--font-gtsuper-medium)] md:text-[1.4rem] font-bold gap-1 items-center";
+    "flex font-[family-name:var(--font-gtsuper-medium)] text-[1.2rem] md:text-[1.4rem] font-bold gap-1 items-center";
   return (
     <Link href="/" passHref>
       <div className={cn(defaultClasses, overrideClasses)}>
         <Image
-          className="h-12 w-12"
+          className="h-10 w-10 md:h-12 md:w-12"
           src="/android-chrome-512x512.png"
           width={60}
           height={40}
           alt="aspirantsai logo"
         />
-        <div className="mt-1 hidden md:flex">
+        <div className="mt-1 flex">
           <span className="text-tertiary">Aspirants</span>AI
         </div>
       </div>

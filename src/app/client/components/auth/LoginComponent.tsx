@@ -1,11 +1,12 @@
 "use client";
+import { AspirantsLogo } from "../shared/Logo/AspirantsLogo";
 import { AuthButtons } from "./AuthButtons";
 const Header = () => {
-  return (
-    <h1 className="mb-4 text-center font-[family-name:var(--font-gtsuper-medium)] text-2xl text-[1.8rem] font-bold md:mb-10">
-      Continue to Aspirant<span className="text-tertiary">AI</span>
-    </h1>
-  );
+  return ( 
+    <div className="flex justify-center mb-4"> 
+      <AspirantsLogo />
+    </div>
+  )
 };
 const Footer = () => {
   return (
