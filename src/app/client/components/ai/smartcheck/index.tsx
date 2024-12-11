@@ -118,11 +118,7 @@ export const SmartcheckClient = ({
             <SmartcheckResults
               results={results}
               onBack={() => {
-                if (!isTypedQuestion) {
-                  redirect("/feed");
-                } else {
-                  setAnswerEvaluationScreen("FORM");
-                }
+                setAnswerEvaluationScreen("FORM");
               }}
             />
           )}
