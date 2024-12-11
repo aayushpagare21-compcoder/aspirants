@@ -172,7 +172,7 @@ const HeroSection = () => (
       variants={itemVariants}
     >
       Everything UPSC preparations with{" "}
-      <span className="text-tertiary">Aspirant</span>AI
+      <span className="text-tertiary">Aspirants</span>AI
     </motion.h1>
     <motion.p
       className="mb-8 text-[1rem] text-primary-foreground/70 md:text-[1.3rem]"

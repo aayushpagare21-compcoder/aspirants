@@ -1,6 +1,6 @@
-# Contributing to Aspirants
+# Contributing to AspirantsAI
 
-If you plan to contribute to Aspirants, please take a moment to feel awesome ✨ People like you are what open source is about ♥. Any contributions, no matter how big or small, are highly appreciated.
+If you plan to contribute to AspirantsAI, please take a moment to feel awesome ✨ People like you are what open source is about ♥. Any contributions, no matter how big or small, are highly appreciated.
 
 ## Before getting started
 
