@@ -2,11 +2,11 @@
 import { AspirantsLogo } from "../shared/Logo/AspirantsLogo";
 import { AuthButtons } from "./AuthButtons";
 const Header = () => {
-  return ( 
-    <div className="flex justify-center mb-4"> 
+  return (
+    <div className="mb-4 flex justify-center">
       <AspirantsLogo />
     </div>
-  )
+  );
 };
 const Footer = () => {
   return (
@@ -20,10 +20,10 @@ const Footer = () => {
 
 export const LoginComponent = ({ redirectTo }: { redirectTo: string }) => {
   return (
-    <>
+    <section id="login_page">
       <Header />
       <AuthButtons redirectTo={redirectTo} />
       <Footer />
-    </>
+    </section>
   );
 };

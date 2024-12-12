@@ -38,7 +38,7 @@ const DynamicLoader = ({ messages }: DynamicLoaderProps) => {
   return (
     <div className="flex h-[100%] w-[100%] flex-col items-center justify-center gap-8">
       <div className="text-center text-[1.5rem] font-semibold text-black">
-        <i>{currentMessage}</i>
+        <em>{currentMessage}</em>
       </div>
       <div className="text-[2rem] font-bold text-red-500">{timer}</div>
       <div className="loader">

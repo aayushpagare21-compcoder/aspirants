@@ -80,7 +80,7 @@ export const AffairsQuestClient = ({
   }
 
   return (
-    <>
+    <section id="affairs_quest_page">
       <AffairsQuestForm
         articleUrl={articleUrl}
         handleUrlChange={handleUrlChange}
@@ -97,6 +97,6 @@ export const AffairsQuestClient = ({
           }}
         />
       )}
-    </>
+    </section>
   );
 };

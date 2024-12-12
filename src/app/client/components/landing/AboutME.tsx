@@ -24,9 +24,10 @@ const itemVariants = {
   },
 };
 
-export const AboutMe = () => {
+export const AboutAuthor = () => {
   return (
-    <motion.div
+    <motion.section
+      id="landing_page_about_author_section"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -40,12 +41,11 @@ export const AboutMe = () => {
         <Image
           className="h-24 w-24 rounded-full bg-gray-300 md:rounded-none"
           src="/Aayush.jpeg"
-          alt="Your Name"
-          width={96} // Set width for responsiveness
-          height={96} // Set height proportionally
-          layout="intrinsic" // Ensures the aspect ratio is preserved
+          alt="Autor's Image"
+          width={96}
+          height={96}
+          layout="intrinsic"
         />
-
         <div className="flex flex-col items-center justify-center px-4">
           <h2 className="text-2xl font-semibold">
             Hello<span className="text-tertiary"> World!😉</span>
@@ -90,16 +90,16 @@ export const AboutMe = () => {
             href="https://www.linkedin.com/in/aayush-pagare-5817a81aa/"
             target="_blank"
             passHref
-          > 
+          >
             <LinkdenLogo />
           </Link>
         </motion.div>
         <motion.div variants={itemVariants}>
-          <Link href="mailto:aayushpagare21@gmail.com"> 
+          <Link href="mailto:aayushpagare21@gmail.com">
             <GmailLogo />
           </Link>
         </motion.div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };

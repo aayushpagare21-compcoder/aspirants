@@ -36,7 +36,7 @@ export const QuestionsContainer = ({
   }, []);
 
   return (
-    <>
+    <section id="feed_page">
       <SearchModal
         searchText={searchValue ?? ""}
         showSearchModal={showSearchModal}
@@ -71,6 +71,6 @@ export const QuestionsContainer = ({
         setSearchValue={setSearchValue}
         setPaper={setPaper}
       />
-    </>
+    </section>
   );
 };

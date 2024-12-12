@@ -12,7 +12,7 @@ import {
 import { AIToolNames, formatToolsName } from "@/app/lib/types/utils.types";
 import KeywordHighlighter from "../shared/KeywordHighlighter";
 import { motion, useInView } from "framer-motion";
-import { AboutMe } from "./AboutME";
+import { AboutAuthor } from "./AboutME";
 
 // Types
 type FeaturesCardProps = {
@@ -161,7 +161,8 @@ const FeaturesCard = ({
 };
 
 const HeroSection = () => (
-  <motion.div
+  <motion.section
+    id="landing_page_hero_section"
     variants={containerVariants}
     initial="hidden"
     animate="visible"
@@ -178,21 +179,24 @@ const HeroSection = () => (
       className="mb-8 text-[1rem] text-primary-foreground/70 md:text-[1.3rem]"
       variants={itemVariants}
     >
-      <i>
+      <em>
         Mains PYQs, Mains Evaluation, Search Engine, Article matching PYQs, and
         more...
-      </i>
+      </em>
     </motion.p>
     <motion.div className="flex justify-center" variants={itemVariants}>
       <Button className="flex w-[12rem] rounded-full bg-[#F4CE14] py-6 text-[1.2rem] text-black hover:bg-[#F4CE14]/80">
         <Link href="/login?redirectTo=/feed">Explore PYQs</Link>
       </Button>
     </motion.div>
-  </motion.div>
+  </motion.section>
 );
 
 const FeaturesSection = () => (
-  <div id="features" className="flex flex-col items-center justify-center">
+  <section
+    id="landing_page_features_section"
+    className="flex flex-col items-center justify-center"
+  >
     <motion.div variants={containerVariants} initial="hidden" animate="visible">
       <motion.h2
         className="mb-4 p-4 text-[1.5rem] leading-[3rem] tracking-tight md:text-[2rem]"
@@ -213,7 +217,7 @@ const FeaturesSection = () => (
         />
       ))}
     </div>
-  </div>
+  </section>
 );
 
 const LandingPageContent = () => (
@@ -226,7 +230,7 @@ const LandingPageContent = () => (
       {/* Add Stats Here */}
     </div>
     <FeaturesSection />
-    <AboutMe />
+    <AboutAuthor />
   </div>
 );
 

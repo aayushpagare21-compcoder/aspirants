@@ -8,27 +8,6 @@ export const metadata: Metadata = {
   title: "UPSC Mains PYQs – Comprehensive Feed of Previous Year Questions",
   description:
     "Explore a complete feed of UPSC Mains Previous Year Questions (PYQs) categorized by topics and years. Use this resource to refine your preparation and master answer writing with ease.",
-  keywords: [
-    "UPSC Mains Previous Year Questions",
-    "PYQs categorized by topics",
-    "UPSC answer writing preparation",
-    "UPSC Mains question bank",
-    "Refine UPSC preparation with PYQs",
-    "Master UPSC answer writing",
-    "UPSC Mains PYQ resource",
-    "UPSC Mains topic-wise PYQs",
-    "UPSC preparation with PYQs",
-    "Complete feed of UPSC Mains questions",
-    "UPSC answer writing practice",
-    "UPSC question papers by year",
-    "Answer writing tips for UPSC Mains",
-    "UPSC Mains question categorization",
-    "Year-wise UPSC Mains questions",
-    "UPSC answer writing mastery",
-    "UPSC Mains preparation guide",
-    "Detailed PYQs for UPSC Mains",
-    "UPSC Mains question archive"
-  ],
   authors: [
     {
       name: "Aayush Pagare",
@@ -38,9 +17,9 @@ export const metadata: Metadata = {
   publisher: "Aayush Pagare",
   category: "Education, UPSC, AI Tools",
   robots: "index, follow",
-  alternates: { 
+  alternates: {
     canonical: "https://www.aspirantsai.com/feed",
-  }
+  },
 };
 
 const fetchAllTopics = async (): Promise<Topics[]> => {

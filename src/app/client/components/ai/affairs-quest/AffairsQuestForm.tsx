@@ -19,7 +19,7 @@ export const AffairsQuestForm = ({
   userLoggedIn: boolean;
 }) => {
   return (
-    <>
+    <section id="affairs_quest_form">
       <Textarea
         id="articleUrlInput"
         className="focus-visible:none border-md w-full bg-inherit p-2"
@@ -36,7 +36,7 @@ export const AffairsQuestForm = ({
               {" "}
               <span>
                 {" "}
-                Please paste an article link from <i> The Hindu here </i>.
+                Please paste an article link from <em> The Hindu here </em>.
               </span>
             </li>
             <li>{`We'll find out all the relavent PYQs of mains.`}</li>
@@ -74,6 +74,6 @@ export const AffairsQuestForm = ({
           <SkeletonLoader />
         </div>
       )}
-    </>
+    </section>
   );
 };

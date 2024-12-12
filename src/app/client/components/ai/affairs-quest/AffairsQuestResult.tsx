@@ -24,7 +24,7 @@ export const AffairsQuestResults = ({
     );
   }
   return (
-    <div>
+    <section id="affairs_quest_results">
       <Divider />
       <div className="mt-4 text-center text-2xl font-semibold">
         Relavent <span className="text-tertiary"> Questions </span>
@@ -65,6 +65,6 @@ export const AffairsQuestResults = ({
           Back
         </Button>
       </div>
-    </div>
+    </section>
   );
 };

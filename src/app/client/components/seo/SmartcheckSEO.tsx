@@ -6,28 +6,11 @@ export const smartCheckSEOHeader = {
   title: "SmartCheck | AI Answer Evaluator for UPSC Mains Preparation",
   description:
     "Boost your UPSC Mains preparation with SmartCheck, an AI-powered answer evaluator that provides personalized feedback on your handwritten answers. Improve your writing skills and exam performance.",
-  keywords: [
-    "UPSC Mains preparation",
-    "AI answer evaluator",
-    "SmartCheck UPSC tool",
-    "UPSC handwritten answer evaluation",
-    "Personalized feedback for UPSC answers",
-    "Improve UPSC writing skills",
-    "AI-powered UPSC preparation",
-    "Enhance UPSC exam performance",
-    "UPSC answer writing practice",
-    "AI feedback for UPSC Mains",
-    "Smart answer evaluator for UPSC",
-    "AI tool for UPSC aspirants",
-    "UPSC exam preparation tips",
-    "UPSC Mains writing improvement",
-    "UPSC Mains AI assistance",
-  ],
   author: "Aayush Pagare",
   publisher: "Aayush Pagare",
   category: "Education, UPSC, AI Tools",
   robots: "index, follow",
-  alternates: { 
+  alternates: {
     canonical: "https://www.aspirantsai.com/ai/smartcheck",
   },
   abstract:

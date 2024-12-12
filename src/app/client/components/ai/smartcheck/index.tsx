@@ -86,7 +86,7 @@ export const SmartcheckClient = ({
   }
 
   return (
-    <>
+    <section id="smart_check_page">
       <strong>{question}</strong>
       {loading ? (
         <DynamicLoader
@@ -122,6 +122,6 @@ export const SmartcheckClient = ({
           )}
         </>
       )}
-    </>
+    </section>
   );
 };

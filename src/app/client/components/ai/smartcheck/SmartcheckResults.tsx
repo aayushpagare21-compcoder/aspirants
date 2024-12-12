@@ -11,7 +11,7 @@ export const SmartcheckResults = ({
   const { mistakesAndCorrections, goodParts, score, modelAnswer } = results;
 
   return (
-    <div className="flex flex-col rounded-md">
+    <section className="flex flex-col rounded-md">
       <h2 className="text-xl font-bold text-primary-foreground">
         {results ? "Evaluation Results" : "Error evaluating the results."}
       </h2>
@@ -86,6 +86,6 @@ export const SmartcheckResults = ({
           Back
         </Button>
       </div>
-    </div>
+    </section>
   );
 };

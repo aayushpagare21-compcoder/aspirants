@@ -23,7 +23,7 @@ export const SmartcheckForm = ({
   userLoggedIn: boolean;
 }) => {
   return (
-    <>
+    <section id="smart_check_form">
       {isTypedQuestion && (
         <div className="mb-4 w-full">
           <Textarea
@@ -92,6 +92,6 @@ export const SmartcheckForm = ({
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
