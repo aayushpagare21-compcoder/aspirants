@@ -5,7 +5,7 @@ import KeywordHighlighter from "../shared/KeywordHighlighter";
 export const smartCheckSEOHeader = {
   title: "SmartCheck | AI Answer Evaluator for UPSC Mains Preparation",
   description:
-    "Boost your UPSC Mains preparation with SmartCheck, an AI-powered answer evaluator that provides personalized feedback on your handwritten answers. Improve your writing skills and exam performance.",
+    "Boost your UPSC Mains prep with SmartCheck, an AI tool offering personalized feedback on your handwritten answers to enhance your writing and performance..",
   author: "Aayush Pagare",
   publisher: "Aayush Pagare",
   category: "Education, UPSC, AI Tools",

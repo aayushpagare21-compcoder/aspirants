@@ -5,7 +5,7 @@ import KeywordHighlighter from "../shared/KeywordHighlighter";
 export const affairsQuestHeaderSEO = {
   title: "AffairsQuest | Link Current Affairs to UPSC Mains PYQs",
   description:
-    "AffairsQuest helps UPSC aspirants link current affairs directly to previous year questions (PYQs) from The Hindu newspaper. Stay exam-ready with AI-driven insights.",
+    "AffairsQuest links articles from The Hindu to UPSC Mains PYQs, connecting current affairs to exam-relevant questions for valuable insights.",
   abstract:
     "AffairsQuest is an AI-powered tool that connects articles from The Hindu newspaper with UPSC Mains PYQs. It simplifies preparation by linking current affairs to exam-relevant questions, providing aspirants with valuable insights.",
   applicationName: "AspirantsAI",

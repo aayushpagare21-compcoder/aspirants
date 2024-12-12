@@ -7,7 +7,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "UPSC Mains PYQs – Comprehensive Feed of Previous Year Questions",
   description:
-    "Explore a complete feed of UPSC Mains Previous Year Questions (PYQs) categorized by topics and years. Use this resource to refine your preparation and master answer writing with ease.",
+    "Explore PYQs and get AI-powered answer evaluations with a single click..",
   authors: [
     {
       name: "Aayush Pagare",

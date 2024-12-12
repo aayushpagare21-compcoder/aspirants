@@ -6,7 +6,7 @@ import LandingPageContent from "../client/components/landing/LandingPageContent"
 export const metadata: Metadata = {
   title: "AspirantsAI | AI-Powered Tools for UPSC Preparation",
   description:
-    "AspirantsAI is an all-in-one platform offering AI-driven tools to enhance UPSC preparation. From AffairsQuest for linking current affairs to UPSC Mains PYQs, to SmartCheck for AI-powered answer evaluation, our suite of tools helps aspirants prepare smarter and achieve their goals.",
+    "AspirantsAI is an all-in-one platform offering AI-driven tools to help with UPSC exam preparation, including SmartCheck, AffairsQuest, and more.",
   abstract:
     "AspirantsAI is an all-in-one platform that leverages artificial intelligence to enhance the preparation process for UPSC Mains aspirants. It features AffairsQuest, an intelligent tool that connects current affairs to relevant PYQs, and SmartCheck, which provides detailed feedback on handwritten answers. Designed to streamline studies, AspirantsAI empowers aspirants with efficient search capabilities, insightful answer reviews, and tools for comprehensive preparation. Whether you're aiming to master current affairs, improve answer-writing skills, or access tailored resources, AspirantsAI is your companion for UPSC success.",
   authors: [
