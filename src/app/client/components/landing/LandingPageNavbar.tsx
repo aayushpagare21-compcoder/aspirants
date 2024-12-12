@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const LandingPageNavBar = () => {
   return (
-    <header>
+    
       <nav className="mt-4 flex w-full max-w-[90vw] items-center justify-between p-4">
         <AspirantsLogo />
         <Link href="/login" passHref>
@@ -17,6 +17,6 @@ export const LandingPageNavBar = () => {
           </Button>
         </Link>
       </nav>
-    </header>
+    
   );
 };
