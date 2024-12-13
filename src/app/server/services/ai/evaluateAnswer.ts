@@ -56,6 +56,7 @@ const parser = StructuredOutputParser.fromZodSchema(
 
 export async function evaluateAnswer(question: string, answer: string) {
   console.log("EVALUATION PROCESS STARTED");
+  console.log("ANSWER EXTRACTED", answer)
   const evaluationRubric = `
     Role and Task: You are an experienced UPSC Mains evaluator. 
     Your task is to assess a candidate's answer to the provided question.
