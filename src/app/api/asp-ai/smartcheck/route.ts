@@ -17,9 +17,10 @@ const textExtract = TextractService.getInstance(
 );
 const rl = RatelimitService.getInstance().getRatelimit();
 
-export const maxDuration = 120;
+export const maxDuration = 60;
 
 export async function POST(req: Request) {
+  console.log("Answer evaluation request.")
   try {
     // Get the authenticated user
     let user: User;
@@ -29,6 +30,7 @@ export async function POST(req: Request) {
       console.error("Failed to get authenticated user:", err);
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
+    console.log("DB CALL MADE FOR GETTING THE USER.")
 
     // Get the form data
     const form = await req.formData();
@@ -65,6 +67,8 @@ export async function POST(req: Request) {
       }
     }
 
+    console.log("RATE LIMIT CHECKED.")
+
     const answerId = cuid();
     const s3Key = questionId
       ? `${process.env.NODE_ENV}/${questionId}/${answerId}.pdf`
@@ -77,11 +81,14 @@ export async function POST(req: Request) {
       Buffer.from(await answerFile.arrayBuffer()),
       ContentType.PDF,
     );
+    console.log("FILE UPLOAD COMPLETED")
     // Extract the text using OCR (AWS TESSERACT)
     const extractedAnswer = await textExtract.extractTextFromS3PDF(s3Key);
+    console.log("TEXT EXTRACTION COMPLETED")
 
     // Evaluate the answer using the GEMINI AI
     const evaluation = await evaluateAnswer(question!, extractedAnswer);
+    console.log("===ANSWER EVALUATION COMPLETED===")
 
     // Create the answer record in the database.
     await createAnswer({
@@ -91,6 +98,7 @@ export async function POST(req: Request) {
       questionId: questionId,
       evaluationJSON: JSON.stringify(evaluation),
     });
+    console.log("ANSWER CREATED:")
 
     return NextResponse.json({
       modelAnswer: evaluation.modelAnswer,
