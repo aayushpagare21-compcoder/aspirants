@@ -1,6 +1,7 @@
 import React from "react";
 import localFont from "next/font/local";
 import "./client/styles/globals.css";
+import { Analytics } from "@vercel/analytics/react"
 
 const gtSuper = localFont({
   src: "../../public/fonts/GT-Super/GT-Super-Display-Regular-Trial.woff2",
@@ -46,6 +47,7 @@ export default function RootLayout({
         className={`${gtSuper.variable} ${sohne.variable} bg-background text-foreground`}
       >
         <div>{children}</div>
+        <Analytics />
       </body>
     </html>
   );
