@@ -9,7 +9,7 @@ export const maxDuration = 60;
 const model = new ChatGoogleGenerativeAI({
   model: "gemini-1.5-flash",
   maxOutputTokens: 2048,
-  apiKey: "AIzaSyDHx0DfMIeVWs42P35o8PeaZZtqoCPzC1g",
+  apiKey: process.env.GEMINI_API_KEY,
   topP: 1,
 });
 
