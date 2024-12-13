@@ -9,7 +9,7 @@ export const maxDuration = 60;
 const model = new ChatGoogleGenerativeAI({
   model: "gemini-1.5-flash",
   maxOutputTokens: 2048,
-  apiKey: process.env.GEMINI_API_KEY,
+  apiKey: "AIzaSyDHx0DfMIeVWs42P35o8PeaZZtqoCPzC1g",
   topP: 1,
 });
 
@@ -55,6 +55,7 @@ const parser = StructuredOutputParser.fromZodSchema(
 );
 
 export async function evaluateAnswer(question: string, answer: string) {
+  console.log("EVALUATION PROCESS STARTED");
   const evaluationRubric = `
     Role and Task: You are an experienced UPSC Mains evaluator. 
     Your task is to assess a candidate's answer to the provided question.
@@ -104,5 +105,6 @@ export async function evaluateAnswer(question: string, answer: string) {
     .pipe(parser);
 
   const evaluation = await chain.invoke({});
+  console.log("evaluation=====", evaluation)
   return evaluation;
 }
