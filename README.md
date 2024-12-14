@@ -6,8 +6,8 @@ It provides various AI backed tools
 
 ### Tools
 
-1. [AI Smartcheck](https://aspirantsai.com/ai/smartcheck)
-2. [AI AffairsQuest](https://aspirantsai.com/ai/affairs-quest)
+1. [AI Smartcheck](https://www.aspirantsai.com/ai/smartcheck)
+2. [AI AffairsQuest](https://www.aspirantsai.com/ai/affairs-quest)
 
 ### Our Tech Stack
 
