@@ -2,6 +2,7 @@ import React from "react";
 import localFont from "next/font/local";
 import "./client/styles/globals.css";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const gtSuper = localFont({
   src: "../../public/fonts/GT-Super/GT-Super-Display-Regular-Trial.woff2",
@@ -48,6 +49,7 @@ export default function RootLayout({
       >
         <div>{children}</div>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
